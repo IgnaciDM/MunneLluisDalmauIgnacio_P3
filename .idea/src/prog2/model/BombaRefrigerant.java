@@ -5,12 +5,14 @@ import java.io.Serializable;
 public class BombaRefrigerant implements InBombaRefrigerant{
     int id;
     boolean activa;
+    VariableUniforme VaUni;
     boolean operativa;
+    float capacitat;
+    float costoperatiu;
 
-    BombaRefrigerant(int id, VariableUniforme VaUni) {
+    BombaRefrigerant(int id, VariableUniforme VaUni) throws CentralUBException {
         this.id = id;
-        this.activa = activa;
-        this.operativa = operativa;
+        this.VaUni = VaUni;
     }
 
     public int getId() {
@@ -34,7 +36,9 @@ public class BombaRefrigerant implements InBombaRefrigerant{
     }
 
     public void revisa (PaginaIncidencies p) {
-
+        if (VaUni.seguentValor() < 25) {
+            this.operativa = false;
+        }
     }
 
     public boolean getForaDeServei() {
@@ -42,11 +46,19 @@ public class BombaRefrigerant implements InBombaRefrigerant{
     }
 
     public float getCapacitat() {
-
+        if (this.activa == false) {
+            return 0;
+        } else {
+            return capacitat;
+        }
     }
 
     public float getCostOperatiu() {
-
+        if (this.activa == false) {
+            return 0;
+        } else {
+            return costoperatiu;
+        }
     }
 
     public String toString() {
