@@ -12,7 +12,6 @@ import prog2.vista.CentralUBException;
  * @author Daniel Ortiz
  */
 public interface InComponent {
-    
     /**
      * Activa el component. El mètode llançarà
      * una excepció en determinades situacions explicades
