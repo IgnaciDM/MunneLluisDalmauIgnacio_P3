@@ -1,5 +1,7 @@
-package prog2;
-import prog2.model.vista;
+package prog2.model;
+
+import prog2.vista.CentralUBException;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 

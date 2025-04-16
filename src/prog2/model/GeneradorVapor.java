@@ -1,5 +1,7 @@
 package prog2.model;
 
+import prog2.vista.CentralUBException;
+
 public class GeneradorVapor {
     boolean activa;
 

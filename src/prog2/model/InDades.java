@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package prog2.vista;
+package prog2.model;
 
 
 import java.util.ArrayList;
