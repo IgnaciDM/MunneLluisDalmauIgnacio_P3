@@ -1,5 +1,7 @@
 package prog2.model;
 
+
+import prog2.vista.CentralUBException;
 import java.io.Serializable;
 
 public class BombaRefrigerant implements InBombaRefrigerant{
@@ -19,9 +21,9 @@ public class BombaRefrigerant implements InBombaRefrigerant{
         return id;
     }
 
-    public void activa() throws CentralUBException; {
-        if (this.operativa == false) {
-            throw new CentralUBException("La Bomba Refrigerant esta fora de servei");
+    public void activa() {
+        if (operativa == false) {
+            this.activa = false;
         } else {
             this.activa = true;
         }
@@ -46,7 +48,7 @@ public class BombaRefrigerant implements InBombaRefrigerant{
     }
 
     public float getCapacitat() {
-        if (this.activa == false) {
+        if (activa == false) {
             return 0;
         } else {
             return capacitat;
@@ -54,7 +56,7 @@ public class BombaRefrigerant implements InBombaRefrigerant{
     }
 
     public float getCostOperatiu() {
-        if (this.activa == false) {
+        if (activa == false) {
             return 0;
         } else {
             return costoperatiu;

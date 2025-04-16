@@ -7,8 +7,13 @@ package prog2.model;
 import java.util.Random;
 
 /**
- *
- * @author Daniel Ortiz
+ • VariableUniforme: aquesta classe es fa servir per determinar aleatoriament si
+ una bomba refrigerant estarà fora de servei al començar un nou dia. Només es
+ declara un objecte d’aquesta classe dins del constructor de la classe Dades i es
+ proporciona com a paràmetre al constructor de la classe BombaRefrigerant.
+ La classe BombaRefrigerant utilitza el mètode seguentValor per generar un
+ nombre aleatori que determinarà si la bomba es queda fora de servei.
+
  */
 public class VariableUniforme {
     private Random random;
