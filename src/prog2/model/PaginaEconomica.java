@@ -5,17 +5,19 @@ public class PaginaEconomica extends PaginaBitacola {
 
     private final float demandaPotencia;
     private final float potenciaGenerada;
+    private final float demandasatisfeta;
     private final float beneficis;
     private final float penalitzacio;
     private final float costosOperatius;
     private final float guanysAcumulats;
 
-    public PaginaEconomica(int dia, float demandaPotencia, float potenciaGenerada,
+    public PaginaEconomica(int dia, float demandaPotencia, float potenciaGenerada, float demandasatisfeta,
                            float beneficis, float penalitzacio, float costosOperatius,
                            float guanysAcumulats) {
         super(dia);
         this.demandaPotencia = demandaPotencia;
         this.potenciaGenerada = potenciaGenerada;
+        this.demandasatisfeta = demandasatisfeta;
         this.beneficis = beneficis;
         this.penalitzacio = penalitzacio;
         this.costosOperatius = costosOperatius;
@@ -29,6 +31,8 @@ public class PaginaEconomica extends PaginaBitacola {
     public float getPotenciaGenerada() {
         return potenciaGenerada;
     }
+
+    public float getDemandasatisfeta() {return demandasatisfeta; }
 
     public float getBeneficis() {
         return beneficis;
@@ -51,6 +55,7 @@ public class PaginaEconomica extends PaginaBitacola {
         return "--- Pàgina Econòmica (Dia " + getDia() + ") ---\n" +
                 "Demanda Potència: " + demandaPotencia + "\n" +
                 "Potència Generada: " + potenciaGenerada + "\n" +
+                "Demanda satisfeta: " + demandasatisfeta + "\n" +
                 "Beneficis: " + beneficis + "\n" +
                 "Penalització: " + penalitzacio + "\n" +
                 "Costos Operatius: " + costosOperatius + "\n" +

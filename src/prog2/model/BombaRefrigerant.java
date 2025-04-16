@@ -15,7 +15,6 @@ public class BombaRefrigerant implements InBombaRefrigerant{
         this.VaUni = VaUni;
     }
 
-
     public int getId() {
         return id;
     }
