@@ -10,10 +10,11 @@ public class BombaRefrigerant implements InBombaRefrigerant{
     float capacitat;
     float costoperatiu;
 
-    BombaRefrigerant(int id, VariableUniforme VaUni) throws CentralUBException {
+    BombaRefrigerant(VariableUniforme VaUni,int id) throws CentralUBException {
         this.id = id;
         this.VaUni = VaUni;
     }
+
 
     public int getId() {
         return id;

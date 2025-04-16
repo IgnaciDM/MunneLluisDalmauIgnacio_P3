@@ -2,10 +2,9 @@ package prog2.model;
 
 import prog2.vista.CentralUBException;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SistemaRefrigeració implements InComponent {
+public class SistemaRefrigeracio implements InComponent {
     ArrayList<BombaRefrigerant> llistabombes = new ArrayList<>();
     boolean activa;
 
@@ -36,12 +35,12 @@ public class SistemaRefrigeració implements InComponent {
 
     public void revisa (PaginaIncidencies p) {
         for (int i = 0; i < llistabombes.size(); i++) {
-            llistabombes.get(i).revisa();
+            llistabombes.get(i).revisa(p);
         }
     }
 
     public float getCostOperatiu(){
-        float cost;
+        float cost=0;
         for (int i = 0; i < llistabombes.size(); i++) {
             cost += llistabombes.get(i).getCostOperatiu();
         }
@@ -49,8 +48,10 @@ public class SistemaRefrigeració implements InComponent {
     }
 
     public float calculaOutput(float input){
+        float output = 0;
         for (int i = 0; i < llistabombes.size(); i++) {
-            llistabombes.get(i).getcapacitat();
+            output=llistabombes.get(i).getCapacitat();
         }
+        return output;
     }
 }

@@ -4,6 +4,8 @@
  */
 package prog2.model;
 
+import prog2.vista.CentralUBException;
+
 /**
  *
  * @author Daniel Ortiz
@@ -14,9 +16,19 @@ public class Dades {
     public final static float PREU_UNITAT_POTENCIA = 1;
     public final static float PENALITZACIO_EXCES_POTENCIA = 250;
 
+    private final VariableUniforme variableUniforme;
+    private final Bitacola bitacola;
+    private final int insercioBarres;
+    private final Reactor reactor;
+    private final SistemaRefrigeracio sistemaRefrigeracio;
+    private final GeneradorVapor generadorVapor;
+    private final Turbina turbina;
+    private int dia;
+    private final float guanysAcumulats;
+
     // Afegir atributs:
 
-    public Dades(){
+    public Dades() throws CentralUBException {
         // Inicialitza Atributs
         this.variableUniforme = new VariableUniforme(VAR_UNIF_SEED);
         this.insercioBarres = 100;

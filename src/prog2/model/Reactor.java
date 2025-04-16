@@ -5,6 +5,7 @@ public class Reactor implements InComponent {
     float temperatura;
     boolean activa;
 
+
     public float gettemperatura() {
         return temperatura;
     }
@@ -37,5 +38,6 @@ public class Reactor implements InComponent {
     }
 
     public float calculaOutput(float input){
+        return 0;
     }
 }

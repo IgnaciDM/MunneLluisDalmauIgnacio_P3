@@ -4,10 +4,14 @@
  */
 package prog2.vista;
 
+import prog2.adaptador.Adaptador;
+
 /**
  *
  * @author Daniel Ortiz
  */
+
+
 public class CentralUB {
     public final static float DEMANDA_MAX = 1800;
     public final static float DEMANDA_MIN = 250;
@@ -16,14 +20,16 @@ public class CentralUB {
     public final static long VAR_NORM_SEED = 123;
     
     /** Generador aleatori de la demanda de potència **/
-    private VariableNormal variableNormal;
+    private prog2.vista.VariableNormal variableNormal;
+    
     
     /** Demanda de potència del dia actual **/
     private float demandaPotencia;
-    
+    private Adaptador adaptador;
+
     /* Constructor*/
     public CentralUB() {
-        variableNormal = new VariableNormal(VAR_NORM_MEAN, VAR_NORM_STD, VAR_NORM_SEED);
+        variableNormal = new prog2.vista.VariableNormal(VAR_NORM_MEAN, VAR_NORM_STD, VAR_NORM_SEED);
         demandaPotencia = generaDemandaPotencia();
         
         // Afegir codi adicional si fos necessari:

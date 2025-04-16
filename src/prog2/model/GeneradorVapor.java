@@ -21,7 +21,7 @@ public class GeneradorVapor {
     }
 
     public float getCostOperatiu(){
-        if (this.activa == false) {
+        if (activa == false) {
             return 0;
         } else {
             return cost;
@@ -29,5 +29,6 @@ public class GeneradorVapor {
     }
 
     public float calculaOutput(float input){
+        return output;
     }
 }

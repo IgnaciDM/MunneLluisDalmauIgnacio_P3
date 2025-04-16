@@ -2,7 +2,7 @@ package prog2.model;
 
 import java.util.List;
 
-public abstract class Bitacola implements InBitacola{
+public class Bitacola implements InBitacola{
     @Override
     public void afegeixPagina(prog2.model.PaginaBitacola p) {
 
