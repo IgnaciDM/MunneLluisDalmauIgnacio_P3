@@ -16,6 +16,7 @@ public class Dades {
     public final static float PREU_UNITAT_POTENCIA = 1;
     public final static float PENALITZACIO_EXCES_POTENCIA = 250;
 
+    /////////////////////////////////////////////////////////////////////////////////////
     private final VariableUniforme variableUniforme;
     private final Bitacola bitacola;
     private final int insercioBarres;
@@ -25,6 +26,23 @@ public class Dades {
     private final Turbina turbina;
     private int dia;
     private final float guanysAcumulats;
+    private PaginaEstat mostraEstat() {
+        boolean reactorActiu = reactor.getActivat();
+        boolean sistemaRefrigeracioActiu = sistemaRefrigeracio.getActivat();
+        boolean generadorVaporActiu = generadorVapor.getActivat();
+        boolean turbinaActiva = turbina.getActivat();
+        float temperatura = reactor.gettemperatura(); // o getTemperatura()
+
+        // Crear una nova pàgina d'estat amb aquesta informació
+        PaginaEstat paginaEstat = new PaginaEstat(dia, temperatura,
+                reactorActiu,
+                sistemaRefrigeracioActiu,
+                generadorVaporActiu,
+                turbinaActiva);
+
+        return paginaEstat;
+    }
+    ///////////////////////////////////////////////////////////////////////////////////
 
     // Afegir atributs:
 
@@ -65,8 +83,46 @@ public class Dades {
      * @param demandaPotencia Demanda de potència actual.
      */
     private PaginaEconomica actualitzaEconomia(float demandaPotencia){
-          // Completar
+        // 1. Calcular potència generada
+        float potenciaGenerada = turbina.calculaOutput(
+                generadorVapor.calculaOutput(
+                        reactor.calculaOutput(insercioBarres)
+                )
+        );
+
+        // 2. Calcular beneficis (fins a la demanda)
+        float beneficis = Math.min(potenciaGenerada, demandaPotencia);
+
+        // 3. Penalització si hi ha excés
+        float penalitzacio = (potenciaGenerada > demandaPotencia) ? PENALITZACIO_EXCES_POTENCIA : 0;
+
+        // 4. Costos operatius (només dels components actius)
+        float costOperatiu = 0;
+
+        if (reactor.getActivat()) {
+            costOperatiu += reactor.getCostOperatiu();
+        }
+
+        if (generadorVapor.getActivat()) {
+            costOperatiu += generadorVapor.getCostOperatiu();
+        }
+
+        if (turbina.getActivat()) {
+            costOperatiu += turbina.getCostOperatiu();
+        }
+
+        costOperatiu += sistemaRefrigeracio.getCostOperatiu(); // ja suma només les bombes actives
+
+        // 5. Guanys nets i acumulats
+        float guanysNets = beneficis - costOperatiu - penalitzacio;
+        float nouGuanysAcumulats = guanysAcumulats + guanysNets;
+
+        // 6. Retornar pàgina econòmica
+        return new PaginaEconomica(dia, demandaPotencia, potenciaGenerada,
+                beneficis, penalitzacio, costOperatiu,
+                nouGuanysAcumulats);
     }
+
 
     /**
      * Aquest mètode ha de establir la nova temperatura del reactor.
@@ -118,4 +174,5 @@ public class Dades {
         bitacolaDia.afegeixPagina(paginaIncidencies);
         return bitacolaDia;
     }
+
 }

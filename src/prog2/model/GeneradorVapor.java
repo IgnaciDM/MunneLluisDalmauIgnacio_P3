@@ -24,11 +24,11 @@ public class GeneradorVapor {
         if (activa == false) {
             return 0;
         } else {
-            return cost;
+            return 25;
         }
     }
 
     public float calculaOutput(float input){
-        return output;
+        return 0;
     }
 }

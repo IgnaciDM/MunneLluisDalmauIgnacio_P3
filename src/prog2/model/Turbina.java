@@ -24,10 +24,11 @@ public class Turbina {
         if (this.activa == false) {
             return 0;
         } else {
-            return cost;
+            return 20;
         }
     }
 
     public float calculaOutput(float input){
+        return 0;
     }
 }
