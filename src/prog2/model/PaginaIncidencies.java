@@ -3,12 +3,13 @@ package prog2.model;
 public class PaginaIncidencies extends PaginaBitacola {
     private String textIncidencia;
 
-    public PaginaIncidencies(int dia, String textIncidencia) {
+    public PaginaIncidencies(int dia) {
         super(dia);
-        this.textIncidencia = textIncidencia;
+
     }
 
     public void afegeixIncidencia(String descIncidencia) {
+        this.textIncidencia = descIncidencia; //Revisar
 
     }
 

@@ -2,13 +2,13 @@ package prog2.model;
 
 
 public class PaginaEstat extends PaginaBitacola {
-    private int inserciobarres;
+    private float inserciobarres;
     private Reactor reactorActiu;
     private SistemaRefrigeracio sistemaRefrigeracioActiu;
     private GeneradorVapor generadorVaporActiu;
     private Turbina turbinaActiva;
 
-    public PaginaEstat(int dia, int inserciobarres,
+    public PaginaEstat(int dia, float inserciobarres,
                        Reactor reactorActiu,
                        SistemaRefrigeracio sistemaRefrigeracioActiu,
                        GeneradorVapor generadorVaporActiu,
@@ -21,7 +21,7 @@ public class PaginaEstat extends PaginaBitacola {
         this.turbinaActiva = turbinaActiva;
     }
 
-    public int getInserciobarres() {return inserciobarres;}
+    public float getInserciobarres() {return inserciobarres;}
 
     public Reactor getReactorActiu() {return reactorActiu;}
 

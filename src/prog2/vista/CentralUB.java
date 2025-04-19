@@ -6,6 +6,8 @@ package prog2.vista;
 
 import prog2.adaptador.Adaptador;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Daniel Ortiz
@@ -39,10 +41,35 @@ public class CentralUB {
     public void gestioCentralUB() {
         // Mostrar missatge inicial
         System.out.println("Benvingut a la planta PWR de la UB");
+
+        String[] llistaOpcions = {"Gestionar Barres Control","Gestionar Reactor", "Gestionar Sistema Refrigeració", "" +
+                "Mostrar Estat Central", "Mostrar Bitacola", "Mostrar Incidencies", "Obtenir demanda satisfeta amb configuracio actual",
+                "Finalitzar dia", "Guardar dades", "Carregar dades", "Sortir"};
+
+        String[] llistaopcioBarres = {"Obtenir insercio Barres", "Establir Insercio Barres", "Sortir"};
+
+        String[] llistaopcioReactor = {"Activar Reactor", "DEsactivar Reactor", "Mostrar Estat del Reactor", "Sortir"};
+
+        String[] llistaopcioSistema = {"Activar Totes les bombes", "Desactivar totes les Bombes", "Activar Bomba", "Desactiva Bomba", "Mostrar Estat", "Sortir"};
+
+        Menu principal = new Menu<>("Menu Principal", llistaOpcions);
+
+        Menu Barres = new Menu<>("Menu Barres", llistaopcioBarres);
+
+        Menu Reactor = new Menu<>("Menu Reactor", llistaopcioReactor);
+
+        Menu Sistema = new Menu<>("Menu Sistema", llistaopcioSistema);
+
+        while (true) {
         System.out.println("La demanda de potència elèctrica avui es de " + demandaPotencia + " unitats");
 
-        // Completar
-        
+        principal.mostrarMenu();
+        Scanner opcio = new Scanner(System.in);
+        principal.getOpcio(opcio);
+        if (opcio == 1) {
+
+        }
+
     }
     
     private float generaDemandaPotencia(){

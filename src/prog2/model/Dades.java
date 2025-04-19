@@ -21,7 +21,7 @@ public class Dades implements InDades{
     /////////////////////////////////////////////////////////////////////////////////////
     private final VariableUniforme variableUniforme;
     private final Bitacola bitacola;
-    private final int insercioBarres;
+    private float insercioBarres;
     private final Reactor reactor;
     private final SistemaRefrigeracio sistemaRefrigeracio;
     private final GeneradorVapor generadorVapor;
@@ -36,11 +36,11 @@ public class Dades implements InDades{
         float temperatura = reactor.gettemperatura(); // o getTemperatura()
 
         // Crear una nova pàgina d'estat amb aquesta informació
-        PaginaEstat paginaEstat = new PaginaEstat(dia, temperatura,
-                reactorActiu,
-                sistemaRefrigeracioActiu,
-                generadorVaporActiu,
-                turbinaActiva);
+        PaginaEstat paginaEstat = new PaginaEstat(dia, insercioBarres,
+                reactor,
+                sistemaRefrigeracio,
+                generadorVapor,
+                turbina);
 
         return paginaEstat;
     }
@@ -152,6 +152,8 @@ public class Dades implements InDades{
                 )
         );
 
+        float demandasatisfeta = (potenciaGenerada/demandaPotencia)*100;
+
         // 2. Calcular beneficis (fins a la demanda)
         float beneficis = Math.min(potenciaGenerada, demandaPotencia);
 
@@ -180,7 +182,7 @@ public class Dades implements InDades{
         float nouGuanysAcumulats = guanysAcumulats + guanysNets;
 
         // 6. Retornar pàgina econòmica
-        return new PaginaEconomica(dia, demandaPotencia, potenciaGenerada,
+        return new PaginaEconomica(dia, demandaPotencia, potenciaGenerada, demandasatisfeta,
                 beneficis, penalitzacio, costOperatiu,
                 nouGuanysAcumulats);
     }
