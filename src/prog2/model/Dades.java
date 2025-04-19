@@ -6,11 +6,13 @@ package prog2.model;
 
 import prog2.vista.CentralUBException;
 
+import java.util.List;
+
 /**
  *
  * @author Daniel Ortiz
  */
-public class Dades {
+public class Dades implements InDades{
     public final static long  VAR_UNIF_SEED = 123;
     public final static float GUANYS_INICIALS = 0;
     public final static float PREU_UNITAT_POTENCIA = 1;
@@ -73,6 +75,66 @@ public class Dades {
         this.sistemaRefrigeracio.afegirBomba(b3);
 
         this.sistemaRefrigeracio.desactiva();
+    }
+
+    public float getInsercioBarres() {
+        return insercioBarres;
+    }
+
+    public void setInsercioBarres(float insercioBarres) throws CentralUBException {
+        this.insercioBarres = insercioBarres;
+    }
+
+    public void activaReactor() throws CentralUBException {
+        reactor.activa();
+    }
+
+    public void desactivaReactor(){
+        reactor.desactiva();
+    }
+
+    public Reactor mostraReactor() {
+        return reactor;
+    }
+
+    public void activaBomba(int id) throws CentralUBException {
+        for (int i = 0; i < sistemaRefrigeracio.getllistabombes().size(); i++) {
+            if (sistemaRefrigeracio.getllistabombes().get(i).getId() == id) {
+                sistemaRefrigeracio.getllistabombes().get(i).activa();
+            }
+        }
+    }
+
+    public void desactivaBomba(int id) {
+        for (int i = 0; i < sistemaRefrigeracio.getllistabombes().size(); i++) {
+            if (sistemaRefrigeracio.getllistabombes().get(i).getId() == id) {
+                sistemaRefrigeracio.getllistabombes().get(i).desactiva();
+            }
+        }
+    }
+
+    public SistemaRefrigeracio mostraSistemaRefrigeracio() {
+        return sistemaRefrigeracio;
+    }
+
+    public float calculaPotencia() {
+        return turbina.calculaOutput();
+    }
+
+    public float getGuanysAcumulats() {
+        return guanysAcumulats;
+    }
+
+    public PaginaEstat mostraEstat() {
+        return new PaginaEstat(dia,insercioBarres, reactor, sistemaRefrigeracio, generadorVapor, turbina);
+    }
+
+    public Bitacola mostraBitacola() {
+        return bitacola;
+    }
+
+    public List<PaginaIncidencies> mostraIncidencies() {
+        return bitacola.getIncidencies();
     }
     
     /**

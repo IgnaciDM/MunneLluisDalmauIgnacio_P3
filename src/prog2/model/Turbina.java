@@ -29,6 +29,12 @@ public class Turbina {
     }
 
     public float calculaOutput(float input){
-        return 0;
+        if (this.activa == false) {
+            return 0;
+        } if (input < 100) {
+            return 0;
+        } else {
+            return input*2;
+        }
     }
 }

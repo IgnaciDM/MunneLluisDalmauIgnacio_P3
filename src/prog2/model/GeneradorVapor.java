@@ -29,6 +29,10 @@ public class GeneradorVapor {
     }
 
     public float calculaOutput(float input){
-        return 0;
+        if (activa == false) {
+            return 25;
+        } else {
+            return input * 0.9;
+        }
     }
 }

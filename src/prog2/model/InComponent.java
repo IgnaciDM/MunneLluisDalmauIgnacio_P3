@@ -50,4 +50,5 @@ public interface InComponent {
      * @param input Input que rep el component.
      */
     public float calculaOutput(float input);
+
 }

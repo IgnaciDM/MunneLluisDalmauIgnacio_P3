@@ -8,6 +8,12 @@ public class SistemaRefrigeracio implements InComponent {
     ArrayList<BombaRefrigerant> llistabombes = new ArrayList<>();
     boolean activa;
 
+    public ArrayList<BombaRefrigerant> getllistabombes(){
+       return llistabombes;
+    }
+
+
+
     public void afegirBomba(BombaRefrigerant b) {
     llistabombes.add(b);
     }
@@ -48,10 +54,16 @@ public class SistemaRefrigeracio implements InComponent {
     }
 
     public float calculaOutput(float input){
-        float output = 0;
+        int N = 0;
         for (int i = 0; i < llistabombes.size(); i++) {
-            output=llistabombes.get(i).getCapacitat();
+            if (llistabombes.get(i).getActivat() == true) {
+                N += 1;
+            }
         }
-        return output;
+        if (250*N > input) {
+            return input;
+        } else {
+            return 250*N;
+        }
     }
 }

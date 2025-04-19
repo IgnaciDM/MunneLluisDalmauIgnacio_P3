@@ -39,7 +39,11 @@ public class Reactor implements InComponent {
     }
 
     public float calculaOutput(float input){
-        return 0;
+        if (this.activa == false) {
+            return gettemperatura();
+        } else {
+            return gettemperatura() + (100 - input) * 10;
+        }
     }
 
 }

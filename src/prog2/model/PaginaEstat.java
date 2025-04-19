@@ -2,17 +2,17 @@ package prog2.model;
 
 
 public class PaginaEstat extends PaginaBitacola {
-    private float inserciobarres;
-    private float reactorActiu;
-    private float sistemaRefrigeracioActiu;
-    private float generadorVaporActiu;
-    private float turbinaActiva;
+    private int inserciobarres;
+    private Reactor reactorActiu;
+    private SistemaRefrigeracio sistemaRefrigeracioActiu;
+    private GeneradorVapor generadorVaporActiu;
+    private Turbina turbinaActiva;
 
-    public PaginaEstat(int dia, float inserciobarres,
-                       float reactorActiu,
-                       float sistemaRefrigeracioActiu,
-                       float generadorVaporActiu,
-                       float turbinaActiva) {
+    public PaginaEstat(int dia, int inserciobarres,
+                       Reactor reactorActiu,
+                       SistemaRefrigeracio sistemaRefrigeracioActiu,
+                       GeneradorVapor generadorVaporActiu,
+                       Turbina turbinaActiva) {
         super(dia);
         this.inserciobarres = inserciobarres;
         this.reactorActiu = reactorActiu;
@@ -21,15 +21,15 @@ public class PaginaEstat extends PaginaBitacola {
         this.turbinaActiva = turbinaActiva;
     }
 
-    public float getInserciobarres() {return inserciobarres;}
+    public int getInserciobarres() {return inserciobarres;}
 
-    public float getReactorActiu() {return reactorActiu;}
+    public Reactor getReactorActiu() {return reactorActiu;}
 
-    public float getSistemaRefrigeracioActiu() {return sistemaRefrigeracioActiu;}
+    public SistemaRefrigeracio getSistemaRefrigeracioActiu() {return sistemaRefrigeracioActiu;}
 
-    public float getGeneradorVaporActiu() {return generadorVaporActiu;}
+    public GeneradorVapor getGeneradorVaporActiu() {return generadorVaporActiu;}
 
-    public float getTurbinaActiva() {return turbinaActiva;}
+    public Turbina getTurbinaActiva() {return turbinaActiva;}
 
     public String toString() {
         return " Pàgina Estat" + "\n" +
