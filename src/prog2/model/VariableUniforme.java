@@ -16,6 +16,7 @@ import java.util.Random;
 
  */
 public class VariableUniforme {
+
     private Random random;
 
     public VariableUniforme(long seed) {

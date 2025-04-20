@@ -7,8 +7,6 @@ public class BombaRefrigerant implements InBombaRefrigerant{
     boolean activa;
     VariableUniforme VaUni;
     boolean operativa;
-    float capacitat;
-    float costoperatiu;
 
     BombaRefrigerant(VariableUniforme VaUni,int id) throws CentralUBException {
         this.id = id;
@@ -43,7 +41,11 @@ public class BombaRefrigerant implements InBombaRefrigerant{
     }
 
     public boolean getForaDeServei() {
-        return this.operativa;
+        if (this.operativa == false) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public float getCapacitat() {
@@ -58,7 +60,7 @@ public class BombaRefrigerant implements InBombaRefrigerant{
         if (activa == false) {
             return 0;
         } else {
-            return costoperatiu;
+            return 130;
         }
     }
 

@@ -17,9 +17,6 @@ public class GeneradorVapor {
         return activa;
     }
 
-    public void revisa (PaginaIncidencies p) {
-    }
-
     public float getCostOperatiu(){
         if (activa == false) {
             return 0;

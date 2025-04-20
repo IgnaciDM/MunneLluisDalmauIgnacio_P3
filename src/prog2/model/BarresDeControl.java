@@ -6,5 +6,40 @@ package prog2.model;
 //completament (es a dir, el grau d’inserció és del 0%), la reacció es produeix
 //amb la màxima intensitat
 
+import prog2.vista.CentralUBException;
+
 public class BarresDeControl {
+    int grauInsercio;
+    boolean activat;
+
+    public void activa() {
+        this.activat = true;
+    }
+
+    public void deactiva() {
+        this.activat = false;
+    }
+
+    public boolean getActivat() {
+        return this.activat;
+    }
+
+    public int getGrauInsercio() {
+        return grauInsercio;
+    }
+
+    public void setGrauInsercio(int grauInsercio) throws CentralUBException {
+        if (grauInsercio >= 0 && grauInsercio <= 100) {
+            throw new CentralUBException("El grau insercio no es valido");
+        }
+        this.grauInsercio = grauInsercio;
+    }
+
+    public float getCostOperatiu() {
+        if (activat) {
+            return 5;
+        } else {
+            return 0;
+        }
+    }
 }

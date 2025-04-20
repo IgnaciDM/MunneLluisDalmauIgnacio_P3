@@ -16,7 +16,11 @@ public class Reactor implements InComponent {
     }
 
     public void activa() throws CentralUBException {
-        this.activa = true;
+        if (temperatura >= 1000) {
+            throw new CentralUBException("El Reactor te una temperatura igual o superio a 1000 graus, no es pot activar");
+        } else {
+            this.activa = true;
+        }
     }
 
     public void desactiva() {
@@ -28,6 +32,10 @@ public class Reactor implements InComponent {
     }
 
     public void revisa (PaginaIncidencies p) {
+        if (temperatura >= 1000) {
+            this.activa = false;
+            p.afegeixIncidencia("El reactor es va desactivar per superar la temperatura màxima");
+        }
     }
 
     public float getCostOperatiu(){

@@ -17,8 +17,6 @@ public class Turbina {
         return activa;
     }
 
-    public void revisa (PaginaIncidencies p) {
-    }
 
     public float getCostOperatiu(){
         if (this.activa == false) {

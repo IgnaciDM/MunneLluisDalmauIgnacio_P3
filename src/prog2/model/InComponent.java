@@ -18,7 +18,7 @@ public interface InComponent {
      * a la Taula 1 de l'enunciat de la pràctica.
      */
     public void activa() throws CentralUBException;
-       
+
     /**
      * Desactiva el component.
      */

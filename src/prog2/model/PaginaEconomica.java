@@ -6,10 +6,10 @@ public class PaginaEconomica extends PaginaBitacola {
     private final float demandaPotencia;
     private final float potenciaGenerada;
     private final float demandasatisfeta;
-    private final float beneficis;
-    private final float penalitzacio;
-    private final float costosOperatius;
-    private final float guanysAcumulats;
+    private float beneficis;
+    private float penalitzacio;
+    private float costosOperatius;
+    private float guanysAcumulats;
 
     public PaginaEconomica(int dia, float demandaPotencia, float potenciaGenerada, float demandasatisfeta,
                            float beneficis, float penalitzacio, float costosOperatius,
@@ -35,14 +35,26 @@ public class PaginaEconomica extends PaginaBitacola {
     public float getDemandasatisfeta() {return demandasatisfeta; }
 
     public float getBeneficis() {
+        if (potenciaGenerada > demandaPotencia) {
+            this.beneficis = demandaPotencia;
+        } else {
+            this.beneficis = potenciaGenerada;
+        }
         return beneficis;
     }
 
     public float getPenalitzacio() {
+        if (potenciaGenerada > demandaPotencia) {
+            this.penalitzacio = 250;
+        } else {
+            this.penalitzacio = 0;
+        }
         return penalitzacio;
     }
 
     public float getCostosOperatius() {
+        float cost = 0;
+        .getCostOperatiu();
         return costosOperatius;
     }
 
@@ -56,8 +68,8 @@ public class PaginaEconomica extends PaginaBitacola {
                 "Demanda Potència: " + demandaPotencia + "\n" +
                 "Potència Generada: " + potenciaGenerada + "\n" +
                 "Demanda satisfeta: " + demandasatisfeta + "\n" +
-                "Beneficis: " + beneficis + "\n" +
-                "Penalització: " + penalitzacio + "\n" +
+                "Beneficis: " + getBeneficis() + "\n" +
+                "Penalització: " + getPenalitzacio() + "\n" +
                 "Costos Operatius: " + costosOperatius + "\n" +
                 "Guanys Acumulats: " + guanysAcumulats + "\n";
     }

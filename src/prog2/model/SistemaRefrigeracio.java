@@ -20,7 +20,11 @@ public class SistemaRefrigeracio implements InComponent {
 
     public void activa() throws CentralUBException {
         for (int i = 0; i < llistabombes.size(); i++) {
+            if (llistabombes.get(i).getForaDeServei()) {
+                throw new CentralUBException("La Bomba esta fora de servei, es desactivada");
+            } else {
             llistabombes.get(i).activa();
+            }
         }
     }
 
@@ -42,6 +46,9 @@ public class SistemaRefrigeracio implements InComponent {
     public void revisa (PaginaIncidencies p) {
         for (int i = 0; i < llistabombes.size(); i++) {
             llistabombes.get(i).revisa(p);
+            if (llistabombes.get(i).getForaDeServei() == true) {
+                p.afegeixIncidencia("La bomba " + i + " esta fora de servei");
+            }
         }
     }
 
