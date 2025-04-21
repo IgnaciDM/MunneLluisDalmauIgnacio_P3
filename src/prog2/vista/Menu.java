@@ -79,10 +79,11 @@ public class Menu<TEnum> {
 
     /**
      * Demana una opció utilitzant la entrada passada per paràmetre.
+     *
      * @param sc Canal d'entrada utilitzat per a obtenir la opció
      * @return Opció seleccionada.
      */
-    public TEnum getOpcio(Scanner sc) {
+    public TEnum  getOpcio(Scanner sc) {
         TEnum opcio=null;
 
         // Demanem una opció assegurant que sigui correcta

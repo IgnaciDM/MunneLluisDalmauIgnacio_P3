@@ -29,7 +29,7 @@ public class GeneradorVapor {
         if (activa == false) {
             return 25;
         } else {
-            return input * 0.9;
+            return (float) (input * 0.9);
         }
     }
 }
