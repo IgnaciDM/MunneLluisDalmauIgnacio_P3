@@ -53,7 +53,6 @@ public class PaginaEconomica extends PaginaBitacola {
     }
 
     public float getCostosOperatius() {
-        float cost = 0;
         return costosOperatius;
     }
 

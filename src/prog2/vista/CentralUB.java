@@ -5,6 +5,7 @@
 package prog2.vista;
 
 import prog2.adaptador.Adaptador;
+import prog2.model.BarresDeControl;
 import prog2.model.Reactor;
 
 import java.util.Scanner;
@@ -161,7 +162,6 @@ public class CentralUB {
 
                     break;
                 case Sortir:
-
                     break;
             }
         } while (op != OpcionsMenu.Sortir);
@@ -171,20 +171,31 @@ public class CentralUB {
     public void gestioBarres(Scanner sc){
 
         Menu<OpcionsBarres> Barres = new Menu<>("Menu Barres", OpcionsBarres.values());
+        BarresDeControl barres = new BarresDeControl();
+
         OpcionsBarres op = null;
+
         do {
             Barres.mostrarMenu();
             op = Barres.getOpcio(sc);
             switch (op) {
                 case ObtenirInsercioBarres:
-
+                    //Mostra per pantalla la inserció de les barres.
+                    System.out.println(barres.getGrauInsercio());
                     break;
                 case EstablirInsercioBarres:
-
+                    //Sol·licita a l’usuari el grau d’inserció de les barres
+                    System.out.println("Especifiqui el grau d'insercio de barres 1-100:");
+                    try{
+                        barres.setGrauInsercio(sc.nextInt());
+                    }catch(CentralUBException e){
+                        System.out.println("Error Barres: "+e.getMessage());
+                    }
                     break;
                 case Sortir:
-
                     break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + op);
             }
         } while (op != OpcionsBarres.Sortir);
 
@@ -192,23 +203,34 @@ public class CentralUB {
 
     public void gestioReactor(Scanner sc){
         Menu<OpcionsReactor> Reactor = new Menu<>("Menu Reactor", OpcionsReactor.values());
+        Reactor reactor = new Reactor();
+
         OpcionsReactor op = null;
+
         do {
             Reactor.mostrarMenu();
             op = Reactor.getOpcio(sc);
             switch (op) {
                 case ActivarReactor:
-
+                    try{
+                        reactor.activa();
+                    }catch(CentralUBException e){
+                        System.out.println("Error Reactor: "+e.getMessage());
+                        break;
+                    }
+                    System.out.println("Reactor activat");
                     break;
                 case DesactivarReactor:
-
-                    break;
+                    reactor.desactiva();
+                    System.out.println("Reactor desactivat");
                 case MostrarEstatReactor:
-
+                    System.out.println(reactor.gettemperatura()+" graus");
+                    System.out.println("Reactor Activat: "+reactor.getActivat());
                     break;
                 case Sortir:
-
                     break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + op);
             }
         } while (op != OpcionsReactor.Sortir);
 
@@ -238,8 +260,9 @@ public class CentralUB {
 
                     break;
                 case Sortir:
-
                     break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + op);
             }
         } while (op != OpcionsSistema.Sortir);
 

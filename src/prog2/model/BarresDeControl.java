@@ -30,9 +30,10 @@ public class BarresDeControl {
 
     public void setGrauInsercio(int grauInsercio) throws CentralUBException {
         if (grauInsercio >= 0 && grauInsercio <= 100) {
-            throw new CentralUBException("El grau insercio no es valido");
+            this.grauInsercio = grauInsercio;
+        } else{
+            throw new CentralUBException("El grau d'insercio no es correcta");
         }
-        this.grauInsercio = grauInsercio;
     }
 
     public float getCostOperatiu() {

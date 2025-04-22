@@ -52,7 +52,7 @@ public class BombaRefrigerant implements InBombaRefrigerant{
         if (activa == false) {
             return 0;
         } else {
-            return 1;//CAPACITAT MODIFICABLE
+            return 1;//CAPACITAT MODIFICAR-----------------------------------------------------------------------------------------------------------------------
         }
     }
 
