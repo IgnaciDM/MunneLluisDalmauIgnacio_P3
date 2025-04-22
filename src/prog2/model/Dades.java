@@ -28,22 +28,7 @@ public class Dades implements InDades{
     private final Turbina turbina;
     private int dia;
     private final float guanysAcumulats;
-    private PaginaEstat mostraEstat() {
-        boolean reactorActiu = reactor.getActivat();
-        boolean sistemaRefrigeracioActiu = sistemaRefrigeracio.getActivat();
-        boolean generadorVaporActiu = generadorVapor.getActivat();
-        boolean turbinaActiva = turbina.getActivat();
-        float temperatura = reactor.gettemperatura(); // o getTemperatura()
 
-        // Crear una nova pàgina d'estat amb aquesta informació
-        PaginaEstat paginaEstat = new PaginaEstat(dia, insercioBarres,
-                reactor,
-                sistemaRefrigeracio,
-                generadorVapor,
-                turbina);
-
-        return paginaEstat;
-    }
     ///////////////////////////////////////////////////////////////////////////////////
 
     // Afegir atributs:
@@ -118,7 +103,7 @@ public class Dades implements InDades{
     }
 
     public float calculaPotencia() {
-        return turbina.calculaOutput();
+        return turbina.calculaOutput(0);//0 per defecte MODIFICABLE
     }
 
     public float getGuanysAcumulats() {
