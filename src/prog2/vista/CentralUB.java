@@ -261,17 +261,25 @@ public class CentralUB {
                     break;
                 case ActivarBomba:
                     //Donat el seu identificador numèric (entre 0 i 3), permet activar una bomba refrigerant.
+                    System.out.println("Introdueix la id d'una de les bombes 0-3");
                     try {
-                        sistema.activaID(sc.nextInt());
+                        sistema.activaId(sc.nextInt());
                     } catch (CentralUBException e) {
                         System.out.println("Error Sistema: "+e.getMessage());
                     }
                     break;
                 case DesactivarBomba:
                     //Donat l’identificador numèric d’una bomba refrigerant, permet desactivar-la.
+                    System.out.println("Introdueix la id d'una de les bombes 0-3");
+                    try {
+                        sistema.desactivaId(sc.nextInt());
+                    } catch (CentralUBException e) {
+                        System.out.println("Error Sistema: "+e.getMessage());
+                    }
                     break;
                 case MostrarEstat:
                     // mostra l’estat actual de totes les bombes del sistema de refrigeració.
+                    sistema.mostrarBombes();
                     break;
                 case Sortir:
                     break;

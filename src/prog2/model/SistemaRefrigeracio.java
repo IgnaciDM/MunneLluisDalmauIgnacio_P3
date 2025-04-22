@@ -39,6 +39,8 @@ public class SistemaRefrigeracio implements InComponent {
             if (llistabombes.get(i).getActivat() == true) {
                 return true;
             }
+            else
+                return false;
         }
         return false;
     }
@@ -77,9 +79,9 @@ public class SistemaRefrigeracio implements InComponent {
 
 
 
-    //IMPLEMENTAT EXTRA PER FER LES TRES OP DEL MENU
-    //Activar Bomba
-    public void activaID(int id) throws CentralUBException {
+    //IMPLEMENTAT EXTRA PER FER LES TRES OP DEL MENU___________________________________________________________________
+    //Activar Bomba per un ID
+    public void activaId(int id) throws CentralUBException {
         for (BombaRefrigerant bomba: llistabombes){
             if (bomba.getId() == id) {
                 if (bomba.getForaDeServei()){
@@ -92,6 +94,22 @@ public class SistemaRefrigeracio implements InComponent {
                     }
                 }
             }
+        }
+        throw new CentralUBException("No s'ha trobat la bomba amb id: "+ id);
+    }
+    //Desactivar Bomba per un ID
+    public void desactivaId(int id) throws CentralUBException {
+        for (BombaRefrigerant bomba: llistabombes){
+            if (bomba.getId() == id) {
+                bomba.desactiva();
+            }
+        }
+        throw new CentralUBException("No s'ha trobat la bomba amb id: "+ id);
+    }
+    //Mostrar Estat de les Bombes
+    public void mostrarBombes() {
+        for (BombaRefrigerant bomba: llistabombes){
+            System.out.println(bomba.toString());
         }
     }
 }
