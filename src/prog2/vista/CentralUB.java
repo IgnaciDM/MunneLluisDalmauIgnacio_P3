@@ -7,6 +7,7 @@ package prog2.vista;
 import prog2.adaptador.Adaptador;
 import prog2.model.BarresDeControl;
 import prog2.model.Reactor;
+import prog2.model.SistemaRefrigeracio;
 
 import java.util.Scanner;
 
@@ -239,25 +240,38 @@ public class CentralUB {
     public void gestioSistema(Scanner sc){
 
         Menu<OpcionsSistema> Sistema = new Menu<>("Menu Sistema", OpcionsSistema.values());
+        SistemaRefrigeracio sistema = new SistemaRefrigeracio();
+
         OpcionsSistema op = null;
         do {
             Sistema.mostrarMenu();
             op = Sistema.getOpcio(sc);
             switch (op) {
                 case ActivarTotesBombes:
-
+                    //Activa totes les bombes refrigerants.
+                    try {
+                        sistema.activa();
+                    } catch (CentralUBException e) {
+                        System.out.println("Error Sistema: "+e.getMessage());
+                    }
                     break;
                 case DesactivarTotesBombes:
-
+                    //Desactiva totes les bombes refrigerants
+                    sistema.desactiva();
                     break;
                 case ActivarBomba:
-
+                    //Donat el seu identificador numèric (entre 0 i 3), permet activar una bomba refrigerant.
+                    try {
+                        sistema.activaID(sc.nextInt());
+                    } catch (CentralUBException e) {
+                        System.out.println("Error Sistema: "+e.getMessage());
+                    }
                     break;
                 case DesactivarBomba:
-
+                    //Donat l’identificador numèric d’una bomba refrigerant, permet desactivar-la.
                     break;
                 case MostrarEstat:
-
+                    // mostra l’estat actual de totes les bombes del sistema de refrigeració.
                     break;
                 case Sortir:
                     break;

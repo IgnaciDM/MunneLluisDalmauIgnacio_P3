@@ -15,7 +15,7 @@ public class SistemaRefrigeracio implements InComponent {
 
 
     public void afegirBomba(BombaRefrigerant b) {
-    llistabombes.add(b);
+        llistabombes.add(b);
     }
 
     public void activa() throws CentralUBException {
@@ -71,6 +71,27 @@ public class SistemaRefrigeracio implements InComponent {
             return input;
         } else {
             return 250*N;
+        }
+    }
+
+
+
+
+    //IMPLEMENTAT EXTRA PER FER LES TRES OP DEL MENU
+    //Activar Bomba
+    public void activaID(int id) throws CentralUBException {
+        for (BombaRefrigerant bomba: llistabombes){
+            if (bomba.getId() == id) {
+                if (bomba.getForaDeServei()){
+                    throw new CentralUBException("La Bomba esta fora de servei");
+                } else{
+                    try {
+                        bomba.activa();
+                    } catch (CentralUBException e) {
+                        System.out.println(e);
+                    }
+                }
+            }
         }
     }
 }

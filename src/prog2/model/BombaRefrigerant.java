@@ -17,11 +17,11 @@ public class BombaRefrigerant implements InBombaRefrigerant{
         return id;
     }
 
-    public void activa() {
-        if (operativa == false) {
-            this.activa = false;
-        } else {
+    public void activa() throws CentralUBException {
+        if (operativa)
             this.activa = true;
+        else{
+            throw new CentralUBException("No esta operativa la bomba refrigerant per tant no es pot activar");
         }
     }
 
@@ -30,7 +30,7 @@ public class BombaRefrigerant implements InBombaRefrigerant{
     }
 
     public boolean getActivat() {
-        return this.activa;
+        return activa;
     }
 
     @Override
@@ -41,23 +41,19 @@ public class BombaRefrigerant implements InBombaRefrigerant{
     }
 
     public boolean getForaDeServei() {
-        if (this.operativa == false) {
-            return true;
-        } else {
-            return false;
-        }
+        return !operativa;//Estara fora de servei = True quan operativa =False
     }
 
     public float getCapacitat() {
-        if (activa == false) {
+        if (!activa) {
             return 0;
         } else {
-            return 1;//CAPACITAT MODIFICAR-----------------------------------------------------------------------------------------------------------------------
+            return 1;//CAPACITAT MODIFICAR per una constant-----------------------------------------------------------------------------------------------------------------------
         }
     }
 
     public float getCostOperatiu() {
-        if (activa == false) {
+        if (!activa) {
             return 0;
         } else {
             return 130;
