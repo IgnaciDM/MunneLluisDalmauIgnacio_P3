@@ -8,11 +8,7 @@ public class PaginaEstat extends PaginaBitacola {
     private GeneradorVapor generadorVaporActiu;
     private Turbina turbinaActiva;
 
-    public PaginaEstat(int dia, float inserciobarres,
-                       Reactor reactorActiu,
-                       SistemaRefrigeracio sistemaRefrigeracioActiu,
-                       GeneradorVapor generadorVaporActiu,
-                       Turbina turbinaActiva) {
+    public PaginaEstat(int dia, float inserciobarres, Reactor reactorActiu, SistemaRefrigeracio sistemaRefrigeracioActiu, GeneradorVapor generadorVaporActiu, Turbina turbinaActiva) {
         super(dia);
         this.inserciobarres = inserciobarres;
         this.reactorActiu = reactorActiu;
@@ -21,15 +17,25 @@ public class PaginaEstat extends PaginaBitacola {
         this.turbinaActiva = turbinaActiva;
     }
 
-    public float getInserciobarres() {return inserciobarres;}
+    public float getInserciobarres() {
+        return inserciobarres;
+    }
 
-    public Reactor getReactorActiu() {return reactorActiu;}
+    public Reactor getReactorActiu() {
+        return reactorActiu;
+    }
 
-    public SistemaRefrigeracio getSistemaRefrigeracioActiu() {return sistemaRefrigeracioActiu;}
+    public SistemaRefrigeracio getSistemaRefrigeracioActiu() {
+        return sistemaRefrigeracioActiu;
+    }
 
-    public GeneradorVapor getGeneradorVaporActiu() {return generadorVaporActiu;}
+    public GeneradorVapor getGeneradorVaporActiu() {
+        return generadorVaporActiu;
+    }
 
-    public Turbina getTurbinaActiva() {return turbinaActiva;}
+    public Turbina getTurbinaActiva() {
+        return turbinaActiva;
+    }
 
     public String toString() {
         return " Pàgina Estat" + "\n" +

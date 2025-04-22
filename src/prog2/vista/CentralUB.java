@@ -5,9 +5,7 @@
 package prog2.vista;
 
 import prog2.adaptador.Adaptador;
-import prog2.model.BarresDeControl;
-import prog2.model.Reactor;
-import prog2.model.SistemaRefrigeracio;
+import prog2.model.*;
 
 import java.util.Scanner;
 
@@ -122,45 +120,58 @@ public class CentralUB {
         System.out.println("Benvingut a la planta PWR de la UB");
         Scanner sc = new Scanner(System.in);
 
-
         Menu<OpcionsMenu> principal = new Menu("Menu Principal", OpcionsMenu.values());
 
         OpcionsMenu op = null;
 
+        int dia=1;
+        PaginaBitacola paginaBitacola = new PaginaBitacola(dia);
         do {
             System.out.println("La demanda de potència elèctrica avui es de " + demandaPotencia + " unitats");
             principal.mostrarMenu();
             op = principal.getOpcio(sc);
+
             switch (op) {
                 case GestionarBarresControl:
+                    //Dona pas a un submenú que permet obtenir o establir la inserció de les barres, que ha de ser un nombre real entre 0 i 100
                     gestioBarres(sc);
                     break;
                 case GestionarReactor:
+                    //Mostra un sub-menú per gestionar el reactor.
                     gestioReactor(sc);
                     break;
                 case GestionarSistemaRefrigeracio:
+                    //Mostra un sub-menú amb opcions per controlar el sistema de refrigeració.
                     gestioSistema(sc);
                     break;
                 case MostrarEstatCentral:
+                    //Mostra la pàgina de bitàcola d’estat corresponent al dia actual (veure Apartat 2.4.2).
+                    //Aquesta informació és provisional i només es farà efectiva al finalitzar el dia
+
+                    //paginaBitacola.toString();
 
                     break;
                 case MostrarBitacola:
+                    //Mostra tot el contingut de la bitàcola fins al dia actual, incloent las pàgines d’estat, econòmiques i d’incidències.
 
                     break;
                 case MostrarIncidencies:
-
+                    //Mostra totes les pàgines d’incidències de la bitàcola fins al dia actual.
                     break;
                 case ObtenirDemandaSatisfeta:
-
+                    //Mostra la demanda de poténcia del dia en curs, la potència generada amb la configuración de la central actual i el percentatge de demanda satisfeta corresponent.
                     break;
                 case FinalitzarDia:
+                    //Es duen a terme totes les acciones relacionades amb la finalització d’un dia (veure Apartat 2.3).
 
+                    dia+=1;
+                    paginaBitacola.setDia(dia);//FALTEN MOLTES MES COSES A FER
                     break;
                 case GuardarDades:
-
+                    //Guarda les dades de l’aplicació.
                     break;
                 case CarregarDades:
-
+                    //Carrega les dades de l’aplicació.
                     break;
                 case Sortir:
                     break;
@@ -213,6 +224,7 @@ public class CentralUB {
             op = Reactor.getOpcio(sc);
             switch (op) {
                 case ActivarReactor:
+                    //Permet activar el reactor.
                     try{
                         reactor.activa();
                     }catch(CentralUBException e){
@@ -222,11 +234,13 @@ public class CentralUB {
                     System.out.println("Reactor activat");
                     break;
                 case DesactivarReactor:
+                    // Permet desactivar el reactor.
                     reactor.desactiva();
                     System.out.println("Reactor desactivat");
                 case MostrarEstatReactor:
-                    System.out.println(reactor.gettemperatura()+" graus");
+                    // Mostra si el reactor està activat i la seva temperatura.
                     System.out.println("Reactor Activat: "+reactor.getActivat());
+                    System.out.println(reactor.gettemperatura()+" graus");
                     break;
                 case Sortir:
                     break;

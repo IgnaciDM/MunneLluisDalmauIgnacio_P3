@@ -10,4 +10,8 @@ public class PaginaBitacola {
     public int getDia() {
         return dia;
     }
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
 }
