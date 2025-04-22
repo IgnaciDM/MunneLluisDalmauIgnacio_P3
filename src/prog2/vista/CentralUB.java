@@ -109,12 +109,14 @@ public class CentralUB {
     /* Constructor*/
     public CentralUB() {
         variableNormal = new prog2.vista.VariableNormal(VAR_NORM_MEAN, VAR_NORM_STD, VAR_NORM_SEED);
-        //demandaPotencia = generaDemandaPotencia();
-        
+        demandaPotencia = generaDemandaPotencia();
+        // Inicialitzem l'objecte adaptador
+        adaptador = new Adaptador();  // Assegura't de passar els paràmetres necessaris al constructor del Adaptador si en necessita.
+
         // Afegir codi adicional si fos necessari:
 
     }
-    
+
     public void gestioCentralUB() {
         // Mostrar missatge inicial
         System.out.println("Benvingut a la planta PWR de la UB");
@@ -163,7 +165,7 @@ public class CentralUB {
                     break;
                 case FinalitzarDia:
                     //Es duen a terme totes les acciones relacionades amb la finalització d’un dia (veure Apartat 2.3).
-
+                    finalitzaDia();
                     dia+=1;
                     paginaBitacola.setDia(dia);//FALTEN MOLTES MES COSES A FER
                     break;
@@ -237,6 +239,7 @@ public class CentralUB {
                     // Permet desactivar el reactor.
                     reactor.desactiva();
                     System.out.println("Reactor desactivat");
+                    break;
                 case MostrarEstatReactor:
                     // Mostra si el reactor està activat i la seva temperatura.
                     System.out.println("Reactor Activat: "+reactor.getActivat());
@@ -303,13 +306,8 @@ public class CentralUB {
         } while (op != OpcionsSistema.Sortir);
 
     }
-    /*
-            ActivarTotesBombes,
-        DesactivarTotesBombes,
-        ActivarBomba,
-        DesactivarBomba,
-        MostrarEstat,
-        Sortir
+
+
     public float generaDemandaPotencia(){
         float valor = Math.round(variableNormal.seguentValor());
         if (valor > DEMANDA_MAX) {
@@ -324,20 +322,19 @@ public class CentralUB {
         }
     }
 
-     */
-    /*
+
+
     public void finalitzaDia() {
-        // Finalitzar dia i imprimir informacio de la central
-        String info = new String();
-        info = adaptador.finalitzaDia(demandaPotencia);
+        // Finalitzar dia i obtenir la informació del adaptador
+        String info = adaptador.finalitzaDia(demandaPotencia);
+
+        // Mostrar la informació
         System.out.println(info);
         System.out.println("Dia finalitzat\n");
-        
-        // Generar i mostrar nova demanda de potencia
-        demandaPotencia = generaDemandaPotencia();
-        System.out.println("La demanda de potència elèctrica avui es de " + demandaPotencia + " unitats");
+
+        // Generar i mostrar nova demanda de potència
+        demandaPotencia = adaptador.generaDemandaPotencia();
     }
 
-     */
 }
 
