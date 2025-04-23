@@ -28,9 +28,12 @@ public class CentralUB {
     
     /** Demanda de potència del dia actual **/
     private float demandaPotencia;
+
     private Adaptador adaptador;
-
-
+    private BarresDeControl barres;  // Atribut de la classe
+    private Reactor reactor;
+    private SistemaRefrigeracio sistema;
+    private PaginaBitacola paginaBitacola;
 
     /*ENUMS Y STRINGS A MOSTRAR EN MENU*/
 
@@ -111,25 +114,27 @@ public class CentralUB {
         variableNormal = new prog2.vista.VariableNormal(VAR_NORM_MEAN, VAR_NORM_STD, VAR_NORM_SEED);
         demandaPotencia = generaDemandaPotencia();
         // Inicialitzem l'objecte adaptador
-        adaptador = new Adaptador();  // Assegura't de passar els paràmetres necessaris al constructor del Adaptador si en necessita.
 
         // Afegir codi adicional si fos necessari:
-
+        adaptador = new Adaptador();
+        barres = new BarresDeControl();
+        reactor = new Reactor();
+        sistema = new SistemaRefrigeracio();
+        paginaBitacola = new PaginaBitacola(1);
     }
 
     public void gestioCentralUB() {
         // Mostrar missatge inicial
         System.out.println("Benvingut a la planta PWR de la UB");
+        System.out.println("La demanda de potència elèctrica avui es de " + demandaPotencia + " unitats");
         Scanner sc = new Scanner(System.in);
 
         Menu<OpcionsMenu> principal = new Menu("Menu Principal", OpcionsMenu.values());
 
         OpcionsMenu op = null;
-
         int dia=1;
-        PaginaBitacola paginaBitacola = new PaginaBitacola(dia);
+
         do {
-            System.out.println("La demanda de potència elèctrica avui es de " + demandaPotencia + " unitats");
             principal.mostrarMenu();
             op = principal.getOpcio(sc);
 
@@ -171,9 +176,19 @@ public class CentralUB {
                     break;
                 case GuardarDades:
                     //Guarda les dades de l’aplicació.
+                    try {
+                        adaptador.guardaDades("ENCARA FALTA PER FER");
+                    } catch (CentralUBException e) {
+                        System.out.println("Error Guardar: "+e.getMessage());
+                    }
                     break;
                 case CarregarDades:
                     //Carrega les dades de l’aplicació.
+                    try {
+                        adaptador.carregaDades("ENCARA FALTA PER FER");
+                    } catch (CentralUBException e) {
+                        System.out.println("Error Carregar: "+e.getMessage());
+                    }
                     break;
                 case Sortir:
                     break;
@@ -185,7 +200,6 @@ public class CentralUB {
     public void gestioBarres(Scanner sc){
 
         Menu<OpcionsBarres> Barres = new Menu<>("Menu Barres", OpcionsBarres.values());
-        BarresDeControl barres = new BarresDeControl();
 
         OpcionsBarres op = null;
 
@@ -217,7 +231,6 @@ public class CentralUB {
 
     public void gestioReactor(Scanner sc){
         Menu<OpcionsReactor> Reactor = new Menu<>("Menu Reactor", OpcionsReactor.values());
-        Reactor reactor = new Reactor();
 
         OpcionsReactor op = null;
 
@@ -257,7 +270,6 @@ public class CentralUB {
     public void gestioSistema(Scanner sc){
 
         Menu<OpcionsSistema> Sistema = new Menu<>("Menu Sistema", OpcionsSistema.values());
-        SistemaRefrigeracio sistema = new SistemaRefrigeracio();
 
         OpcionsSistema op = null;
         do {
@@ -308,32 +320,27 @@ public class CentralUB {
     }
 
 
-    public float generaDemandaPotencia(){
+    private float generaDemandaPotencia(){
         float valor = Math.round(variableNormal.seguentValor());
-        if (valor > DEMANDA_MAX) {
+        if (valor > DEMANDA_MAX)
             return DEMANDA_MAX;
-        }
-        else {
-            if (valor < DEMANDA_MIN) {
-                return DEMANDA_MIN;
-            }else{
-                return valor;
-                }
-        }
+        else
+        if (valor < DEMANDA_MIN)
+            return DEMANDA_MIN;
+        else
+            return valor;
     }
 
-
-
-    public void finalitzaDia() {
-        // Finalitzar dia i obtenir la informació del adaptador
-        String info = adaptador.finalitzaDia(demandaPotencia);
-
-        // Mostrar la informació
+    private void finalitzaDia() {
+        // Finalitzar dia i imprimir informacio de la central
+        String info = new String();
+        info = adaptador.finalitzaDia(demandaPotencia);
         System.out.println(info);
         System.out.println("Dia finalitzat\n");
 
-        // Generar i mostrar nova demanda de potència
-        demandaPotencia = adaptador.generaDemandaPotencia();
+        // Generar i mostrar nova demanda de potencia
+        demandaPotencia = generaDemandaPotencia();
+        System.out.println("La demanda de potència elèctrica avui es de " + demandaPotencia + " unitats");
     }
 
 }

@@ -10,25 +10,21 @@ public class Adaptador {
         this.demandaPotencia = demandaPotencia;
     }
 
+    public float getDemandaPotencia() {
+        return demandaPotencia;
+    }
+
+    public void setDemandaPotencia(float demandaPotencia) {
+        this.demandaPotencia = demandaPotencia;
+    }
+
     // Finalitzar el dia i retornar la informació necessària
     public String finalitzaDia(float demandaPotencia) {
         // Finalitzar el dia amb la demanda actual de potència
         String info = "Finalitzant el dia amb una demanda de potència de " + demandaPotencia + " unitats.\n";
-
-        // Generar nova demanda de potència per al següent dia
-        this.demandaPotencia = generaDemandaPotencia();
-        info += "La nova demanda de potència per al proper dia és de " + this.demandaPotencia + " unitats.";
-
+        setDemandaPotencia(demandaPotencia);
         return info; // Retorna tota la informació generada
     }
-
-    // Mètode per generar la nova demanda de potència
-    public float generaDemandaPotencia() {
-        // Aquí pots aplicar alguna lògica per generar una nova demanda de potència
-        // Per exemple, podries generar un valor aleatori dins d'un rang determinat
-        return (float) (Math.random() * 100); // Exempli de generació aleatòria
-    }
-
 
 
 

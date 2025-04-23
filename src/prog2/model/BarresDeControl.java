@@ -9,18 +9,18 @@ package prog2.model;
 import prog2.vista.CentralUBException;
 
 public class BarresDeControl {
-    int grauInsercio;
-    boolean activat;
+    private int grauInsercio;
+    private boolean activat;
 
     public void activa() {
         this.activat = true;
     }
 
-    public void deactiva() {
+    public void desactiva() {
         this.activat = false;
     }
 
-    public boolean getActivat() {
+    public boolean getActiva() {
         return this.activat;
     }
 
