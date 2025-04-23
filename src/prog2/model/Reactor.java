@@ -6,7 +6,6 @@ public class Reactor implements InComponent {
     boolean activa;
 
 
-
     public float gettemperatura() {
         return temperatura;
     }
@@ -52,6 +51,11 @@ public class Reactor implements InComponent {
         } else {
             return gettemperatura() + (100 - input) * 10;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Reactor [Activat: " + (getActivat() ? "Sí" : "No") + ", Temperatura: " + temperatura + " ºC]";
     }
 
 }

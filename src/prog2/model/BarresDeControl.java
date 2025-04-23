@@ -9,7 +9,7 @@ package prog2.model;
 import prog2.vista.CentralUBException;
 
 public class BarresDeControl {
-    private int grauInsercio;
+
     private boolean activat;
 
     public void activa() {
@@ -24,17 +24,6 @@ public class BarresDeControl {
         return this.activat;
     }
 
-    public int getGrauInsercio() {
-        return grauInsercio;
-    }
-
-    public void setGrauInsercio(int grauInsercio) throws CentralUBException {
-        if (grauInsercio >= 0 && grauInsercio <= 100) {
-            this.grauInsercio = grauInsercio;
-        } else{
-            throw new CentralUBException("El grau d'insercio no es correcta");
-        }
-    }
 
     public float getCostOperatiu() {
         if (activat) {

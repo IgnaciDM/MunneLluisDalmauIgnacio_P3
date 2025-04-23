@@ -62,13 +62,21 @@ public class Dades implements InDades{
         this.sistemaRefrigeracio.desactiva();
     }
 
+    //--------------------------------------------------------------------------
+
     public float getInsercioBarres() {
         return insercioBarres;
     }
 
     public void setInsercioBarres(float insercioBarres) throws CentralUBException {
-        this.insercioBarres = insercioBarres;
+        if (insercioBarres >= 0 && insercioBarres <= 100) {
+                this.insercioBarres = insercioBarres;
+        } else{
+            throw new CentralUBException("El grau d'insercio no es correcta");
+        }
     }
+
+    //--------------------------------------------------------------------------
 
     public void activaReactor() throws CentralUBException {
         reactor.activa();
@@ -79,8 +87,10 @@ public class Dades implements InDades{
     }
 
     public Reactor mostraReactor() {
-        return reactor;
+        return reactor;//Equivalent a posar reactor.toString
     }
+    //-------------------------------------------------------------------------
+
 
     public void activaBomba(int id) throws CentralUBException {
         for (int i = 0; i < sistemaRefrigeracio.getllistabombes().size(); i++) {

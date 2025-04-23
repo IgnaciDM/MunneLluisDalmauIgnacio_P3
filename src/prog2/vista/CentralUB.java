@@ -30,10 +30,11 @@ public class CentralUB {
     private float demandaPotencia;
 
     private Adaptador adaptador;
-    private BarresDeControl barres;  // Atribut de la classe
-    private Reactor reactor;
+    //private BarresDeControl barres;  // Atribut de la classe
+    //private Reactor reactor;
     private SistemaRefrigeracio sistema;
     private PaginaBitacola paginaBitacola;
+    private Dades dades;
 
     /*ENUMS Y STRINGS A MOSTRAR EN MENU*/
 
@@ -117,8 +118,8 @@ public class CentralUB {
 
         // Afegir codi adicional si fos necessari:
         adaptador = new Adaptador();
-        barres = new BarresDeControl();
-        reactor = new Reactor();
+        //barres = new BarresDeControl();
+        //reactor = new Reactor();
         sistema = new SistemaRefrigeracio();
         paginaBitacola = new PaginaBitacola(1);
     }
@@ -130,6 +131,12 @@ public class CentralUB {
         Scanner sc = new Scanner(System.in);
 
         Menu<OpcionsMenu> principal = new Menu("Menu Principal", OpcionsMenu.values());
+
+        try {
+            dades = new Dades();
+        } catch (CentralUBException e) {
+            System.out.println(e.getMessage());
+        }
 
         OpcionsMenu op = null;
         int dia=1;
@@ -164,6 +171,7 @@ public class CentralUB {
                     break;
                 case MostrarIncidencies:
                     //Mostra totes les pàgines d’incidències de la bitàcola fins al dia actual.
+
                     break;
                 case ObtenirDemandaSatisfeta:
                     //Mostra la demanda de poténcia del dia en curs, la potència generada amb la configuración de la central actual i el percentatge de demanda satisfeta corresponent.
@@ -209,13 +217,13 @@ public class CentralUB {
             switch (op) {
                 case ObtenirInsercioBarres:
                     //Mostra per pantalla la inserció de les barres.
-                    System.out.println(barres.getGrauInsercio());
+                    System.out.println(dades.getInsercioBarres());
                     break;
                 case EstablirInsercioBarres:
                     //Sol·licita a l’usuari el grau d’inserció de les barres
                     System.out.println("Especifiqui el grau d'insercio de barres 1-100:");
                     try{
-                        barres.setGrauInsercio(sc.nextInt());
+                        dades.setInsercioBarres(sc.nextInt());
                     }catch(CentralUBException e){
                         System.out.println("Error Barres: "+e.getMessage());
                     }
@@ -241,7 +249,7 @@ public class CentralUB {
                 case ActivarReactor:
                     //Permet activar el reactor.
                     try{
-                        reactor.activa();
+                        dades.activaReactor();
                     }catch(CentralUBException e){
                         System.out.println("Error Reactor: "+e.getMessage());
                         break;
@@ -250,13 +258,12 @@ public class CentralUB {
                     break;
                 case DesactivarReactor:
                     // Permet desactivar el reactor.
-                    reactor.desactiva();
+                    dades.desactivaReactor();
                     System.out.println("Reactor desactivat");
                     break;
                 case MostrarEstatReactor:
                     // Mostra si el reactor està activat i la seva temperatura.
-                    System.out.println("Reactor Activat: "+reactor.getActivat());
-                    System.out.println(reactor.gettemperatura()+" graus");
+                    System.out.println(dades.mostraReactor());
                     break;
                 case Sortir:
                     break;
@@ -292,7 +299,7 @@ public class CentralUB {
                     //Donat el seu identificador numèric (entre 0 i 3), permet activar una bomba refrigerant.
                     System.out.println("Introdueix la id d'una de les bombes 0-3");
                     try {
-                        sistema.activaId(sc.nextInt());
+                        dades.activaBomba(sc.nextInt());
                     } catch (CentralUBException e) {
                         System.out.println("Error Sistema: "+e.getMessage());
                     }
@@ -300,15 +307,11 @@ public class CentralUB {
                 case DesactivarBomba:
                     //Donat l’identificador numèric d’una bomba refrigerant, permet desactivar-la.
                     System.out.println("Introdueix la id d'una de les bombes 0-3");
-                    try {
-                        sistema.desactivaId(sc.nextInt());
-                    } catch (CentralUBException e) {
-                        System.out.println("Error Sistema: "+e.getMessage());
-                    }
+                    dades.desactivaBomba(sc.nextInt());
                     break;
                 case MostrarEstat:
                     // mostra l’estat actual de totes les bombes del sistema de refrigeració.
-                    sistema.mostrarBombes();
+                    System.out.println(dades.mostraSistemaRefrigeracio());
                     break;
                 case Sortir:
                     break;
