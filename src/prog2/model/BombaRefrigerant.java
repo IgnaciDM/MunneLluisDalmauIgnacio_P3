@@ -6,7 +6,7 @@ public class BombaRefrigerant implements InBombaRefrigerant{
     int id;
     boolean activa;
     VariableUniforme VaUni;
-    boolean operativa;
+    boolean operativa=true;
 
     BombaRefrigerant(VariableUniforme VaUni,int id) throws CentralUBException {
         this.id = id;
@@ -61,6 +61,6 @@ public class BombaRefrigerant implements InBombaRefrigerant{
     }
 
     public String toString() {
-        return "Id="+ id + ", Activat=" + activa + ", Fora de servei=" + operativa;
+        return "Id="+ id + ", Activat=" + getActivat() + ", Fora de Servei=" + getForaDeServei();
     }
 }

@@ -139,7 +139,6 @@ public class CentralUB {
         }
 
         OpcionsMenu op = null;
-        int dia=1;
 
         do {
             principal.mostrarMenu();
@@ -161,26 +160,27 @@ public class CentralUB {
                 case MostrarEstatCentral:
                     //Mostra la pàgina de bitàcola d’estat corresponent al dia actual (veure Apartat 2.4.2).
                     //Aquesta informació és provisional i només es farà efectiva al finalitzar el dia
-
-                    //paginaBitacola.toString();
-
+                    System.out.println(dades.mostraEstat());
                     break;
                 case MostrarBitacola:
                     //Mostra tot el contingut de la bitàcola fins al dia actual, incloent las pàgines d’estat, econòmiques i d’incidències.
-
+                    System.out.println(dades.mostraBitacola());
                     break;
                 case MostrarIncidencies:
                     //Mostra totes les pàgines d’incidències de la bitàcola fins al dia actual.
-
+                    System.out.println(dades.mostraIncidencies());
                     break;
                 case ObtenirDemandaSatisfeta:
                     //Mostra la demanda de poténcia del dia en curs, la potència generada amb la configuración de la central actual i el percentatge de demanda satisfeta corresponent.
+                    System.out.println("⚡ Demanda de potència: "+demandaPotencia);
+                    System.out.println("\uD83D\uDD0B Potència generada: "+dades.calculaPotencia()+" MW"); //🔋
+                    System.out.println("✅ Percentatge de demanda satisfeta: "+(dades.calculaPotencia()/demandaPotencia)*100+" %");
                     break;
                 case FinalitzarDia:
                     //Es duen a terme totes les acciones relacionades amb la finalització d’un dia (veure Apartat 2.3).
                     finalitzaDia();
-                    dia+=1;
-                    paginaBitacola.setDia(dia);//FALTEN MOLTES MES COSES A FER
+                    System.out.println(dades.finalitzaDia(demandaPotencia));
+
                     break;
                 case GuardarDades:
                     //Guarda les dades de l’aplicació.

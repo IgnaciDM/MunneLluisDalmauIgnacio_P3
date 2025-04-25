@@ -111,27 +111,29 @@ public class Dades implements InDades{
     public SistemaRefrigeracio mostraSistemaRefrigeracio() {
         return sistemaRefrigeracio;
     }
-
-    public float calculaPotencia() {
-        return turbina.calculaOutput(0);//0 per defecte MODIFICABLE
-    }
-
-    public float getGuanysAcumulats() {
-        return guanysAcumulats;
-    }
-
+    //-------------------------------------------------------------------------
     public PaginaEstat mostraEstat() {
         return new PaginaEstat(dia, insercioBarres, reactor, sistemaRefrigeracio, generadorVapor, turbina);
     }
-
+    //-------------------------------------------------------------------------
     public Bitacola mostraBitacola() {
         return bitacola;
     }
+    //-------------------------------------------------------------------------
 
     public List<PaginaIncidencies> mostraIncidencies() {
         return bitacola.getIncidencies();
     }
-    
+    //-------------------------------------------------------------------------
+
+    public float calculaPotencia() {
+        return turbina.calculaOutput(generadorVapor.calculaOutput(sistemaRefrigeracio.calculaOutput(reactor.calculaOutput(insercioBarres))));
+    }
+    //-------------------------------------------------------------------------
+
+    public float getGuanysAcumulats() {
+        return guanysAcumulats;
+    }
     /**
      * Actualitza l'economia de la central. Genera una pàgina econòmica a 
      * partir de la demanda de potencia actual. Aquesta pàgina econòmica inclou 
@@ -141,11 +143,7 @@ public class Dades implements InDades{
      */
     private PaginaEconomica actualitzaEconomia(float demandaPotencia){
         // 1. Calcular potència generada
-        float potenciaGenerada = turbina.calculaOutput(
-                generadorVapor.calculaOutput(
-                        reactor.calculaOutput(insercioBarres)
-                )
-        );
+        float potenciaGenerada = turbina.calculaOutput(generadorVapor.calculaOutput(sistemaRefrigeracio.calculaOutput(reactor.calculaOutput(insercioBarres))));
 
         float demandasatisfeta = (potenciaGenerada/demandaPotencia)*100;
 

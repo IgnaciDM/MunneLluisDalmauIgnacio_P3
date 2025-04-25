@@ -29,10 +29,17 @@ public class Turbina {
     public float calculaOutput(float input){
         if (this.activa == false) {
             return 0;
-        } if (input < 100) {
-            return 0;
         } else {
-            return input*2;
+            if (input < 100) {
+                return 0;
+            } else {
+                return input * 2;
+            }
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Turbina [Activat: "+(activa? "Sí" : "No")+"]";
     }
 }

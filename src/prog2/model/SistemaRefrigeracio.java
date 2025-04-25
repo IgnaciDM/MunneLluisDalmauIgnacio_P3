@@ -12,8 +12,6 @@ public class SistemaRefrigeracio implements InComponent {
        return llistabombes;
     }
 
-
-
     public void afegirBomba(BombaRefrigerant b) {
         llistabombes.add(b);
     }
@@ -23,7 +21,7 @@ public class SistemaRefrigeracio implements InComponent {
             if (llistabombes.get(i).getForaDeServei()) {
                 throw new CentralUBException("La Bomba esta fora de servei, es desactivada");
             } else {
-            llistabombes.get(i).activa();
+                llistabombes.get(i).activa();
             }
         }
     }
@@ -64,11 +62,12 @@ public class SistemaRefrigeracio implements InComponent {
 
     public float calculaOutput(float input){
         int N = 0;
-        for (int i = 0; i < llistabombes.size(); i++) {
-            if (llistabombes.get(i).getActivat() == true) {
+        for (BombaRefrigerant bomba: llistabombes) {
+            if (bomba.getActivat() == true) {
                 N += 1;
             }
         }
+
         if (250*N > input) {
             return input;
         } else {
@@ -80,12 +79,13 @@ public class SistemaRefrigeracio implements InComponent {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Sistema de Refrigeració:\n");
+        sb.append("Sistema de Refrigeració[\n");
         sb.append("  Estat: ").append(getActivat() ? "Activat" : "Desactivat").append("\n");
         sb.append("  Bombes:\n");
         for (BombaRefrigerant bomba : llistabombes) {
             sb.append("    - ").append(bomba.toString()).append("\n");
         }
+        sb.append("]");
         return sb.toString();
     }
 

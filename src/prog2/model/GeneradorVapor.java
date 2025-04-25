@@ -32,4 +32,9 @@ public class GeneradorVapor {
             return (float) (input * 0.9);
         }
     }
+
+    @Override
+    public String toString() {
+        return "GeneradorVapor [Activat: " + (activa ? "Sí" : "No")+"]";
+    }
 }
