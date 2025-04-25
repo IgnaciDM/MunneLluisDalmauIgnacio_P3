@@ -37,8 +37,9 @@ public class SistemaRefrigeracio implements InComponent {
             if (llistabombes.get(i).getActivat() == true) {
                 return true;
             }
-            else
+            else {
                 return false;
+            }
         }
         return false;
     }
@@ -67,7 +68,6 @@ public class SistemaRefrigeracio implements InComponent {
                 N += 1;
             }
         }
-
         if (250*N > input) {
             return input;
         } else {

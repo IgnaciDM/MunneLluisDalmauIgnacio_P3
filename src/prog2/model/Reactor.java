@@ -15,8 +15,8 @@ public class Reactor implements InComponent {
     }
 
     public void activa() throws CentralUBException {
-        if (temperatura >= 1000) {
-            throw new CentralUBException("El Reactor te una temperatura igual o superio a 1000 graus, no es pot activar");
+        if (temperatura > 1000) {
+            throw new CentralUBException("El Reactor te una temperatura superior a 1000 graus, no es pot activar");
         } else {
             this.activa = true;
         }

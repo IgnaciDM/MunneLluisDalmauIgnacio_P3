@@ -70,8 +70,8 @@ public class Dades implements InDades{
 
     public void setInsercioBarres(float insercioBarres) throws CentralUBException {
         if (insercioBarres >= 0 && insercioBarres <= 100) {
-                this.insercioBarres = insercioBarres;
-        } else{
+            this.insercioBarres = insercioBarres;
+        } else {
             throw new CentralUBException("El grau d'insercio no es correcte");
         }
     }
@@ -113,8 +113,7 @@ public class Dades implements InDades{
     }
     //-------------------------------------------------------------------------
     public PaginaEstat mostraEstat() {
-        return new PaginaEstat(dia, insercioBarres, reactor, sistemaRefrigeracio, generadorVapor, turbina);
-    }
+        return new PaginaEstat(dia, insercioBarres, reactor, sistemaRefrigeracio, generadorVapor, turbina);}
     //-------------------------------------------------------------------------
     public Bitacola mostraBitacola() {
         return bitacola;
@@ -186,6 +185,12 @@ public class Dades implements InDades{
      */
     private void refrigeraReactor() {
           // Completar
+        float temp = reactor.calculaOutput(insercioBarres);
+        temp -= sistemaRefrigeracio.calculaOutput(reactor.calculaOutput(insercioBarres));
+        if (temp < 25) {
+            temp = 25;
+        }
+        reactor.settemperatura(temp);
     }
 
     /**
@@ -196,6 +201,10 @@ public class Dades implements InDades{
      */
     private void revisaComponents(PaginaIncidencies paginaIncidencies) {
           // Completar
+        if (reactor.gettemperatura() > 1000) {
+            paginaIncidencies.afegeixIncidencia("El Reactor te una temperatura igual o superio a 1000 graus, no es pot activar");
+        }
+        sistemaRefrigeracio.revisa(paginaIncidencies);
     }
 
     public Bitacola finalitzaDia(float demandaPotencia) {
