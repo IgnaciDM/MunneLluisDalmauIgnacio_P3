@@ -127,7 +127,7 @@ public class Dades implements InDades{
     //-------------------------------------------------------------------------
 
     public float calculaPotencia() {
-        return turbina.calculaOutput(generadorVapor.calculaOutput(reactor.calculaOutput(insercioBarres)));//0 per defecte MODIFICABLE
+        return turbina.calculaOutput(generadorVapor.calculaOutput(sistemaRefrigeracio.calculaOutput(reactor.calculaOutput(insercioBarres))));
     }
     //-------------------------------------------------------------------------
 
@@ -143,8 +143,7 @@ public class Dades implements InDades{
      */
     private PaginaEconomica actualitzaEconomia(float demandaPotencia){
         // 1. Calcular potència generada
-        float potenciaGenerada = turbina.calculaOutput(generadorVapor.calculaOutput(reactor.calculaOutput(insercioBarres))
-        );
+        float potenciaGenerada = turbina.calculaOutput(generadorVapor.calculaOutput(sistemaRefrigeracio.calculaOutput(reactor.calculaOutput(insercioBarres))));
 
         float demandasatisfeta = (potenciaGenerada/demandaPotencia)*100;
 

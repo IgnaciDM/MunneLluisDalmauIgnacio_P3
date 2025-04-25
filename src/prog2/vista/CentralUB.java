@@ -139,7 +139,6 @@ public class CentralUB {
         }
 
         OpcionsMenu op = null;
-        int dia=1;
 
         do {
             principal.mostrarMenu();
@@ -180,8 +179,8 @@ public class CentralUB {
                 case FinalitzarDia:
                     //Es duen a terme totes les acciones relacionades amb la finalització d’un dia (veure Apartat 2.3).
                     finalitzaDia();
-                    dia+=1;
-                    paginaBitacola.setDia(dia);//FALTEN MOLTES MES COSES A FER
+                    System.out.println(dades.finalitzaDia(demandaPotencia));
+
                     break;
                 case GuardarDades:
                     //Guarda les dades de l’aplicació.
