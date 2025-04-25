@@ -23,9 +23,8 @@ public class Bitacola implements InBitacola{
         return incidencies;
     }
 
-    public void String() {
-        for (PaginaBitacola p : paginesbitacola) {
-            System.out.println(p);
-        }
+    @Override
+    public String toString() {
+        return "Bitacola [" +"paginesbitacola:" + paginesbitacola +"]";
     }
 }

@@ -41,9 +41,9 @@ public class PaginaEstat extends PaginaBitacola {
         return " Pàgina Estat" + "\n" +
                 "- Dia: " + getDia() + "\n" +
                 "- Inserció Barres: " + inserciobarres + " %" + "\n" +
-                "- Output Reactor: " + reactorActiu + " Graus" + "\n" +
-                "- Output Sistema de Refrigeració: " + sistemaRefrigeracioActiu + " Graus" + "\n" +
-                "- Output Generador de Vapor: " + generadorVaporActiu + " Graus" + "\n" +
-                "- Output Turbina: " + turbinaActiva + " Graus";
+                "- Output Reactor: " + reactorActiu + "\n" +
+                "- Output Sistema de Refrigeració: " + sistemaRefrigeracioActiu + "\n" +
+                "- Output Generador de Vapor: " + generadorVaporActiu + "\n" +
+                "- Output Turbina: " + turbinaActiva;
     }
 }

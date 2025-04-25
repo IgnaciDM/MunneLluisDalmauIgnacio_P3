@@ -80,12 +80,13 @@ public class SistemaRefrigeracio implements InComponent {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Sistema de Refrigeració:\n");
+        sb.append("Sistema de Refrigeració[\n");
         sb.append("  Estat: ").append(getActivat() ? "Activat" : "Desactivat").append("\n");
         sb.append("  Bombes:\n");
         for (BombaRefrigerant bomba : llistabombes) {
             sb.append("    - ").append(bomba.toString()).append("\n");
         }
+        sb.append("]");
         return sb.toString();
     }
 

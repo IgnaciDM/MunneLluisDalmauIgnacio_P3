@@ -35,4 +35,9 @@ public class Turbina {
             return input*2;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Turbina [Activat: "+(activa? "Sí" : "No")+"]";
+    }
 }
