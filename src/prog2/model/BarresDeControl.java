@@ -9,7 +9,7 @@ package prog2.model;
 import prog2.vista.CentralUBException;
 
 public class BarresDeControl {
-
+    private float graus;
     private boolean activat;
 
     public void activa() {
@@ -24,6 +24,11 @@ public class BarresDeControl {
         return this.activat;
     }
 
+    public float getGraus() {return graus;}
+
+    public void setGraus(float graus) {
+        this.graus = graus;
+    }
 
     public float getCostOperatiu() {
         if (activat) {

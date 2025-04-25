@@ -72,7 +72,7 @@ public class Dades implements InDades{
         if (insercioBarres >= 0 && insercioBarres <= 100) {
                 this.insercioBarres = insercioBarres;
         } else{
-            throw new CentralUBException("El grau d'insercio no es correcta");
+            throw new CentralUBException("El grau d'insercio no es correcte");
         }
     }
 
@@ -121,7 +121,7 @@ public class Dades implements InDades{
     }
 
     public PaginaEstat mostraEstat() {
-        return new PaginaEstat(dia,insercioBarres, reactor, sistemaRefrigeracio, generadorVapor, turbina);
+        return new PaginaEstat(dia, insercioBarres, reactor, sistemaRefrigeracio, generadorVapor, turbina);
     }
 
     public Bitacola mostraBitacola() {

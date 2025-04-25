@@ -1,7 +1,9 @@
 package prog2.model;
 
+import java.util.ArrayList;
+
 public class PaginaIncidencies extends PaginaBitacola {
-    private String textIncidencia;
+    private ArrayList<String> textIncidencia;
 
     public PaginaIncidencies(int dia) {
         super(dia);
@@ -9,13 +11,14 @@ public class PaginaIncidencies extends PaginaBitacola {
     }
 
     public void afegeixIncidencia(String descIncidencia) {
-        this.textIncidencia = descIncidencia; //Revisar
-
+        this.textIncidencia.add(descIncidencia); //Revisar
     }
 
     public String toString() {
-        return  "Dia: " + getDia() + "\n" + textIncidencia +
-                "- Descripció Incidència: El reactor es va desactivar per superar la temperatura màxima" + "\n" +
-                "- Descripció Incidència: La bomba refrig. 2 està fora de servei";
+        String resposta = "";
+        for (int i = 0; i < this.textIncidencia.size(); i++) {
+            resposta += "- Descripció Incidència: " + this.textIncidencia.get(i) + "\n";
+        }
+        return  "Dia: " + getDia() + "\n" + resposta;
     }
 }

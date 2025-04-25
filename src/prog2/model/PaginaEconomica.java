@@ -35,20 +35,10 @@ public class PaginaEconomica extends PaginaBitacola {
     public float getDemandasatisfeta() {return demandasatisfeta; }
 
     public float getBeneficis() {
-        if (potenciaGenerada > demandaPotencia) {
-            this.beneficis = demandaPotencia;
-        } else {
-            this.beneficis = potenciaGenerada;
-        }
         return beneficis;
     }
 
     public float getPenalitzacio() {
-        if (potenciaGenerada > demandaPotencia) {
-            this.penalitzacio = 250;
-        } else {
-            this.penalitzacio = 0;
-        }
         return penalitzacio;
     }
 
@@ -66,8 +56,8 @@ public class PaginaEconomica extends PaginaBitacola {
                 "Demanda Potència: " + demandaPotencia + "\n" +
                 "Potència Generada: " + potenciaGenerada + "\n" +
                 "Demanda satisfeta: " + demandasatisfeta + "\n" +
-                "Beneficis: " + getBeneficis() + "\n" +
-                "Penalització: " + getPenalitzacio() + "\n" +
+                "Beneficis: " + beneficis + "\n" +
+                "Penalització: " + penalitzacio + "\n" +
                 "Costos Operatius: " + costosOperatius + "\n" +
                 "Guanys Acumulats: " + guanysAcumulats + "\n";
     }

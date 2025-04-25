@@ -25,7 +25,7 @@ public class Bitacola implements InBitacola{
 
     public void String() {
         for (PaginaBitacola p : paginesbitacola) {
-            System.out.println(p);
+            System.out.println(p.toString() + "\n");
         }
     }
 }
