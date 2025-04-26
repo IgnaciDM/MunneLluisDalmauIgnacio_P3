@@ -199,17 +199,15 @@ public class Dades implements InDades{
      * @param paginaIncidencies Pàgina d'incidències.
      */
     private void revisaComponents(PaginaIncidencies paginaIncidencies) {
-          // Completar
-        if (reactor.gettemperatura() > 1000) {
-            paginaIncidencies.afegeixIncidencia("El Reactor te una temperatura igual o superio a 1000 graus, no es pot activar");
-        }
-        sistemaRefrigeracio.revisa(paginaIncidencies);
+        reactor.revisa(paginaIncidencies);//Es comproba que  la temperatura no superi els 1000 graus
+        sistemaRefrigeracio.revisa(paginaIncidencies);// Es comproba si s'ha produit que probabilitat del 25% que cada bomba refrigerant es quedi fora de servei
     }
 
     public Bitacola finalitzaDia(float demandaPotencia) {
         // Actualitza economia
         PaginaEconomica paginaEconomica = actualitzaEconomia(demandaPotencia);
-        
+        System.out.println(paginaEconomica);
+
         // Genera pàgina d'estat amb la configuració escollida (la nova pàgina
         // d'estat inclou la nova configuració escollida pel operador abans de
         // refrigerar el reactor)

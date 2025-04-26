@@ -33,7 +33,7 @@ public class Reactor implements InComponent {
     public void revisa (PaginaIncidencies p) {
         if (temperatura >= 1000) {
             this.activa = false;
-            p.afegeixIncidencia("El reactor es va desactivar per superar la temperatura màxima");
+            p.afegeixIncidencia("El reactor es va desactivar per superar la temperatura màxima de 1000 graus");
         }
     }
 

@@ -56,7 +56,7 @@ public class SistemaRefrigeracio implements InComponent {
     public float getCostOperatiu(){
         float cost=0;
         for (int i = 0; i < llistabombes.size(); i++) {
-            cost += llistabombes.get(i).getCostOperatiu();
+            cost += 130;
         }
         return cost;
     }

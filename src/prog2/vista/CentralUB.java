@@ -179,7 +179,7 @@ public class CentralUB {
                 case FinalitzarDia:
                     //Es duen a terme totes les acciones relacionades amb la finalització d’un dia (veure Apartat 2.3).
                     finalitzaDia();
-                    System.out.println(dades.finalitzaDia(demandaPotencia));
+                    dades.finalitzaDia(demandaPotencia);
 
                     break;
                 case GuardarDades:

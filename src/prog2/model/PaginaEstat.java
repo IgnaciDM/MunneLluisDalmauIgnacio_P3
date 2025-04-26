@@ -15,6 +15,7 @@ public class PaginaEstat extends PaginaBitacola {
         this.sistemaRefrigeracioActiu = sistemaRefrigeracioActiu;
         this.generadorVaporActiu = generadorVaporActiu;
         this.turbinaActiva = turbinaActiva;
+
     }
 
     public float getInserciobarres() {
