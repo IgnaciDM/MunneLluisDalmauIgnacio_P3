@@ -91,7 +91,6 @@ public class Dades implements InDades{
     }
     //-------------------------------------------------------------------------
 
-
     public void activaBomba(int id) throws CentralUBException {
         for (int i = 0; i < sistemaRefrigeracio.getllistabombes().size(); i++) {
             if (sistemaRefrigeracio.getllistabombes().get(i).getId() == id) {

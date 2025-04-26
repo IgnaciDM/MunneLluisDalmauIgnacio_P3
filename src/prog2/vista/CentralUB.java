@@ -286,14 +286,18 @@ public class CentralUB {
                 case ActivarTotesBombes:
                     //Activa totes les bombes refrigerants.
                     try {
-                        sistema.activa();
+                        for(int i=0;i<4;i++){
+                            dades.activaBomba(i);
+                        }
                     } catch (CentralUBException e) {
                         System.out.println("Error Sistema: "+e.getMessage());
                     }
                     break;
                 case DesactivarTotesBombes:
                     //Desactiva totes les bombes refrigerants
-                    sistema.desactiva();
+                    for(int i=0;i<4;i++){
+                        dades.desactivaBomba(i);
+                    }
                     break;
                 case ActivarBomba:
                     //Donat el seu identificador numèric (entre 0 i 3), permet activar una bomba refrigerant.
