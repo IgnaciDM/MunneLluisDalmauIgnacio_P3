@@ -185,7 +185,7 @@ public class CentralUB {
                 case GuardarDades:
                     //Guarda les dades de l’aplicació.
                     try {
-                        adaptador.guardaDades("ENCARA FALTA PER FER");
+                        adaptador.guardaDades("CentralUB");
                     } catch (CentralUBException e) {
                         System.out.println("Error Guardar: "+e.getMessage());
                     }
