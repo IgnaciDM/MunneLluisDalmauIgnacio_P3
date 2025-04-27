@@ -49,6 +49,7 @@ public class SistemaRefrigeracio implements InComponent {
             llistabombes.get(i).revisa(p);
             if (llistabombes.get(i).getForaDeServei() == true) {
                 p.afegeixIncidencia("La bomba " + i + " esta fora de servei");
+                llistabombes.get(i).desactiva();
             }
         }
     }

@@ -20,9 +20,9 @@ public class PaginaIncidencies extends PaginaBitacola {
             resposta.append("- Descripció Incidència: ").append(incidencia).append("\n");
         }
         if (llistaIncidencia.size() != 0) {
-            return "\n" + "Dia: " + getDia() + "\n" + resposta + "\n";
+            return "\n" + "--- Pàgina Estat (Dia "+getDia()+ " ) --- " + "\n" + resposta + "\n";
         } else {
-            return "\n" + "Dia: " + getDia() + "\n" + "No hi ha Incidencies en aquest dia" + "\n";
+            return "\n" + "--- Pàgina Estat (Dia "+getDia()+ " ) --- " + "\n" + "No hi ha Incidencies en aquest dia" + "\n";
         }
     }
 }
