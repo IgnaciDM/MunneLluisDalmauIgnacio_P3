@@ -1,6 +1,11 @@
 package prog2.adaptador;
 
+import prog2.model.Bitacola;
+import prog2.vista.CentralUB;
 import prog2.vista.CentralUBException;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+
 
 public class Adaptador {
     private float demandaPotencia; // Atribut que manté la demanda de potència
@@ -31,8 +36,7 @@ public class Adaptador {
     // Mètode per guardar dades
     public void guardaDades(String camiDesti) throws CentralUBException {
         try {
-            // Lògica per guardar dades del model
-            // Es podria serialitzar el model o realitzar altres operacions
+
         } catch (Exception e) {
             throw new CentralUBException("Error guardant les dades: " + e.getMessage());
         }

@@ -3,7 +3,7 @@ package prog2.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bitacola implements InBitacola{
+public class Bitacola implements InBitacola {
     ArrayList<PaginaBitacola> paginesbitacola = new ArrayList<>();
 
     @Override
@@ -25,6 +25,6 @@ public class Bitacola implements InBitacola{
 
     @Override
     public String toString() {
-        return "Bitacola [" +"paginesbitacola:" + paginesbitacola +"]";
+        return "Bitacola [" + paginesbitacola +"]";
     }
 }

@@ -7,6 +7,7 @@ package prog2.vista;
 import prog2.adaptador.Adaptador;
 import prog2.model.*;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
@@ -179,7 +180,6 @@ public class CentralUB {
                 case FinalitzarDia:
                     //Es duen a terme totes les acciones relacionades amb la finalització d’un dia (veure Apartat 2.3).
                     finalitzaDia();
-                    dades.finalitzaDia(demandaPotencia);
 
                     break;
                 case GuardarDades:
@@ -344,6 +344,8 @@ public class CentralUB {
         info = adaptador.finalitzaDia(demandaPotencia);
         System.out.println(info);
         System.out.println("Dia finalitzat\n");
+
+        dades.finalitzaDia(demandaPotencia);
 
         // Generar i mostrar nova demanda de potencia
         demandaPotencia = generaDemandaPotencia();

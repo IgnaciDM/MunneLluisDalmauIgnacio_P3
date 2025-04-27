@@ -52,10 +52,10 @@ public class PaginaEconomica extends PaginaBitacola {
 
     @Override
     public String toString() {
-        return "--- Pàgina Econòmica (Dia " + getDia() + ") ---\n" +
+        return "\n" + "--- Pàgina Econòmica (Dia " + getDia() + ") ---\n" +
                 "Demanda Potència: " + demandaPotencia + "\n" +
                 "Potència Generada: " + potenciaGenerada + "\n" +
-                "Demanda satisfeta: " + demandasatisfeta + "\n" +
+                "Demanda satisfeta: " + demandasatisfeta + "%" + "\n" +
                 "Beneficis: " + beneficis + "\n" +
                 "Penalització: " + penalitzacio + "\n" +
                 "Costos Operatius: " + costosOperatius + "\n" +

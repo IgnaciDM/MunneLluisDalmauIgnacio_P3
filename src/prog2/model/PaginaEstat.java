@@ -39,12 +39,11 @@ public class PaginaEstat extends PaginaBitacola {
     }
 
     public String toString() {
-        return " Pàgina Estat" + "\n" +
-                "- Dia: " + getDia() + "\n" +
-                "- Inserció Barres: " + inserciobarres + " %" + "\n" +
-                "- Output Reactor: " + reactorActiu + "\n" +
-                "- Output Sistema de Refrigeració: " + sistemaRefrigeracioActiu + "\n" +
-                "- Output Generador de Vapor: " + generadorVaporActiu + "\n" +
-                "- Output Turbina: " + turbinaActiva;
+        return "\n" + "--- Pàgina Estat (Dia " + getDia() + ") ---\n" +
+                "Inserció Barres: " + inserciobarres + " %" + "\n" +
+                "Output Reactor: " + reactorActiu + "\n" +
+                "Output Sistema de Refrigeració: " + "\n" + sistemaRefrigeracioActiu + "\n" +
+                "Output Generador de Vapor: " + generadorVaporActiu + "\n" +
+                "Output Turbina: " + turbinaActiva + "\n";
     }
 }

@@ -2,7 +2,7 @@ package prog2.model;
 import prog2.vista.CentralUBException;
 
 public class Reactor implements InComponent {
-    float temperatura;
+    float temperatura = 25;
     boolean activa;
 
 
