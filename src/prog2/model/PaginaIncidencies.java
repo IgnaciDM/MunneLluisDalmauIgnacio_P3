@@ -1,8 +1,9 @@
 package prog2.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PaginaIncidencies extends PaginaBitacola {
+public class PaginaIncidencies extends PaginaBitacola implements Serializable {
     private ArrayList<String> llistaIncidencia;
 
     public PaginaIncidencies(int dia) {
@@ -20,9 +21,9 @@ public class PaginaIncidencies extends PaginaBitacola {
             resposta.append("- Descripció Incidència: ").append(incidencia).append("\n");
         }
         if (llistaIncidencia.size() != 0) {
-            return "\n" + "Dia: " + getDia() + "\n" + resposta + "\n";
+            return "\n" + "--- Pàgina Estat (Dia "+getDia()+ " ) --- " + "\n" + resposta + "\n";
         } else {
-            return "\n" + "Dia: " + getDia() + "\n" + "No hi ha Incidencies en aquest dia" + "\n";
+            return "\n" + "--- Pàgina Estat (Dia "+getDia()+ " ) --- " + "\n" + "No hi ha Incidencies en aquest dia" + "\n";
         }
     }
 }

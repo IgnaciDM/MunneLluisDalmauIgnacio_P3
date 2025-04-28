@@ -1,6 +1,8 @@
 package prog2.model;
 
-public class PaginaBitacola {
+import java.io.Serializable;
+
+public class PaginaBitacola implements Serializable {
     private int dia;
 
     public PaginaBitacola(int dia) {
@@ -12,6 +14,11 @@ public class PaginaBitacola {
     }
     public void setDia(int dia) {
         this.dia = dia;
+    }
+
+    @Override
+    public String toString() {
+        return "--- Pàgina Bitàcola (Dia " + dia + ") ---";
     }
 
 }

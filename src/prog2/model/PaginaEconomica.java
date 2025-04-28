@@ -1,7 +1,9 @@
 package prog2.model;
 
 
-public class PaginaEconomica extends PaginaBitacola {
+import java.io.Serializable;
+
+public class PaginaEconomica extends PaginaBitacola implements Serializable {
 
     private final float demandaPotencia;
     private final float potenciaGenerada;
@@ -48,6 +50,22 @@ public class PaginaEconomica extends PaginaBitacola {
 
     public float getGuanysAcumulats() {
         return guanysAcumulats;
+    }
+
+    public void setBeneficis(float beneficis) {
+        this.beneficis = beneficis;
+    }
+
+    public void setPenalitzacio(float penalitzacio) {
+        this.penalitzacio = penalitzacio;
+    }
+
+    public void setCostosOperatius(float costosOperatius) {
+        this.costosOperatius = costosOperatius;
+    }
+
+    public void setGuanysAcumulats(float guanysAcumulats) {
+        this.guanysAcumulats = guanysAcumulats;
     }
 
     @Override
