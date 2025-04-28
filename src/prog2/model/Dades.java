@@ -27,7 +27,7 @@ public class Dades implements InDades{
     private final GeneradorVapor generadorVapor;
     private final Turbina turbina;
     private int dia;
-    private final float guanysAcumulats;
+    private float guanysAcumulats;
 
     ///////////////////////////////////////////////////////////////////////////////////
 
@@ -171,6 +171,7 @@ public class Dades implements InDades{
         // 5. Guanys nets i acumulats
         float guanysNets = beneficis - costOperatiu - penalitzacio;
         float nouGuanysAcumulats = guanysAcumulats + guanysNets;
+        this.guanysAcumulats = nouGuanysAcumulats;
 
         // 6. Retornar pàgina econòmica
         return new PaginaEconomica(dia, demandaPotencia, potenciaGenerada, demandasatisfeta,
