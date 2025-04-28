@@ -41,9 +41,17 @@ public class Dades implements InDades{
         this.reactor.desactiva();
         this.sistemaRefrigeracio = new SistemaRefrigeracio();
         this.generadorVapor = new GeneradorVapor();
-        this.generadorVapor.activa();
+        try {
+            this.generadorVapor.activa();
+        } catch (CentralUBException e) {
+            throw new RuntimeException(e);
+        }
         this.turbina = new Turbina();
-        this.turbina.activa();
+        try {
+            this.turbina.activa();
+        } catch (CentralUBException e) {
+            throw new RuntimeException(e);
+        }
         this.bitacola = new Bitacola();
         this.dia = 1;
         this.guanysAcumulats = GUANYS_INICIALS;

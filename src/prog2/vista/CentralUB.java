@@ -129,12 +129,6 @@ public class CentralUB {
 
         Menu<OpcionsMenu> principal = new Menu("Menu Principal", OpcionsMenu.values());
 
-        try {
-            dades = new Dades();
-        } catch (CentralUBException e) {
-            System.out.println(e.getMessage());
-        }
-
         OpcionsMenu op = null;
 
         do {
