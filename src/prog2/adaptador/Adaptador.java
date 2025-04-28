@@ -1,8 +1,6 @@
 package prog2.adaptador;
 
-import prog2.model.Bitacola;
-import prog2.model.Dades;
-import prog2.model.PaginaBitacola;
+import prog2.model.*;
 import prog2.vista.CentralUB;
 import prog2.vista.CentralUBException;
 import java.io.FileReader;
@@ -12,7 +10,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-
+import java.util.List;
 
 
 //La classe Adaptador, com ja s’ha explicat anteriorment, serà utilitzada per intervenir
@@ -25,11 +23,14 @@ import java.io.IOException;
 //detalls d’implementació del model.
 public class Adaptador {
     private float demandaPotencia; // Atribut que manté la demanda de potència
-    private Dades dades;
+    public Bitacola bitacola;
+    public Dades dades;
 
     // Constructor per inicialitzar la demanda de potència
     public Adaptador() {
-        this.demandaPotencia = 0;
+        this.demandaPotencia = demandaPotencia;
+        this.bitacola = new Bitacola();
+        this.dades = new Dades();
     }
 
     public float getDemandaPotencia() {
@@ -40,19 +41,68 @@ public class Adaptador {
         this.demandaPotencia = demandaPotencia;
     }
 
+    public PaginaEstat mostraEstat() {
+        return dades.mostraEstat();
+    }
+
+    public Bitacola mostraBitacola() {
+        return dades.mostraBitacola();
+    }
+
+    public List<PaginaIncidencies> mostraIncidencies() {
+        return dades.mostraIncidencies();
+    }
+
+    public float calculaPotencia() {
+        return dades.calculaPotencia();
+    }
+
+    public float getInsercioBarres() {
+        return dades.getInsercioBarres();
+    }
+
+    public void setInsercioBarres(float insercioBarres) throws CentralUBException {
+        dades.setInsercioBarres(insercioBarres);
+    }
+
+    public void activaReactor() throws CentralUBException {
+        dades.activaReactor();
+    }
+
+    public void activaBomba(int id) throws CentralUBException {
+        dades.activaBomba(id);
+    }
+
+    public void desactivaBomba(int id) {
+        dades.desactivaBomba(id);
+    }
+
+    public SistemaRefrigeracio mostraSistemaRefrigeracio() {
+        return dades.mostraSistemaRefrigeracio();
+    }
+
+
+    public Reactor mostraReactor() {
+        return dades.mostraReactor();
+    }
+
+    public void desactivaReactor(){
+        dades.desactivaReactor();
+    }
+
     // Finalitzar el dia i retornar la informació necessària
     public String finalitzaDia(float demandaPotencia) {
         // Finalitzar el dia amb la demanda actual de potència
         String info = "Finalitzant el dia amb una demanda de potència de " + demandaPotencia + " unitats.\n";
         setDemandaPotencia(demandaPotencia);
-        return info; // Retorna tota la informació generada
+        return info + dades.finalitzaDia(demandaPotencia);
     }
 
 
 
     public void guardaDades(String camiDesti) throws CentralUBException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(camiDesti))) {
-            writer.write(String.valueOf(dades.mostraBitacola()));
+            writer.write(bitacola.toString());
         } catch (Exception e) {
             throw new CentralUBException("Error guardant les dades: " + e.getMessage());
         }

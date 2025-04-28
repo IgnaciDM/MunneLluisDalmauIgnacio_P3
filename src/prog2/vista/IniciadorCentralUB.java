@@ -9,7 +9,7 @@ package prog2.vista;
  *
  * @author dortiz
  */
-public class IniciadorCentralUB {
+public class IniciadorCentralUB  {
 
     /**
      * Main method of the program. It is used to start the program and to

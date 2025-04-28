@@ -33,7 +33,7 @@ public class Dades implements InDades{
 
     // Afegir atributs:
 
-    public Dades() throws CentralUBException {
+    public Dades()  {
         // Inicialitza Atributs
         this.variableUniforme = new VariableUniforme(VAR_UNIF_SEED);
         this.insercioBarres = 100;

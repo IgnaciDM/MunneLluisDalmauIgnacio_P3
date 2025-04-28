@@ -8,7 +8,7 @@ public class BombaRefrigerant implements InBombaRefrigerant{
     VariableUniforme VaUni;
     boolean operativa=true;
 
-    BombaRefrigerant(VariableUniforme VaUni,int id) throws CentralUBException {
+    BombaRefrigerant(VariableUniforme VaUni,int id) {
         this.id = id;
         this.VaUni = VaUni;
     }
