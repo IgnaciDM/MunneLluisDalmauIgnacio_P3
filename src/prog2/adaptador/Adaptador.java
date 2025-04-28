@@ -5,10 +5,10 @@ import prog2.model.Dades;
 import prog2.model.PaginaBitacola;
 import prog2.vista.CentralUB;
 import prog2.vista.CentralUBException;
-import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.ObjectOutputStream;
 
-
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -61,8 +61,12 @@ public class Adaptador {
 
     // Mètode per carregar dades
     public void carregaDades(String camiOrigen) throws CentralUBException {
-        try {
-            // Lògica per carregar les dades del model
+        try (BufferedReader reader = new BufferedReader(new FileReader(camiOrigen))) {
+            StringBuilder contingut = new StringBuilder();
+            String linia;
+            while ((linia = reader.readLine()) != null) {
+                contingut.append(linia).append("\n");
+            }
         } catch (Exception e) {
             throw new CentralUBException("Error carregant les dades: " + e.getMessage());
         }

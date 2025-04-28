@@ -125,6 +125,10 @@ public class CentralUB {
         paginaBitacola = new PaginaBitacola(1);
     }
 
+    public Dades getDades() {
+        return dades;
+    }
+
     public void gestioCentralUB() {
         // Mostrar missatge inicial
         System.out.println("Benvingut a la planta PWR de la UB");
@@ -193,7 +197,7 @@ public class CentralUB {
                 case CarregarDades:
                     //Carrega les dades de l’aplicació.
                     try {
-                        adaptador.carregaDades("ENCARA FALTA PER FER");
+                        adaptador.carregaDades("Carrega aixo");
                     } catch (CentralUBException e) {
                         System.out.println("Error Carregar: "+e.getMessage());
                     }
