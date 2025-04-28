@@ -19,7 +19,7 @@ public class Turbina {
 
 
     public float getCostOperatiu(){
-        if (this.activa == false) {
+        if (activa == false) {
             return 0;
         } else {
             return 20;
@@ -27,7 +27,7 @@ public class Turbina {
     }
 
     public float calculaOutput(float input){
-        if (this.activa == false) {
+        if (activa == false) {
             return 0;
         } else {
             if (input < 100) {

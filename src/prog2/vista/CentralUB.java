@@ -31,10 +31,6 @@ public class CentralUB {
     private float demandaPotencia;
 
     private Adaptador adaptador;
-    //private BarresDeControl barres;  // Atribut de la classe
-    //private Reactor reactor;
-    private SistemaRefrigeracio sistema;
-    private PaginaBitacola paginaBitacola;
     private Dades dades;
 
     /*ENUMS Y STRINGS A MOSTRAR EN MENU*/
@@ -119,10 +115,6 @@ public class CentralUB {
 
         // Afegir codi adicional si fos necessari:
         adaptador = new Adaptador();
-        //barres = new BarresDeControl();
-        //reactor = new Reactor();
-        sistema = new SistemaRefrigeracio();
-        paginaBitacola = new PaginaBitacola(1);
     }
 
     public void gestioCentralUB() {
@@ -187,7 +179,7 @@ public class CentralUB {
                     try {
                         adaptador.guardaDades("CentralUB");
                     } catch (CentralUBException e) {
-                        System.out.println("Error Guardar: "+e.getMessage());
+                        System.out.println("Error Guardar:  ,"+e.getMessage());
                     }
                     break;
                 case CarregarDades:
