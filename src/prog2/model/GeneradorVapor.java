@@ -5,7 +5,7 @@ import prog2.vista.CentralUBException;
 public class GeneradorVapor {
     boolean activa;
 
-    public void activa() throws CentralUBException {
+    public void activa() {
         this.activa = true;
     }
 
