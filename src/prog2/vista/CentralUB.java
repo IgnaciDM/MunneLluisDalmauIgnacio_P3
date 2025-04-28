@@ -165,21 +165,21 @@ public class CentralUB {
                 case MostrarEstatCentral:
                     //Mostra la pàgina de bitàcola d’estat corresponent al dia actual (veure Apartat 2.4.2).
                     //Aquesta informació és provisional i només es farà efectiva al finalitzar el dia
-                    System.out.println(dades.mostraEstat());
+                    System.out.println(adaptador.mostraEstat());
                     break;
                 case MostrarBitacola:
                     //Mostra tot el contingut de la bitàcola fins al dia actual, incloent las pàgines d’estat, econòmiques i d’incidències.
-                    System.out.println(dades.mostraBitacola());
+                    System.out.println(adaptador.mostraBitacola());
                     break;
                 case MostrarIncidencies:
                     //Mostra totes les pàgines d’incidències de la bitàcola fins al dia actual.
-                    System.out.println(dades.mostraIncidencies());
+                    System.out.println(adaptador.mostraIncidencies());
                     break;
                 case ObtenirDemandaSatisfeta:
                     //Mostra la demanda de poténcia del dia en curs, la potència generada amb la configuración de la central actual i el percentatge de demanda satisfeta corresponent.
                     System.out.println("⚡ Demanda de potència: "+demandaPotencia);
-                    System.out.println("\uD83D\uDD0B Potència generada: "+dades.calculaPotencia()+" MW"); //🔋
-                    System.out.println("✅ Percentatge de demanda satisfeta: "+(dades.calculaPotencia()/demandaPotencia)*100+" %");
+                    System.out.println("\uD83D\uDD0B Potència generada: "+adaptador.calculaPotencia()+" MW"); //🔋
+                    System.out.println("✅ Percentatge de demanda satisfeta: "+(adaptador.calculaPotencia()/demandaPotencia)*100+" %");
                     break;
                 case FinalitzarDia:
                     //Es duen a terme totes les acciones relacionades amb la finalització d’un dia (veure Apartat 2.3).
@@ -221,13 +221,13 @@ public class CentralUB {
             switch (op) {
                 case ObtenirInsercioBarres:
                     //Mostra per pantalla la inserció de les barres.
-                    System.out.println(dades.getInsercioBarres());
+                    System.out.println(adaptador.getInsercioBarres());
                     break;
                 case EstablirInsercioBarres:
                     //Sol·licita a l’usuari el grau d’inserció de les barres
                     System.out.println("Especifiqui el grau d'insercio de barres 1-100:");
                     try{
-                        dades.setInsercioBarres(sc.nextInt());
+                        adaptador.setInsercioBarres(sc.nextInt());
                     }catch(CentralUBException e){
                         System.out.println("Error Barres: "+e.getMessage());
                     }
@@ -253,7 +253,7 @@ public class CentralUB {
                 case ActivarReactor:
                     //Permet activar el reactor.
                     try{
-                        dades.activaReactor();
+                        adaptador.activaReactor();
                     }catch(CentralUBException e){
                         System.out.println("Error Reactor: "+e.getMessage());
                         break;
@@ -262,12 +262,12 @@ public class CentralUB {
                     break;
                 case DesactivarReactor:
                     // Permet desactivar el reactor.
-                    dades.desactivaReactor();
+                    adaptador.desactivaReactor();
                     System.out.println("Reactor desactivat");
                     break;
                 case MostrarEstatReactor:
                     // Mostra si el reactor està activat i la seva temperatura.
-                    System.out.println(dades.mostraReactor());
+                    System.out.println(adaptador.mostraReactor());
                     break;
                 case Sortir:
                     break;
@@ -291,7 +291,7 @@ public class CentralUB {
                     //Activa totes les bombes refrigerants.
                     try {
                         for(int i=0;i<4;i++){
-                            dades.activaBomba(i);
+                            adaptador.activaBomba(i);
                         }
                     } catch (CentralUBException e) {
                         System.out.println("Error Sistema: "+e.getMessage());
@@ -300,14 +300,14 @@ public class CentralUB {
                 case DesactivarTotesBombes:
                     //Desactiva totes les bombes refrigerants
                     for(int i=0;i<4;i++){
-                        dades.desactivaBomba(i);
+                        adaptador.desactivaBomba(i);
                     }
                     break;
                 case ActivarBomba:
                     //Donat el seu identificador numèric (entre 0 i 3), permet activar una bomba refrigerant.
                     System.out.println("Introdueix la id d'una de les bombes 0-3");
                     try {
-                        dades.activaBomba(sc.nextInt());
+                        adaptador.activaBomba(sc.nextInt());
                     } catch (CentralUBException e) {
                         System.out.println("Error Sistema: "+e.getMessage());
                     }
@@ -315,11 +315,11 @@ public class CentralUB {
                 case DesactivarBomba:
                     //Donat l’identificador numèric d’una bomba refrigerant, permet desactivar-la.
                     System.out.println("Introdueix la id d'una de les bombes 0-3");
-                    dades.desactivaBomba(sc.nextInt());
+                    adaptador.desactivaBomba(sc.nextInt());
                     break;
                 case MostrarEstat:
                     // mostra l’estat actual de totes les bombes del sistema de refrigeració.
-                    System.out.println(dades.mostraSistemaRefrigeracio());
+                    System.out.println(adaptador.mostraSistemaRefrigeracio());
                     break;
                 case Sortir:
                     break;
@@ -348,8 +348,6 @@ public class CentralUB {
         info = adaptador.finalitzaDia(demandaPotencia);
         System.out.println(info);
         System.out.println("Dia finalitzat\n");
-
-        dades.finalitzaDia(demandaPotencia);
 
         // Generar i mostrar nova demanda de potencia
         demandaPotencia = generaDemandaPotencia();
