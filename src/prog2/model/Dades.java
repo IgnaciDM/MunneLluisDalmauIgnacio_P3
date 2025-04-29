@@ -44,11 +44,7 @@ public class Dades implements InDades, Serializable {
         this.generadorVapor = new GeneradorVapor();
         this.generadorVapor.activa();
         this.turbina = new Turbina();
-        try {
-            this.turbina.activa();
-        } catch (CentralUBException e) {
-            throw new RuntimeException(e);
-        }
+        this.turbina.activa();
         this.bitacola = new Bitacola();
         this.dia = 1;
         this.guanysAcumulats = GUANYS_INICIALS;

@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class Turbina implements Serializable {
     boolean activa;
 
-    public void activa() throws CentralUBException {
+    public void activa() {
         this.activa = true;
     }
 
