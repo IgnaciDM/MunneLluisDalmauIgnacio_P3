@@ -3,13 +3,9 @@ package prog2.adaptador;
 import prog2.model.*;
 import prog2.vista.CentralUB;
 import prog2.vista.CentralUBException;
-import java.io.FileReader;
-import java.io.ObjectOutputStream;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+
 import java.util.List;
 
 
@@ -99,23 +95,49 @@ public class Adaptador {
 
 
     public void guardaDades(String camiDesti) throws CentralUBException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(camiDesti))) {
-            writer.write(dades.mostraBitacola().toString());
-        } catch (Exception e) {
-            throw new CentralUBException("Error guardant les dades: " + e.getMessage());
+        FileOutputStream fout = null;
+        ObjectOutputStream oos = null;
+
+        try {
+            // Obrir el camiDesti
+            fout = new FileOutputStream(camiDesti);
+            oos = new ObjectOutputStream(fout);
+
+            // Escribir el objeto 'dades' al archivo
+            oos.writeObject(dades);
+        } catch (IOException e) {
+            throw new CentralUBException("Error guardant las dades: " + e.getMessage());
+        } finally {
+            //Tancant els streams
+            try {
+                if (oos != null) {
+                    oos.close();
+                }
+                if (fout != null) {
+                    fout.close();
+                }
+            } catch (IOException e) {
+                System.out.println("Error tancant els streams: " + e.getMessage());
+            }
         }
+        System.out.println("Dades guardades satisfactoriament a "+camiDesti);
     }
+
 
     // Mètode per carregar dades
     public void carregaDades(String camiOrigen) throws CentralUBException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(camiOrigen))) {
-            StringBuilder contingut = new StringBuilder();
-            String linia;
-            while ((linia = reader.readLine()) != null) {
-                contingut.append(linia).append("\n");
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(camiOrigen))) {
+            Object obj = ois.readObject();
+            if (obj instanceof Dades) {
+                this.dades = (Dades) obj;
+            } else {
+                throw new CentralUBException("El fitxer no conté un objecte de tipus Dades.");
             }
-        } catch (Exception e) {
+        } catch (IOException | ClassNotFoundException e) {
             throw new CentralUBException("Error carregant les dades: " + e.getMessage());
         }
+        System.out.println("Dades carregades satisfactoriament de "+camiOrigen+" a la CentralUB");
     }
 }
+
+

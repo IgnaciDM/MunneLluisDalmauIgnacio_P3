@@ -1,7 +1,9 @@
 package prog2.model;
 import prog2.vista.CentralUBException;
 
-public class Reactor implements InComponent {
+import java.io.Serializable;
+
+public class Reactor implements InComponent, Serializable {
     float temperatura = 25;
     boolean activa;
 

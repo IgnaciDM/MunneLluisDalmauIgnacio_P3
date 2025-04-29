@@ -2,7 +2,9 @@ package prog2.model;
 
 import prog2.vista.CentralUBException;
 
-public class GeneradorVapor {
+import java.io.Serializable;
+
+public class GeneradorVapor implements Serializable {
     boolean activa;
 
     public void activa() {

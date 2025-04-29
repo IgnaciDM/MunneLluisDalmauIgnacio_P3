@@ -8,7 +8,9 @@ package prog2.model;
 
 import prog2.vista.CentralUBException;
 
-public class BarresDeControl {
+import java.io.Serializable;
+
+public class BarresDeControl implements Serializable {
     private float graus;
     private boolean activat;
 
@@ -18,10 +20,6 @@ public class BarresDeControl {
 
     public void desactiva() {
         this.activat = false;
-    }
-
-    public boolean getActiva() {
-        return this.activat;
     }
 
     public float getGraus() {return graus;}

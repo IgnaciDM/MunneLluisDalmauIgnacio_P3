@@ -2,7 +2,9 @@ package prog2.model;
 
 import prog2.vista.CentralUBException;
 
-public class Turbina {
+import java.io.Serializable;
+
+public class Turbina implements Serializable {
     boolean activa;
 
     public void activa() throws CentralUBException {

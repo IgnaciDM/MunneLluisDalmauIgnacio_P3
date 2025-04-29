@@ -4,6 +4,7 @@
  */
 package prog2.model;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
@@ -15,7 +16,7 @@ import java.util.Random;
  nombre aleatori que determinarà si la bomba es queda fora de servei.
 
  */
-public class VariableUniforme {
+public class VariableUniforme implements Serializable {
 
     private Random random;
 

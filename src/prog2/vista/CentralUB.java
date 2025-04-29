@@ -174,8 +174,9 @@ public class CentralUB {
                     break;
                 case GuardarDades:
                     //Guarda les dades de l’aplicació.
+                    System.out.println("Especifiqui el cami de desti del fitxer, on guardar les dades");
                     try {
-                        adaptador.guardaDades("CentralUB");
+                        adaptador.guardaDades(sc.nextLine());
                     } catch (CentralUBException e) {
                         System.out.println("Error Guardar:  ,"+e.getMessage());
                     }
@@ -183,7 +184,7 @@ public class CentralUB {
                 case CarregarDades:
                     //Carrega les dades de l’aplicació.
                     try {
-                        adaptador.carregaDades("Carrega aixo");
+                        adaptador.carregaDades("Dades.dat");
                     } catch (CentralUBException e) {
                         System.out.println("Error Carregar: "+e.getMessage());
                     }

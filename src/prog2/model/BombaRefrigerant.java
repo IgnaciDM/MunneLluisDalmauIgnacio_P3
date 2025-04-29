@@ -2,7 +2,9 @@ package prog2.model;
 
 import prog2.vista.CentralUBException;
 
-public class BombaRefrigerant implements InBombaRefrigerant{
+import java.io.Serializable;
+
+public class BombaRefrigerant implements InBombaRefrigerant, Serializable {
     int id;
     boolean activa;
     VariableUniforme VaUni;
