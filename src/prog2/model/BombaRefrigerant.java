@@ -18,10 +18,10 @@ public class BombaRefrigerant implements InBombaRefrigerant{
     }
 
     public void activa() throws CentralUBException {
-        if (operativa)
-            this.activa = true;
+        if (getForaDeServei())
+            throw new CentralUBException("La bomba refrigerant "+getId()+" es troba for a de servei, per tant no es pot activar");
         else{
-            throw new CentralUBException("No esta operativa la bomba refrigerant per tant no es pot activar");
+            this.activa = true;
         }
     }
 

@@ -16,10 +16,11 @@ public class SistemaRefrigeracio implements InComponent {
         llistabombes.add(b);
     }
 
+    ////////////////////////////////AQUEST METODE NO S'ESTA UTILITZANT solucionar
     public void activa() throws CentralUBException {
         for (int i = 0; i < llistabombes.size(); i++) {
             if (llistabombes.get(i).getForaDeServei()) {
-                throw new CentralUBException("La Bomba esta fora de servei, es desactivada");
+                throw new CentralUBException("La Bomba "+i+" esta fora de servei, es mantindra desactivada");
             } else {
                 llistabombes.get(i).activa();
             }

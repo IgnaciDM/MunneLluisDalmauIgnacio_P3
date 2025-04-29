@@ -275,12 +275,12 @@ public class CentralUB {
             switch (op) {
                 case ActivarTotesBombes:
                     //Activa totes les bombes refrigerants.
-                    try {
-                        for(int i=0;i<4;i++){
+                    for(int i=0;i<4;i++){
+                        try{
                             adaptador.activaBomba(i);
+                        }catch(CentralUBException e){
+                            System.out.println("Error Sistema: "+e.getMessage());
                         }
-                    } catch (CentralUBException e) {
-                        System.out.println("Error Sistema: "+e.getMessage());
                     }
                     break;
                 case DesactivarTotesBombes:
