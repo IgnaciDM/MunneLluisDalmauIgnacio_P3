@@ -37,11 +37,12 @@ public class Adaptador {
     }
 
     public PaginaEstat mostraEstat() {
+        System.out.println("Estat de la central:" + "\n");
         return dades.mostraEstat();
     }
 
     public String mostraBitacola() {
-        String resposta = "";
+        String resposta = "Bitacola:" + "\n";
         for (int i = 0; i<dades.mostraBitacola().getPaginesbitacola().size(); i++) {
             resposta += dades.mostraBitacola().getPaginesbitacola().get(i) + "\n";
         }
@@ -50,7 +51,7 @@ public class Adaptador {
 
     public String mostraIncidencies() {
         List<PaginaIncidencies> llistaIncidencies = dades.mostraIncidencies();
-        String info = "";
+        String info = "Llista de Incidencies:" + "\n";
         for (int i = 0; i<llistaIncidencies.size(); i++) {
             info += llistaIncidencies.get(i) + "\n";
         }
