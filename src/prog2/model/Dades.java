@@ -208,7 +208,6 @@ public class Dades implements InDades, Serializable {
     public Bitacola finalitzaDia(float demandaPotencia) {
         // Actualitza economia
         PaginaEconomica paginaEconomica = actualitzaEconomia(demandaPotencia);
-        System.out.println(paginaEconomica);
         // Genera pàgina d'estat amb la configuració escollida (la nova pàgina
         // d'estat inclou la nova configuració escollida pel operador abans de
         // refrigerar el reactor)

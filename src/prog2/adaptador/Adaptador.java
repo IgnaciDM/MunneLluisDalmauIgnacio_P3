@@ -6,6 +6,7 @@ import prog2.vista.CentralUBException;
 
 import java.io.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -39,12 +40,21 @@ public class Adaptador {
         return dades.mostraEstat();
     }
 
-    public Bitacola mostraBitacola() {
-        return dades.mostraBitacola();
+    public String mostraBitacola() {
+        String resposta = "";
+        for (int i = 0; i<dades.mostraBitacola().getPaginesbitacola().size(); i++) {
+            resposta += dades.mostraBitacola().getPaginesbitacola().get(i) + "\n";
+        }
+        return resposta;
     }
 
-    public List<PaginaIncidencies> mostraIncidencies() {
-        return dades.mostraIncidencies();
+    public String mostraIncidencies() {
+        List<PaginaIncidencies> llistaIncidencies = dades.mostraIncidencies();
+        String info = "";
+        for (int i = 0; i<llistaIncidencies.size(); i++) {
+            info += llistaIncidencies.get(i) + "\n";
+        }
+        return info;
     }
 
     public float calculaPotencia() {
@@ -88,8 +98,13 @@ public class Adaptador {
     public String finalitzaDia(float demandaPotencia) {
         // Finalitzar el dia amb la demanda actual de potència
         String info = "Finalitzant el dia amb una demanda de potència de " + demandaPotencia + " unitats.\n";
+        System.out.println("La Bitocala d'aquest dia ha sigut:");
         setDemandaPotencia(demandaPotencia);
-        return info + dades.finalitzaDia(demandaPotencia);
+        Bitacola BitacolaDia = dades.finalitzaDia(demandaPotencia);
+        for (int i = 0; i<BitacolaDia.getPaginesbitacola().size(); i++) {
+            info += BitacolaDia.getPaginesbitacola().get(i) + "\n";
+        }
+        return info;
     }
 
 

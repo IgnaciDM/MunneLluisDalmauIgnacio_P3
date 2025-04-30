@@ -7,6 +7,10 @@ import java.util.List;
 public class Bitacola implements InBitacola, Serializable {
     ArrayList<PaginaBitacola> paginesbitacola = new ArrayList<>();
 
+    public ArrayList<PaginaBitacola> getPaginesbitacola() {
+        return paginesbitacola;
+    }
+
     @Override
     public void afegeixPagina(PaginaBitacola p) {
         paginesbitacola.add(p);
