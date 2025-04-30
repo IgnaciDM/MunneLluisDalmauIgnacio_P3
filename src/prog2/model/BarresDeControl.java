@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 public class BarresDeControl implements Serializable {
     private float graus;
-    private boolean activat;
+    private boolean activat;;
 
     public void activa() {
         this.activat = true;

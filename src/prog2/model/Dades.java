@@ -171,7 +171,7 @@ public class Dades implements InDades, Serializable {
 
         // 5. Guanys nets i acumulats
         float guanysNets = beneficis - costOperatiu - penalitzacio;
-        float nouGuanysAcumulats = guanysAcumulats + guanysNets;
+        float nouGuanysAcumulats = getGuanysAcumulats() + guanysNets;
         this.guanysAcumulats = nouGuanysAcumulats;
 
         // 6. Retornar pàgina econòmica
