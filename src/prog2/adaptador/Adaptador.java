@@ -173,13 +173,12 @@ public class Adaptador {
      */
     public String finalitzaDia(float demandaPotencia) {
         // Finalitzar el dia amb la demanda actual de potència
-        String info = "Finalitzant el dia amb una demanda de potència de " + demandaPotencia + " unitats.\n";
-        System.out.println("La Bitocala d'aquest dia ha sigut:");
+        System.out.println("Finalitzant el dia amb una demanda de potència de " + demandaPotencia + " unitats.\n");
+        String info = "La Bitocala d'aquest dia ha sigut:\n";
         setDemandaPotencia(demandaPotencia);
-        Iterator<PaginaBitacola> it = dades.finalitzaDia(demandaPotencia).getPaginesbitacola().iterator();
-        while (it.hasNext()) {
-            info += it.next() + "\n";
-        }
+        Bitacola it = dades.finalitzaDia(demandaPotencia);
+        for (PaginaBitacola b: it.getPaginesbitacola())
+            info += b + "\n";
         return info;
     }
 
