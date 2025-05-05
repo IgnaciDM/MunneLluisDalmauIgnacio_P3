@@ -4,7 +4,7 @@ import prog2.vista.CentralUBException;
 
 import java.io.Serializable;
 
-public class BombaRefrigerant implements InBombaRefrigerant, Serializable {
+public class BombaRefrigerant implements InBombaRefrigerant {
     int id;
     boolean activa;
     VariableUniforme VaUni;
@@ -20,7 +20,7 @@ public class BombaRefrigerant implements InBombaRefrigerant, Serializable {
     }
 
     public void activa() throws CentralUBException {
-        if (getForaDeServei())
+        if (this.getForaDeServei())
             throw new CentralUBException("La bomba refrigerant "+getId()+" es troba for a de servei, per tant no es pot activar");
         else{
             this.activa = true;

@@ -8,6 +8,7 @@ import prog2.adaptador.Adaptador;
 import prog2.model.*;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -276,18 +277,20 @@ public class CentralUB {
             switch (op) {
                 case ActivarTotesBombes:
                     //Activa totes les bombes refrigerants.
-                    for(int i=0;i<4;i++){
-                        try{
-                            adaptador.activaBomba(i);
-                        }catch(CentralUBException e){
+                    Iterator<BombaRefrigerant> it = adaptador.mostraSistemaRefrigeracio().getllistabombes().iterator();
+                    while (it.hasNext()) {
+                        try {
+                            it.next().activa();
+                        } catch(CentralUBException e) {
                             System.out.println("Error Sistema: "+e.getMessage());
                         }
                     }
                     break;
                 case DesactivarTotesBombes:
                     //Desactiva totes les bombes refrigerants
-                    for(int i=0;i<4;i++){
-                        adaptador.desactivaBomba(i);
+                    Iterator<BombaRefrigerant> it2 = adaptador.mostraSistemaRefrigeracio().getllistabombes().iterator();
+                    while (it2.hasNext()) {
+                        it2.next().desactiva();
                     }
                     break;
                 case ActivarBomba:

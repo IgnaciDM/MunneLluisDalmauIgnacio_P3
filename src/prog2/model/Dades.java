@@ -94,8 +94,9 @@ public class Dades implements InDades, Serializable {
     public void activaBomba(int id) throws CentralUBException {
         Iterator<BombaRefrigerant> it = sistemaRefrigeracio.getllistabombes().iterator();
         while (it.hasNext()) {
-            if (it.next().getId() == id) {
-                it.next().activa();
+            BombaRefrigerant b = it.next();
+            if (b.getId() == id) {
+                b.activa();
             }
         }
     }
@@ -103,8 +104,9 @@ public class Dades implements InDades, Serializable {
     public void desactivaBomba(int id) {
         Iterator<BombaRefrigerant> it = sistemaRefrigeracio.getllistabombes().iterator();
         while (it.hasNext()) {
-            if (it.next().getId() == id) {
-                it.next().desactiva();
+            BombaRefrigerant b = it.next();
+            if (b.getId() == id) {
+                b.desactiva();
             }
         }
     }
