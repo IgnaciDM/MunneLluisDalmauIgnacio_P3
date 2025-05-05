@@ -2,6 +2,7 @@ package prog2.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class PaginaIncidencies extends PaginaBitacola implements Serializable {
     private ArrayList<String> llistaIncidencia;
@@ -25,5 +26,14 @@ public class PaginaIncidencies extends PaginaBitacola implements Serializable {
         } else {
             return "\n" + "--- Pàgina Incidencies (Dia "+getDia()+ " ) --- " + "\n" + "No hi ha Incidencies en aquest dia" + "\n";
         }
+    }
+
+
+    public void setIncidencies(ArrayList<String> llistaIncidencia) {
+        this.llistaIncidencia = llistaIncidencia;
+    }
+
+    public ArrayList<String>  getIncidencies() {
+        return llistaIncidencia;
     }
 }

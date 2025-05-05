@@ -10,7 +10,7 @@ public class BombaRefrigerant implements InBombaRefrigerant {
     VariableUniforme VaUni;
     boolean operativa=true;
 
-    BombaRefrigerant(VariableUniforme VaUni,int id) {
+    public BombaRefrigerant(VariableUniforme VaUni,int id) {
         this.id = id;
         this.VaUni = VaUni;
     }
@@ -42,6 +42,9 @@ public class BombaRefrigerant implements InBombaRefrigerant {
         }
     }
 
+    public boolean setForaDeServei(boolean operativa) {
+        return this.operativa=operativa;
+    }
     public boolean getForaDeServei() {
         return !operativa;//Estara fora de servei = True quan operativa =False
     }
@@ -65,4 +68,6 @@ public class BombaRefrigerant implements InBombaRefrigerant {
     public String toString() {
         return "Id="+ id + ", Activat=" + getActivat() + ", Fora de Servei=" + getForaDeServei();
     }
+
+
 }

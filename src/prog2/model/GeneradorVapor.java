@@ -35,7 +35,9 @@ public class GeneradorVapor implements InComponent {
         }
     }
 
-    public void revisa (PaginaIncidencies p) {}
+    public void revisa (PaginaIncidencies p) {
+
+    }
 
     @Override
     public String toString() {

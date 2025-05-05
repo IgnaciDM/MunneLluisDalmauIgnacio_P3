@@ -58,10 +58,11 @@ public class SistemaRefrigeracio implements InComponent {
         }
     }
 
-    public float getCostOperatiu(){
-        float cost=0;
+    public float getCostOperatiu() {
+        float cost = 0;
         Iterator<BombaRefrigerant> it = llistabombes.iterator();
         while (it.hasNext()) {
+            it.next(); //avanzar el iterador
             cost += 130;
         }
         return cost;
