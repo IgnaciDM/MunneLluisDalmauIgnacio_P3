@@ -33,4 +33,6 @@ public class Bitacola implements InBitacola, Serializable {
     public String toString() {
         return "Bitacola [" + paginesbitacola +"]";
     }
+
+
 }

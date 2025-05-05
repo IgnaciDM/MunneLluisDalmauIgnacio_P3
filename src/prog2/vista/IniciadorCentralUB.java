@@ -23,5 +23,4 @@ public class IniciadorCentralUB  {
         // Inicialitza l'execució de la vista
         centralUB.gestioCentralUB();
     }
-    
 }
