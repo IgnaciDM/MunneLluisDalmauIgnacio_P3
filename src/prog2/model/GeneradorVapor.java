@@ -4,7 +4,7 @@ import prog2.vista.CentralUBException;
 
 import java.io.Serializable;
 
-public class GeneradorVapor implements Serializable {
+public class GeneradorVapor implements InComponent {
     boolean activa;
 
     public void activa() {
@@ -34,6 +34,8 @@ public class GeneradorVapor implements Serializable {
             return (float) (input * 0.9);
         }
     }
+
+    public void revisa (PaginaIncidencies p) {}
 
     @Override
     public String toString() {

@@ -4,7 +4,7 @@ import prog2.vista.CentralUBException;
 
 import java.io.Serializable;
 
-public class Turbina implements Serializable {
+public class Turbina implements InComponent {
     boolean activa;
 
     public void activa() {
@@ -39,6 +39,8 @@ public class Turbina implements Serializable {
             }
         }
     }
+
+    public void revisa (PaginaIncidencies p) {}
 
     @Override
     public String toString() {

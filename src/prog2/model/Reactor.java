@@ -3,7 +3,7 @@ import prog2.vista.CentralUBException;
 
 import java.io.Serializable;
 
-public class Reactor implements InComponent, Serializable {
+public class Reactor implements InComponent{
     float temperatura = 25;
     boolean activa;
 

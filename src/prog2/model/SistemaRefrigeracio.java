@@ -4,8 +4,9 @@ import prog2.vista.CentralUBException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class SistemaRefrigeracio implements InComponent, Serializable {
+public class SistemaRefrigeracio implements InComponent {
     ArrayList<BombaRefrigerant> llistabombes = new ArrayList<>();
     boolean activa;
 
@@ -19,46 +20,48 @@ public class SistemaRefrigeracio implements InComponent, Serializable {
 
     ////////////////////////////////AQUEST METODE NO S'ESTA UTILITZANT solucionar
     public void activa() throws CentralUBException {
-        for (int i = 0; i < llistabombes.size(); i++) {
-            if (llistabombes.get(i).getForaDeServei()) {
-                throw new CentralUBException("La Bomba "+i+" esta fora de servei, es mantindra desactivada");
+        Iterator<BombaRefrigerant> it = llistabombes.iterator();
+        while (it.hasNext()) {
+            if (it.next().getForaDeServei()) {
+                throw new CentralUBException("La Bomba " + it.next().getId() + " esta fora de servei, es mantindra desactivada");
             } else {
-                llistabombes.get(i).activa();
+                it.next().activa();
             }
         }
     }
 
     public void desactiva() {
-        for (int i = 0; i < llistabombes.size(); i++) {
-            llistabombes.get(i).desactiva();
+        Iterator<BombaRefrigerant> it = llistabombes.iterator();
+        while (it.hasNext()) {
+            it.next().desactiva();
         }
     }
 
     public boolean getActivat(){
-        for (int i = 0; i < llistabombes.size(); i++) {
-            if (llistabombes.get(i).getActivat() == true) {
+        Iterator<BombaRefrigerant> it = llistabombes.iterator();
+        while (it.hasNext()) {
+            if (it.next().getActivat() == true) {
                 return true;
-            }
-            else {
-                return false;
             }
         }
         return false;
     }
 
     public void revisa (PaginaIncidencies p) {
-        for (int i = 0; i < llistabombes.size(); i++) {
-            llistabombes.get(i).revisa(p);
-            if (llistabombes.get(i).getForaDeServei() == true) {
-                p.afegeixIncidencia("La bomba " + i + " esta fora de servei");
-                llistabombes.get(i).desactiva();
+        Iterator<BombaRefrigerant> it = llistabombes.iterator();
+        while (it.hasNext()) {
+            it.next().revisa(p);
+            if (it.next().getForaDeServei() == true) {
+                p.afegeixIncidencia("La bomba " + it.next().getId() + " esta fora de servei");
+                it.next().desactiva();
             }
         }
     }
 
     public float getCostOperatiu(){
         float cost=0;
-        for (int i = 0; i < llistabombes.size(); i++) {
+        Iterator<BombaRefrigerant> it = llistabombes.iterator();
+        while (it.hasNext()) {
             cost += 130;
         }
         return cost;
