@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import prog2.model.PaginaIncidencies;
 import prog2.model.Reactor;
 import prog2.vista.CentralUBException;
 
@@ -49,16 +50,24 @@ public class TestReactor {
         assertFalse(reactor.getActivat());
     }
 
-    /*
     @Test
-    void testRevisaSenseIncidencia() {
-        DummyPaginaIncidencies p = new DummyPaginaIncidencies();
-        reactor.settemperatura(500);
+    void testRevisaAmbIncidencia() {
+        PaginaIncidencies p = new PaginaIncidencies(1);
+        reactor.settemperatura(1001); // temperatura massa alta
         reactor.revisa(p);
-        assertTrue(p.incidencies.isEmpty());
+
+        assertEquals(1, p.getIncidencies().size());
+        assertTrue(p.getIncidencies().get(0).contains("Reactor")); // o el text exacte esperat
     }
 
-     */
+    @Test
+    void testRevisaSenseIncidencia() {
+        PaginaIncidencies p = new PaginaIncidencies(1);
+        reactor.settemperatura(500);
+        reactor.revisa(p);
+
+        assertEquals(0, p.getIncidencies().size());
+    }
 
     @Test
     void testGetCostOperatiuDesactivat() {
@@ -89,17 +98,4 @@ public class TestReactor {
     void testToString() {
         assertEquals("Reactor [Activat: No, Temperatura: 25.0 ºC]", reactor.toString());
     }
-
-
-    /*
-    // Dummy interna per simular PaginaIncidencies sense dependències
-    static class DummyPaginaIncidencies extends PaginaIncidencies {
-        java.util.List<String> incidencies = new java.util.ArrayList<>();
-
-        @Override
-        public void afegeixIncidencia(String s) {
-            incidencies.add(s);
-        }
-    }
-    */
 }

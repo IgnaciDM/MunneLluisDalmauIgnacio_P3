@@ -2,13 +2,11 @@ package prog2.model;
 
 import prog2.vista.CentralUBException;
 
-import java.io.Serializable;
-
 public class BombaRefrigerant implements InBombaRefrigerant {
     int id;
     boolean activa;
     VariableUniforme VaUni;
-    boolean operativa=true;
+    public boolean operativa=true;
 
     public BombaRefrigerant(VariableUniforme VaUni,int id) {
         this.id = id;
@@ -42,8 +40,11 @@ public class BombaRefrigerant implements InBombaRefrigerant {
         }
     }
 
-    public boolean setForaDeServei(boolean operativa) {
-        return this.operativa=operativa;
+    public void setForaDeServei(boolean foraDeServei) {
+        if (foraDeServei) {
+            desactiva();//Si fora de servei es true es desactiva
+        }
+        this.operativa = !foraDeServei;//Si fora de servei es true llavors operativa es false
     }
     public boolean getForaDeServei() {
         return !operativa;//Estara fora de servei = True quan operativa =False
@@ -68,6 +69,5 @@ public class BombaRefrigerant implements InBombaRefrigerant {
     public String toString() {
         return "Id="+ id + ", Activat=" + getActivat() + ", Fora de Servei=" + getForaDeServei();
     }
-
 
 }

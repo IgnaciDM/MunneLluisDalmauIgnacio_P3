@@ -12,13 +12,16 @@ class TestBitacola {
 
     private Bitacola bitacola;
 
-    /*
-    // Dummy class for testing
-    static class DummyPaginaBitacola extends PaginaBitacola {}
+    // Subclasse simple per poder instanciar PaginaBitacola si és abstracta
+    static class PaginaBitacolaConcreta extends PaginaBitacola {
+        public PaginaBitacolaConcreta(int dia) {
+            super(dia);
+        }
 
-    // Dummy class for testing
-    static class DummyPaginaIncidencies extends PaginaIncidencies {
-
+        @Override
+        public String toString() {
+            return "PaginaBitacolaConcreta";
+        }
     }
 
     @BeforeEach
@@ -28,7 +31,7 @@ class TestBitacola {
 
     @Test
     void testAfegeixPagina() {
-        PaginaBitacola pagina = new DummyPaginaBitacola();
+        PaginaBitacola pagina = new PaginaBitacolaConcreta(1);
         bitacola.afegeixPagina(pagina);
         assertEquals(1, bitacola.getPaginesbitacola().size());
         assertEquals(pagina, bitacola.getPaginesbitacola().get(0));
@@ -36,26 +39,25 @@ class TestBitacola {
 
     @Test
     void testGetIncidencies() {
-        PaginaBitacola normalPage = new DummyPaginaBitacola();
-        PaginaIncidencies incidentPage = new DummyPaginaIncidencies();
+        PaginaBitacola pagina1 = new PaginaBitacolaConcreta(1);
+        PaginaIncidencies pagina2 = new PaginaIncidencies(1);
 
-        bitacola.afegeixPagina(normalPage);
-        bitacola.afegeixPagina(incidentPage);
+        bitacola.afegeixPagina(pagina1);
+        bitacola.afegeixPagina(pagina2);
 
         List<PaginaIncidencies> result = bitacola.getIncidencies();
 
         assertEquals(1, result.size());
-        assertEquals(incidentPage, result.get(0));
+        assertEquals(pagina2, result.get(0));
     }
 
     @Test
     void testToString() {
-        PaginaBitacola pagina = new DummyPaginaBitacola();
+        PaginaBitacola pagina = new PaginaBitacolaConcreta(1);
         bitacola.afegeixPagina(pagina);
         String output = bitacola.toString();
         assertTrue(output.contains("Bitacola"));
-        assertTrue(output.contains("paginesbitacola"));
+        assertTrue(output.contains("PaginaBitacolaConcreta")); // del toString sobrescrit
     }
-
-     */
 }
+
