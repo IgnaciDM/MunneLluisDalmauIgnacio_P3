@@ -91,41 +91,4 @@ public class SistemaRefrigeracio implements InComponent, Serializable {
         sb.append("]");
         return sb.toString();
     }
-
-
-    //IMPLEMENTAT EXTRA PER FER LES TRES OP DEL MENU___________________________________________________________________
-    //Activar Bomba per un ID
-    /*
-    public void activaId(int id) throws CentralUBException {
-        for (BombaRefrigerant bomba: sistemaRefrigeracio){
-            if (bomba.getId() == id) {
-                if (bomba.getForaDeServei()){
-                    throw new CentralUBException("La Bomba esta fora de servei");
-                } else{
-                    try {
-                        bomba.activa();
-                    } catch (CentralUBException e) {
-                        System.out.println(e);
-                    }
-                }
-            }
-        }
-        throw new CentralUBException("No s'ha trobat la bomba amb id: "+ id);
-    }
-    //Desactivar Bomba per un ID
-    public void desactivaId(int id) throws CentralUBException {
-        for (BombaRefrigerant bomba: sistemaRefrigeracio){
-            if (bomba.getId() == id) {
-                bomba.desactiva();
-            }
-        }
-        throw new CentralUBException("No s'ha trobat la bomba amb id: "+ id);
-    }
-    //Mostrar Estat de les Bombes
-    public void mostrarBombes() {
-        for (BombaRefrigerant bomba: sistemaRefrigeracio){
-            System.out.println(bomba.toString());
-        }
-    }
-    */
 }
