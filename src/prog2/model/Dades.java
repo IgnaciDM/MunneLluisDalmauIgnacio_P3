@@ -22,7 +22,7 @@ public class Dades implements InDades, Serializable {
     /////////////////////////////////////////////////////////////////////////////////////
     private final VariableUniforme variableUniforme;
     private final Bitacola bitacola;
-    private final BarresDeControl Barres;
+    private float GrauBarres;
     private final Reactor reactor;
     private final SistemaRefrigeracio sistemaRefrigeracio;
     private final GeneradorVapor generadorVapor;
@@ -37,7 +37,7 @@ public class Dades implements InDades, Serializable {
     public Dades()  {
         // Inicialitza Atributs
         this.variableUniforme = new VariableUniforme(VAR_UNIF_SEED);
-        this.Barres = new BarresDeControl();
+        this.GrauBarres = 100;
         this.reactor = new Reactor();
         this.reactor.desactiva();
         this.sistemaRefrigeracio = new SistemaRefrigeracio();
@@ -66,12 +66,12 @@ public class Dades implements InDades, Serializable {
     //--------------------------------------------------------------------------
 
     public float getInsercioBarres() {
-        return Barres.getGraus();
+        return GrauBarres;
     }
 
     public void setInsercioBarres(float insercioBarres) throws CentralUBException {
         if (insercioBarres >= 0 && insercioBarres <= 100) {
-            this.Barres.setGraus(insercioBarres);
+            this.GrauBarres = insercioBarres;
         } else {
             throw new CentralUBException("El grau d'insercio no es correcte");
         }
@@ -113,7 +113,7 @@ public class Dades implements InDades, Serializable {
     }
     //-------------------------------------------------------------------------
     public PaginaEstat mostraEstat() {
-        return new PaginaEstat(dia, Barres, reactor, sistemaRefrigeracio, generadorVapor, turbina);}
+        return new PaginaEstat(dia, GrauBarres, reactor, sistemaRefrigeracio, generadorVapor, turbina);}
     //-------------------------------------------------------------------------
     public Bitacola mostraBitacola() {
         return bitacola;
@@ -126,7 +126,7 @@ public class Dades implements InDades, Serializable {
     //-------------------------------------------------------------------------
 
     public float calculaPotencia() {
-        return turbina.calculaOutput(generadorVapor.calculaOutput(sistemaRefrigeracio.calculaOutput(reactor.calculaOutput(Barres.getGraus()))));
+        return turbina.calculaOutput(generadorVapor.calculaOutput(sistemaRefrigeracio.calculaOutput(reactor.calculaOutput(GrauBarres))));
     }
     //-------------------------------------------------------------------------
 
@@ -142,7 +142,7 @@ public class Dades implements InDades, Serializable {
      */
     private PaginaEconomica actualitzaEconomia(float demandaPotencia){
         // 1. Calcular potència generada
-        float potenciaGenerada = turbina.calculaOutput(generadorVapor.calculaOutput(sistemaRefrigeracio.calculaOutput(reactor.calculaOutput(Barres.getGraus()))));
+        float potenciaGenerada = turbina.calculaOutput(generadorVapor.calculaOutput(sistemaRefrigeracio.calculaOutput(reactor.calculaOutput(GrauBarres))));
 
         float demandasatisfeta = (potenciaGenerada/demandaPotencia)*100;
 
@@ -186,8 +186,8 @@ public class Dades implements InDades, Serializable {
      */
     private void refrigeraReactor() {
           // Completar
-        float temp = reactor.calculaOutput(Barres.getGraus());
-        temp -= sistemaRefrigeracio.calculaOutput(reactor.calculaOutput(Barres.getGraus()));
+        float temp = reactor.calculaOutput(GrauBarres);
+        temp -= sistemaRefrigeracio.calculaOutput(reactor.calculaOutput(GrauBarres));
         if (temp < 25) {
             temp = 25;
         }

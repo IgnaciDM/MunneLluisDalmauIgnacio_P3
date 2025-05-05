@@ -2,13 +2,13 @@ package prog2.model;
 
 
 public class PaginaEstat extends PaginaBitacola {
-    private BarresDeControl barres;
+    private float barres;
     private Reactor reactorActiu;
     private SistemaRefrigeracio sistemaRefrigeracioActiu;
     private GeneradorVapor generadorVaporActiu;
     private Turbina turbinaActiva;
 
-    public PaginaEstat(int dia, BarresDeControl barres, Reactor reactorActiu, SistemaRefrigeracio sistemaRefrigeracioActiu, GeneradorVapor generadorVaporActiu, Turbina turbinaActiva) {
+    public PaginaEstat(int dia, float barres, Reactor reactorActiu, SistemaRefrigeracio sistemaRefrigeracioActiu, GeneradorVapor generadorVaporActiu, Turbina turbinaActiva) {
         super(dia);
         this.barres = barres;
         this.reactorActiu = reactorActiu;
@@ -19,7 +19,7 @@ public class PaginaEstat extends PaginaBitacola {
     }
 
     public float getInserciobarres() {
-        return barres.getGraus();
+        return barres;
     }
 
     public Reactor getReactorActiu() {
@@ -40,7 +40,7 @@ public class PaginaEstat extends PaginaBitacola {
 
     public String toString() {
         return "\n" + "--- Pàgina Estat (Dia " + getDia() + ") ---\n" +
-                "Inserció Barres: " + barres.getGraus() + " %" + "\n" +
+                "Inserció Barres: " + barres + " %" + "\n" +
                 "Output Reactor: " + reactorActiu + "\n" +
                 "Output Sistema de Refrigeració: " + "\n" + sistemaRefrigeracioActiu + "\n" +
                 "Output Generador de Vapor: " + generadorVaporActiu + "\n" +

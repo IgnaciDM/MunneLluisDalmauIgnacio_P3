@@ -5,7 +5,7 @@ import prog2.vista.CentralUBException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SistemaRefrigeracio implements InComponent, Serializable {
+public class SistemaRefrigeracio implements InComponent {
     ArrayList<BombaRefrigerant> llistabombes = new ArrayList<>();
     boolean activa;
 
