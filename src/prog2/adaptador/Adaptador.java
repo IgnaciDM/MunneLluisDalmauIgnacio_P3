@@ -7,6 +7,7 @@ import prog2.vista.CentralUBException;
 import java.io.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -43,17 +44,18 @@ public class Adaptador {
 
     public String mostraBitacola() {
         String resposta = "Bitacola:" + "\n";
-        for (int i = 0; i<dades.mostraBitacola().getPaginesbitacola().size(); i++) {
-            resposta += dades.mostraBitacola().getPaginesbitacola().get(i) + "\n";
+        Iterator<PaginaBitacola> it = dades.mostraBitacola().getPaginesbitacola().iterator();
+        while (it.hasNext()) {
+            resposta += it.next() + "\n";
         }
         return resposta;
     }
 
     public String mostraIncidencies() {
-        List<PaginaIncidencies> llistaIncidencies = dades.mostraIncidencies();
         String info = "Llista de Incidencies:" + "\n";
-        for (int i = 0; i<llistaIncidencies.size(); i++) {
-            info += llistaIncidencies.get(i) + "\n";
+        Iterator<PaginaIncidencies> it = dades.mostraIncidencies().iterator();
+        while (it.hasNext()) {
+            info += it.next() + "\n";
         }
         return info;
     }
@@ -101,9 +103,9 @@ public class Adaptador {
         String info = "Finalitzant el dia amb una demanda de potència de " + demandaPotencia + " unitats.\n";
         System.out.println("La Bitocala d'aquest dia ha sigut:");
         setDemandaPotencia(demandaPotencia);
-        Bitacola BitacolaDia = dades.finalitzaDia(demandaPotencia);
-        for (int i = 0; i<BitacolaDia.getPaginesbitacola().size(); i++) {
-            info += BitacolaDia.getPaginesbitacola().get(i) + "\n";
+        Iterator<PaginaBitacola> it = dades.finalitzaDia(demandaPotencia).getPaginesbitacola().iterator();
+        while (it.hasNext()) {
+            info += it.next() + "\n";
         }
         return info;
     }

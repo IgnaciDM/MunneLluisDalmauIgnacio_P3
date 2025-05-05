@@ -2,6 +2,7 @@ package prog2.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Bitacola implements InBitacola, Serializable {
@@ -19,10 +20,10 @@ public class Bitacola implements InBitacola, Serializable {
     @Override
     public List<PaginaIncidencies> getIncidencies() {
         List<PaginaIncidencies> incidencies = new ArrayList<>();
-        for (int i = 0; i < paginesbitacola.size(); i++) {
-            PaginaBitacola p = paginesbitacola.get(i);
-            if (p instanceof PaginaIncidencies) {
-                incidencies.add((PaginaIncidencies) p);
+        Iterator<PaginaBitacola> it = paginesbitacola.iterator();
+        while (it.hasNext()) {
+            if (it.next() instanceof PaginaIncidencies) {
+                incidencies.add((PaginaIncidencies) it.next());
             }
         }
         return incidencies;

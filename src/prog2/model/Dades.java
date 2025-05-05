@@ -3,14 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package prog2.model;
-
+import java.util.Iterator;
 import prog2.vista.CentralUBException;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- *
  * @author Daniel Ortiz
  */
 public class Dades implements InDades, Serializable {
@@ -93,17 +92,19 @@ public class Dades implements InDades, Serializable {
     //-------------------------------------------------------------------------
 
     public void activaBomba(int id) throws CentralUBException {
-        for (int i = 0; i < sistemaRefrigeracio.getllistabombes().size(); i++) {
-            if (sistemaRefrigeracio.getllistabombes().get(i).getId() == id) {
-                sistemaRefrigeracio.getllistabombes().get(i).activa();
+        Iterator<BombaRefrigerant> it = sistemaRefrigeracio.getllistabombes().iterator();
+        while (it.hasNext()) {
+            if (it.next().getId() == id) {
+                it.next().activa();
             }
         }
     }
 
     public void desactivaBomba(int id) {
-        for (int i = 0; i < sistemaRefrigeracio.getllistabombes().size(); i++) {
-            if (sistemaRefrigeracio.getllistabombes().get(i).getId() == id) {
-                sistemaRefrigeracio.getllistabombes().get(i).desactiva();
+        Iterator<BombaRefrigerant> it = sistemaRefrigeracio.getllistabombes().iterator();
+        while (it.hasNext()) {
+            if (it.next().getId() == id) {
+                it.next().desactiva();
             }
         }
     }
