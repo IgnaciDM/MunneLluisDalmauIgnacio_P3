@@ -343,6 +343,5 @@ public class CentralUB {
         demandaPotencia = generaDemandaPotencia();
         System.out.println("La demanda de potència elèctrica avui es de " + demandaPotencia + " unitats");
     }
-
 }
 
