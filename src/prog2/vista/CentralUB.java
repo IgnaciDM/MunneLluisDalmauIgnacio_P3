@@ -7,7 +7,6 @@ package prog2.vista;
 import prog2.adaptador.Adaptador;
 import prog2.model.*;
 
-import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -16,7 +15,20 @@ import java.util.Scanner;
  * @author Daniel Ortiz
  */
 
-
+/**
+ * Classe que representa la gestió d'una central elèctrica. Aquesta classe permet gestionar diferents
+ * aspectes de la central, com la demanda de potència, el reactor, el sistema de refrigeració i altres
+ * components relacionats amb el funcionament de la central.
+ *
+ * Inclou funcions per gestionar barres de control, activar/desactivar el reactor i les bombes refrigerants,
+ * obtenir dades de la demanda de potència i finalitzar el dia, entre altres operacions.
+ *
+ * Aquesta classe fa ús de diferents enumeracions per gestionar els menús interactius de l'usuari
+ * i permet la interacció mitjançant la consola.
+ *
+ * Les dades com la demanda màxima i mínima, així com les característiques de la distribució normal,
+ * es defineixen com a constants.
+ */
 public class CentralUB {
     public final static float DEMANDA_MAX = 1800;
     public final static float DEMANDA_MIN = 250;
@@ -25,7 +37,7 @@ public class CentralUB {
     public final static long VAR_NORM_SEED = 123;
     
     /** Generador aleatori de la demanda de potència **/
-    private prog2.vista.VariableNormal variableNormal;
+    private VariableNormal variableNormal;
     
     
     /** Demanda de potència del dia actual **/
@@ -36,6 +48,9 @@ public class CentralUB {
 
     /*ENUMS Y STRINGS A MOSTRAR EN MENU*/
 
+    /**
+     * Enumeració que defineix les opcions disponibles en el menú principal de la central.
+     */
     private enum OpcionsMenu {
         GestionarBarresControl,
         GestionarReactor,
@@ -109,8 +124,12 @@ public class CentralUB {
 
 
     /* Constructor*/
+    /**
+     * Constructor de la classe `CentralUB`. Inicialitza el generador de demanda de potència aleatòria
+     * i l'adaptador per interactuar amb altres components.
+     */
     public CentralUB() {
-        variableNormal = new prog2.vista.VariableNormal(VAR_NORM_MEAN, VAR_NORM_STD, VAR_NORM_SEED);
+        variableNormal = new VariableNormal(VAR_NORM_MEAN, VAR_NORM_STD, VAR_NORM_SEED);
         demandaPotencia = generaDemandaPotencia();
         // Inicialitzem l'objecte adaptador
 
@@ -118,10 +137,11 @@ public class CentralUB {
         adaptador = new Adaptador();
     }
 
-    public Dades getDades() {
-        return dades;
-    }
-
+    /**
+     * Gestió interactiva de la central elèctrica. Permet a l'usuari realitzar accions com gestionar el reactor,
+     * el sistema de refrigeració i obtenir dades sobre la demanda de potència.
+     *
+     */
     public void gestioCentralUB() {
         // Mostrar missatge inicial
         System.out.println("Benvingut a la planta PWR de la UB");
@@ -175,17 +195,18 @@ public class CentralUB {
                     break;
                 case GuardarDades:
                     //Guarda les dades de l’aplicació.
-                    System.out.println("Especifiqui el cami de desti del fitxer, on guardar les dades");
+                    System.out.println("Especifiqui el cami de desti del fitxer, on guardar les dades (s'afegira .dat per defecte)");
                     try {
-                        adaptador.guardaDades(sc.nextLine());
+                        adaptador.guardaDades(sc.nextLine()+".dat");
                     } catch (CentralUBException e) {
                         System.out.println("Error Guardar:  ,"+e.getMessage());
                     }
                     break;
                 case CarregarDades:
                     //Carrega les dades de l’aplicació.
+                    System.out.println("Especifiqui el cami d'Origen del fitxer, d'on carregar les dades (s'afegira .dat per defecte)");
                     try {
-                        adaptador.carregaDades("Dades.dat");
+                        adaptador.carregaDades(sc.nextLine()+".dat");
                     } catch (CentralUBException e) {
                         System.out.println("Error Carregar: "+e.getMessage());
                     }
@@ -320,7 +341,12 @@ public class CentralUB {
 
     }
 
-
+    /**
+     * Genera la demanda de potència aleatòria per al dia actual, tenint en compte les limitacions
+     * establertes per les constants `DEMANDA_MAX` i `DEMANDA_MIN`.
+     *
+     * @return El valor generat per la demanda de potència.
+     */
     private float generaDemandaPotencia(){
         float valor = Math.round(variableNormal.seguentValor());
         if (valor > DEMANDA_MAX)
@@ -332,6 +358,10 @@ public class CentralUB {
             return valor;
     }
 
+    /**
+     * Finalitza el dia actual, mostrant informació sobre l'estat de la central i generant una nova demanda
+     * de potència per al següent dia.
+     */
     private void finalitzaDia() {
         // Finalitzar dia i imprimir informacio de la central
         String info = new String();

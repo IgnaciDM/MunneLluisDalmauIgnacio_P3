@@ -8,11 +8,16 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Classe de proves unitàries per a la classe {@link Bitacola}.
+ */
 class TestBitacola {
 
     private Bitacola bitacola;
 
-    // Subclasse simple per poder instanciar PaginaBitacola si és abstracta
+    /**
+     * Subclasse concreta de {@link PaginaBitacola} per permetre la seva instanciació en els tests.
+     */
     static class PaginaBitacolaConcreta extends PaginaBitacola {
         public PaginaBitacolaConcreta(int dia) {
             super(dia);
@@ -24,11 +29,17 @@ class TestBitacola {
         }
     }
 
+    /**
+     * Inicialitza una nova instància de {@link Bitacola} abans de cada test.
+     */
     @BeforeEach
     void setUp() {
         bitacola = new Bitacola();
     }
 
+    /**
+     * Comprova que el mètode {@code afegeixPagina} afegeix correctament una pàgina a la bitàcola.
+     */
     @Test
     void testAfegeixPagina() {
         PaginaBitacola pagina = new PaginaBitacolaConcreta(1);
@@ -37,6 +48,9 @@ class TestBitacola {
         assertEquals(pagina, bitacola.getPaginesbitacola().get(0));
     }
 
+    /**
+     * Comprova que el mètode {@code getIncidencies} retorna només les pàgines de tipus {@link PaginaIncidencies}.
+     */
     @Test
     void testGetIncidencies() {
         PaginaBitacola pagina1 = new PaginaBitacolaConcreta(1);
@@ -51,6 +65,9 @@ class TestBitacola {
         assertEquals(pagina2, result.get(0));
     }
 
+    /**
+     * Comprova que el mètode {@code toString} retorna un text que conté la informació esperada.
+     */
     @Test
     void testToString() {
         PaginaBitacola pagina = new PaginaBitacolaConcreta(1);

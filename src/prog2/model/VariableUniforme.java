@@ -1,29 +1,41 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package prog2.model;
 
 import java.io.Serializable;
 import java.util.Random;
 
 /**
- • VariableUniforme: aquesta classe es fa servir per determinar aleatoriament si
- una bomba refrigerant estarà fora de servei al començar un nou dia. Només es
- declara un objecte d’aquesta classe dins del constructor de la classe Dades i es
- proporciona com a paràmetre al constructor de la classe BombaRefrigerant.
- La classe BombaRefrigerant utilitza el mètode seguentValor per generar un
- nombre aleatori que determinarà si la bomba es queda fora de servei.
-
+ * Aquesta classe modela una variable aleatòria uniforme. Es fa servir per determinar de manera aleatòria si una bomba refrigerant
+ * estarà fora de servei al començar un nou dia. La classe `VariableUniforme` genera números aleatoris entre 0 i 99 mitjançant
+ * l'objecte {@link Random} i el mètode `nextInt(100)`.
+ *
+ * El seu ús principal és en la classe {@link BombaRefrigerant}, on es passa un objecte `VariableUniforme` com a paràmetre per
+ * determinar si una bomba quedarà fora de servei per un valor aleatori generat a través del mètode `seguentValor()`.
+ *
+ * @author Daniel Ortiz
  */
 public class VariableUniforme implements Serializable {
 
+    /**
+     * Objecte Random utilitzat per generar valors aleatoris entre 0 i 99.
+     */
     private Random random;
 
+    /**
+     * Constructor que inicialitza l'objecte `Random` amb una llavor proporcionada per assegurar la reproduïbilitat.
+     *
+     * @param seed Llavor per a la generació de nombres aleatoris, garantint que la seqüència de números generats sigui
+     *             la mateixa per a una mateixa llavor.
+     */
     public VariableUniforme(long seed) {
         this.random = new Random(seed);
     }
 
+    /**
+     * Genera un nombre aleatori entre 0 i 99 (incloent 0, però excloent 100).
+     * Aquest nombre s'utilitza per determinar si la bomba refrigerant estarà fora de servei.
+     *
+     * @return Un valor enter aleatori entre 0 i 99.
+     */
     public int seguentValor() {
         return random.nextInt(100);
     }
