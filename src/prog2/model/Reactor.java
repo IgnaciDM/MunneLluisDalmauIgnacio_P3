@@ -2,6 +2,8 @@ package prog2.model;
 
 import prog2.vista.CentralUBException;
 
+import java.io.Serializable;
+
 /**
  * Representa el reactor d'una central nuclear.
  * El reactor pot estar actiu o inactiu, i té una temperatura associada.
@@ -11,7 +13,7 @@ import prog2.vista.CentralUBException;
  * Implementa la interfície {@link InComponent}.
  *
  */
-public class Reactor implements InComponent {
+public class Reactor implements InComponent, Serializable {
 
     /**
      * Temperatura actual del reactor, inicialitzada a 25 graus.

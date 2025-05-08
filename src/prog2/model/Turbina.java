@@ -1,5 +1,7 @@
 package prog2.model;
 
+import java.io.Serializable;
+
 /**
  * Representa una turbina dins d'un sistema de generació d'energia.
  * La turbina pot estar activa o desactivada, i té associat un cost operatiu i un output energètic calculat
@@ -8,7 +10,7 @@ package prog2.model;
  * Implementa la interfície {@link InComponent}.
  *
  */
-public class Turbina implements InComponent {
+public class Turbina implements InComponent, Serializable {
 
     /**
      * Estat de la turbina: activa (true) o desactivada (false).
