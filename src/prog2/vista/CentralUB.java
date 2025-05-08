@@ -263,7 +263,7 @@ public class CentralUB {
                     //Permet activar el reactor.
                     try{
                         adaptador.activaReactor();
-                    }catch(CentralUBException e){
+                    } catch(CentralUBException e) {
                         System.out.println("Error Reactor: "+e.getMessage());
                         break;
                     }

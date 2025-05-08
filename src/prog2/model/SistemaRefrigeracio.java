@@ -50,10 +50,11 @@ public class SistemaRefrigeracio implements InComponent {
     public void revisa (PaginaIncidencies p) {
         Iterator<BombaRefrigerant> it = llistabombes.iterator();
         while (it.hasNext()) {
-            it.next().revisa(p);
-            if (it.next().getForaDeServei() == true) {
-                p.afegeixIncidencia("La bomba " + it.next().getId() + " esta fora de servei");
-                it.next().desactiva();
+            BombaRefrigerant b = it.next();
+            b.revisa(p);
+            if (b.getForaDeServei() == true) {
+                p.afegeixIncidencia("La bomba " + b.getId() + " esta fora de servei");
+                b.desactiva();
             }
         }
     }

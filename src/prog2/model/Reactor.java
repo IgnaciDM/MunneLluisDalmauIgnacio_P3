@@ -105,7 +105,8 @@ public class Reactor implements InComponent {
         if (this.activa == false) {
             return gettemperatura();
         } else {
-            return gettemperatura() + (100 - input) * 10;
+            settemperatura(gettemperatura() + (100 - input) * 10);
+            return gettemperatura();
         }
     }
 
@@ -116,7 +117,7 @@ public class Reactor implements InComponent {
      */
     @Override
     public String toString() {
-        return "Reactor [Activat: " + (getActivat() ? "Sí" : "No") + ", Temperatura: " + temperatura + " ºC]";
+        return "Reactor [Activat: " + (getActivat() ? "Sí" : "No") + ", Temperatura: " + gettemperatura() + " ºC]";
     }
 }
 

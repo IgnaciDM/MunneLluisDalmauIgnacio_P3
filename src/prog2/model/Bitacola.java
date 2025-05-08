@@ -44,8 +44,9 @@ public class Bitacola implements InBitacola, Serializable {
         List<PaginaIncidencies> incidencies = new ArrayList<>();
         Iterator<PaginaBitacola> it = paginesbitacola.iterator();
         while (it.hasNext()) {
-            if (it.next() instanceof PaginaIncidencies) {
-                incidencies.add((PaginaIncidencies) it.next());
+            PaginaBitacola p = it.next();
+            if (p instanceof PaginaIncidencies) {
+                incidencies.add((PaginaIncidencies) p);
             }
         }
         return incidencies;
