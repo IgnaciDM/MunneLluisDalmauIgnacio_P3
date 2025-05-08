@@ -2,6 +2,7 @@ package prog2.model;
 
 import prog2.vista.CentralUBException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -13,7 +14,7 @@ import java.util.Iterator;
  * Implementa la interfície {@link InComponent}.
  *
  */
-public class SistemaRefrigeracio implements InComponent {
+public class SistemaRefrigeracio implements InComponent, Serializable {
 
     /**
      * Llista de bombes refrigerants gestionades pel sistema de refrigeració.

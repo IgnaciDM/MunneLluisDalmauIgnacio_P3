@@ -1,11 +1,13 @@
 package prog2.model;
 
 
+import java.io.Serializable;
+
 /**
  * Representa un generador de vapor en una central, que pot estar activat o desactivat.
  * Proporciona informació sobre el seu estat, cost operatiu i capacitat de producció.
  */
-public class GeneradorVapor implements InComponent {
+public class GeneradorVapor implements InComponent, Serializable {
 
     /**
      * Indica si el generador de vapor està activat.

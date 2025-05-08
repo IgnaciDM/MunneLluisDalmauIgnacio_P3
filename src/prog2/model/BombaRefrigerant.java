@@ -2,12 +2,14 @@ package prog2.model;
 
 import prog2.vista.CentralUBException;
 
+import java.io.Serializable;
+
 /**
  * Classe que representa una bomba refrigerant dins del sistema de la central.
  * Cada bomba pot estar activa o desactivada, operativa o fora de servei,
  * i té associada una variable uniforme per controlar el seu estat.
  */
-public class BombaRefrigerant implements InBombaRefrigerant {
+public class BombaRefrigerant implements InBombaRefrigerant, Serializable {
 
     /** Identificador de la bomba. */
     int id;
