@@ -87,7 +87,7 @@ public class TestReactor {
         reactor.revisa(p);
 
         assertEquals(1, p.getIncidencies().size());
-        assertTrue(p.getIncidencies().get(0).contains("Reactor")); // o el text exacte esperat
+        assertTrue(p.getIncidencies().get(0).contains("El reactor es va desactivar per superar la temperatura màxima de 1000 graus")); // o el text exacte esperat
     }
 
     /**

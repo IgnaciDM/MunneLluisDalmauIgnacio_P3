@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import prog2.model.Bitacola;
+import prog2.model.InDades;
 import prog2.vista.CentralUBException;
 import prog2.model.Dades;
 
@@ -12,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class TestDades {
 
-    private Dades dades;
+    private InDades dades;
 
     /**
      * Inicialitza l'objecte {@code Dades} abans de cada test.
@@ -78,10 +79,20 @@ class TestDades {
     /**
      * Comprova que el càlcul de potència retorna un valor positiu quan els components actius funcionen.
      */
+
     @Test
-    public void testCalculaPotencia() {
-        float pot = dades.calculaPotencia();
-        assertTrue(pot > 0); // El sistema està actiu per defecte
+    void testCalculaPotencia() throws CentralUBException {
+
+        dades.setInsercioBarres(40);// Exemple: 40% d'inserció
+        // Reactor: temperatura += (100 - 40) * 10 = +600 → 700
+        // Refrigeració: 2 bombes → N=2 → 250*N = 500 → min(700, 500) = 500
+        // Generador: 90% de 500 = 450
+        // Turbina: input = 450 → output = 450*2 = 900
+        dades.activaReactor();
+        dades.activaBomba(0);
+        dades.activaBomba(1);
+        float potencia = dades.calculaPotencia();
+        assertEquals(900.0f, potencia, 0.001);
     }
 
     /**
