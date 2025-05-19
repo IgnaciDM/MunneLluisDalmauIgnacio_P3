@@ -5,7 +5,6 @@
 package prog2.vista;
 
 import prog2.adaptador.Adaptador;
-import prog2.model.*;
 
 import java.util.Iterator;
 import java.util.Scanner;
@@ -44,7 +43,6 @@ public class CentralUB {
     private float demandaPotencia;
 
     private Adaptador adaptador;
-    private Dades dades;
 
     /*ENUMS Y STRINGS A MOSTRAR EN MENU*/
 
@@ -298,21 +296,21 @@ public class CentralUB {
             switch (op) {
                 case ActivarTotesBombes:
                     //Activa totes les bombes refrigerants.
-                    Iterator<BombaRefrigerant> it = adaptador.mostraSistemaRefrigeracio().getllistabombes().iterator();
-                    while (it.hasNext()) {
+                    for (int i=0;i<4;i++){
                         try {
-                            it.next().activa();
-                        } catch(CentralUBException e) {
-                            System.out.println("Error Sistema: "+e.getMessage());
+                            adaptador.activaBomba(i);
+                        } catch (CentralUBException e) {
+                            throw new RuntimeException(e);
                         }
                     }
+                    System.out.println("Bombes activades");
                     break;
                 case DesactivarTotesBombes:
-                    //Desactiva totes les bombes refrigerants
-                    Iterator<BombaRefrigerant> it2 = adaptador.mostraSistemaRefrigeracio().getllistabombes().iterator();
-                    while (it2.hasNext()) {
-                        it2.next().desactiva();
+                    //Activa totes les bombes refrigerants.
+                    for (int i=0;i<4;i++){
+                        adaptador.desactivaBomba(i);
                     }
+                    System.out.println("Bombes desactivates");
                     break;
                 case ActivarBomba:
                     //Donat el seu identificador numèric (entre 0 i 3), permet activar una bomba refrigerant.
