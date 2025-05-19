@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 public class AppCentralUB extends JFrame {
 
+    CentralUB centralUB = new CentralUB();
     private JPanel panelCentral;
     private JButton gestioComponentsCentralButton;
     private JButton visualitzarInformacióDeLaButton;
@@ -21,7 +22,7 @@ public class AppCentralUB extends JFrame {
         gestioComponentsCentralButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Components_Central componentsCentral = new Components_Central();
+                Components_Central componentsCentral = new Components_Central(centralUB);
                 componentsCentral.setVisible(true);
             }
         });
