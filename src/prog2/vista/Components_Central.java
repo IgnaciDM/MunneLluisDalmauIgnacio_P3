@@ -1,19 +1,20 @@
 package prog2.vista;
 
-import prog2.adaptador.Adaptador;
+import prog2.model.BombaRefrigerant;
 import prog2.model.Reactor;
 import prog2.model.SistemaRefrigeracio;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class Components_Central extends JDialog {
     CentralUB centralUB;
     float insercioBarres;
     Reactor reactor;
     SistemaRefrigeracio refrigeracio;
-    private JSpinner spinnerBarres; //Fusionar events
     private JPanel contentPane;
     private JSlider sliderBarres;
     private JButton buttonactivarReactor;
@@ -22,6 +23,11 @@ public class Components_Central extends JDialog {
     private JButton buttonBomba2;
     private JButton buttonBomba3;
     private JButton buttonBomba4;
+    private JList listforaservei;
+    private JButton desactivarBomba1Button;
+    private JButton desactivarBomba2Button;
+    private JButton desactivarBomba3Button;
+    private JButton desactivarBomba4Button;
 
     public Components_Central() {
         this.centralUB = new CentralUB();
@@ -31,30 +37,128 @@ public class Components_Central extends JDialog {
         setContentPane(contentPane);
         setSize(600, 500);
         setModal(true);
-
-
-        // Configurar Slider (0-100%)
-        sliderBarres.setMinimum(0);
-        sliderBarres.setMaximum(100);
-        sliderBarres.setValue((int)(centralUB.getAdaptador().getInsercioBarres() * 100));
-
-        // Configurar Spinner (mateix rang que el slider)
-        SpinnerNumberModel spinnerModel = new SpinnerNumberModel(sliderBarres.getValue(), 0, 100, 1);
-        spinnerBarres.setModel(spinnerModel);
-
-        // Vincular canvis del spinner amb el slider
-        spinnerBarres.addChangeListener(new ChangeListener() {
+        omplirLlista();
+        sliderBarres.addComponentListener(new ComponentAdapter() {
             @Override
-            public void stateChanged(ChangeEvent e) {
-                int valor = (int) spinnerBarres.getValue();
-                sliderBarres.setValue(valor); // Actualitza slider
+            public void componentResized(ComponentEvent e) {
+                super.componentResized(e);
                 try {
-                    centralUB.getAdaptador().setInsercioBarres(valor / 100.0f); // Actualitza model
+                    centralUB.getAdaptador().setInsercioBarres(sliderBarres.getExtent());
                 } catch (CentralUBException ex) {
                     throw new RuntimeException(ex);
                 }
             }
         });
+        buttonactivarReactor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (centralUB.getAdaptador().mostraReactor().gettemperatura() <= 1000) {
+                    try {
+                        centralUB.getAdaptador().activaReactor();
+                    } catch (CentralUBException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                } else {
+
+                }
+            }
+        });
+        buttondesactivarReactor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                centralUB.getAdaptador().desactivaReactor();
+            }
+        });
+        buttonBomba1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(0).getForaDeServei() == false) {
+                    try {
+                        centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(0).activa();
+                    } catch (CentralUBException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                } else {
+
+                }
+            }
+        });
+        desactivarBomba1Button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(0).desactiva();
+            }
+        });
+        buttonBomba2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(1).getForaDeServei() == false) {
+                    try {
+                        centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(1).activa();
+                    } catch (CentralUBException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                } else {
+
+                }
+            }
+        });
+        desactivarBomba2Button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(1).desactiva();
+            }
+        });
+        buttonBomba3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(2).getForaDeServei() == false) {
+                    try {
+                        centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(2).activa();
+                    } catch (CentralUBException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                } else {
+
+                }
+            }
+        });
+        desactivarBomba3Button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(2).desactiva();
+            }
+        });
+        buttonBomba4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(3).getForaDeServei() == false) {
+                    try {
+                        centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(3).activa();
+                    } catch (CentralUBException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                } else {
+
+                }
+            }
+        });
+        desactivarBomba4Button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(3).desactiva();
+            }
+        });
     }
 
+    void omplirLlista(){
+        DefaultListModel model = new DefaultListModel();
+        model.clear();
+        for(BombaRefrigerant item: centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes()){
+            if (item.getForaDeServei() == true) {
+                model.addElement(item);
+            }
+        }
+        listforaservei.setModel(model);
+    }
 }
