@@ -11,11 +11,16 @@ public class VisualitzarDades extends JDialog {
     private JPanel panelVisualitzacio;
     private JButton visualitzarInformacióButton;
     private JTextArea textArea1;
+    private JScrollPane scrollPane;
 
     public VisualitzarDades(CentralUB centralUB) {
         this.centralUB = centralUB;
         setContentPane(contentPane);
         setModal(true);
+        setLocationRelativeTo(null);
+        setSize(600, 500);
+
+
 
         visualitzarInformacióButton.addActionListener(new ActionListener() {
             @Override
