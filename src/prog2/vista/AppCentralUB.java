@@ -43,7 +43,8 @@ public class AppCentralUB extends JFrame {
         guardarICarregarDadesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                GuardarCarregarDades guardarCarregarDades = new GuardarCarregarDades(centralUB);
+                guardarCarregarDades.setVisible(true);
             }
         });
     }

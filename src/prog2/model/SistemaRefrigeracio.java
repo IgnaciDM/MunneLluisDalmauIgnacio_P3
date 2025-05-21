@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class SistemaRefrigeracio implements InComponent {
+public class SistemaRefrigeracio implements InComponent,Serializable {
     ArrayList<BombaRefrigerant> llistabombes = new ArrayList<>();
     boolean activa;
 
