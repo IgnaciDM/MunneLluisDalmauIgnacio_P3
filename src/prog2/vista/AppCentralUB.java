@@ -29,13 +29,15 @@ public class AppCentralUB extends JFrame {
         visualitzarInformacióDeLaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                VisualitzarDades visualitzarDades = new VisualitzarDades(centralUB);
+                visualitzarDades.setVisible(true);
             }
         });
         finalitzarDiaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                FinalitzarDia finalitzarDia = new FinalitzarDia(centralUB);
+                finalitzarDia.setVisible(true);
             }
         });
         guardarICarregarDadesButton.addActionListener(new ActionListener() {

@@ -10,22 +10,22 @@ public class VisualitzarDades extends JDialog {
     private JComboBox comboBox1;
     private JPanel panelVisualitzacio;
     private JButton visualitzarInformacióButton;
-    private JList listInformacio;
+    private JTextArea textArea1;
 
     public VisualitzarDades(CentralUB centralUB) {
         this.centralUB = centralUB;
         setContentPane(contentPane);
         setModal(true);
+
         visualitzarInformacióButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (comboBox1.getActionCommand() == "Estat de la Central") {
+                String seleccion = (String) comboBox1.getSelectedItem();
+                if (seleccion.equals("Estat de la Central")) {
                     EstatCentral();
-                }
-                if (comboBox1.getActionCommand() == "Quadern de bitacola") {
+                } else if (seleccion.equals("Quadern de bitacola")) {
                     Bitacora();
-                }
-                if (comboBox1.getActionCommand() == "Llista de Incidencies") {
+                } else if (seleccion.equals("Llista de Incidencies")) {
                     Incidencies();
                 }
             }
@@ -33,23 +33,20 @@ public class VisualitzarDades extends JDialog {
     }
 
     public void EstatCentral() {
-        DefaultListModel model = new DefaultListModel();
-        model.clear();
-        model.addElement(centralUB.getAdaptador().mostraEstat());
-        listInformacio.setModel(model);
+        textArea1.setText(String.valueOf(centralUB.getAdaptador().mostraEstat()));
     }
 
     public void Bitacora() {
-        DefaultListModel model = new DefaultListModel();
-        model.clear();
-        model.addElement(centralUB.getAdaptador().mostraBitacola());
-        listInformacio.setModel(model);
+        textArea1.setText(String.valueOf(centralUB.getAdaptador().mostraBitacola()));
     }
 
     public void Incidencies() {
-        DefaultListModel model = new DefaultListModel();
+        textArea1.setText(String.valueOf((centralUB.getAdaptador().mostraIncidencies())));
+    }
+    /*
+    DefaultListModel model = new DefaultListModel();
         model.clear();
         model.addElement(centralUB.getAdaptador().mostraIncidencies());
         listInformacio.setModel(model);
-    }
+     */
 }

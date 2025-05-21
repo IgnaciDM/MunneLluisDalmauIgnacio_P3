@@ -4,4 +4,8 @@ import javax.swing.*;
 
 public class FinalitzarDia extends JDialog {
     CentralUB centralUB;
+
+    public FinalitzarDia(CentralUB centralUB) {
+
+    }
 }
