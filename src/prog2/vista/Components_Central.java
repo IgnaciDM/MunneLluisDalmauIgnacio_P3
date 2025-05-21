@@ -5,10 +5,7 @@ import prog2.model.Reactor;
 import prog2.model.SistemaRefrigeracio;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.awt.event.*;
 
 public class Components_Central extends JDialog {
     CentralUB centralUB;
@@ -16,6 +13,7 @@ public class Components_Central extends JDialog {
     Reactor reactor;
     SistemaRefrigeracio refrigeracio;
     private JPanel contentPane;
+    private JSpinner spinnerBarres;
     private JSlider sliderBarres;
     private JButton buttonactivarReactor;
     private JButton buttondesactivarReactor;
@@ -28,6 +26,8 @@ public class Components_Central extends JDialog {
     private JButton desactivarBomba2Button;
     private JButton desactivarBomba3Button;
     private JButton desactivarBomba4Button;
+    private JSpinner spinner1;
+
 
     public Components_Central() {
         this.centralUB = new CentralUB();
@@ -38,17 +38,11 @@ public class Components_Central extends JDialog {
         setSize(600, 500);
         setModal(true);
         omplirLlista();
-        sliderBarres.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                super.componentResized(e);
-                try {
-                    centralUB.getAdaptador().setInsercioBarres(sliderBarres.getExtent());
-                } catch (CentralUBException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        });
+
+        spinnerBarres = new JSpinner(); // Aquesta línia ha d'existir abans de fer servir el component
+        spinnerBarres.setModel(new SpinnerNumberModel(0, 0, 10, 1));
+
+
         buttonactivarReactor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,8 +52,6 @@ public class Components_Central extends JDialog {
                     } catch (CentralUBException ex) {
                         throw new RuntimeException(ex);
                     }
-                } else {
-
                 }
             }
         });
@@ -149,6 +141,27 @@ public class Components_Central extends JDialog {
                 centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(3).desactiva();
             }
         });
+
+        ///////////////////////////////////////////////////////////////////////////////////////
+// Inicialització dels components
+        spinnerBarres = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
+        sliderBarres = new JSlider(0, 100, 0);
+        spinner1 = new JSpinner();
+
+// Sincronitzar valors
+        sliderBarres.setValue((int) (insercioBarres * 100));
+        spinnerBarres.setValue(sliderBarres.getValue()); // opcional, per sincronitzar
+
+// Listener per sincronitzar amb slider
+        spinner1.addChangeListener(e -> {
+            int valor = (int) spinnerBarres.getValue();
+            sliderBarres.setValue(valor);
+            try {
+                centralUB.getAdaptador().setInsercioBarres(valor / 100.0f);
+            } catch (CentralUBException ex) {
+                JOptionPane.showMessageDialog(null, "Error actualitzant inserció de barres: " + ex.getMessage());
+            }
+        });
     }
 
     void omplirLlista(){
@@ -161,4 +174,5 @@ public class Components_Central extends JDialog {
         }
         listforaservei.setModel(model);
     }
+
 }
