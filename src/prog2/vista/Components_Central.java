@@ -29,8 +29,8 @@ public class Components_Central extends JDialog {
     private JSpinner spinner1;
 
 
-    public Components_Central() {
-        this.centralUB = new CentralUB();
+    public Components_Central(CentralUB centralUB) {
+        this. centralUB = centralUB;
         this.insercioBarres = centralUB.getAdaptador().getInsercioBarres();
         this.reactor = centralUB.getAdaptador().mostraReactor();
         this.refrigeracio = centralUB.getAdaptador().mostraSistemaRefrigeracio();
