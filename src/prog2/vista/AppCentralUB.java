@@ -61,13 +61,6 @@ public class AppCentralUB extends JFrame {
                 guardarCarregarDades.setVisible(true);
             }
         });
-        textAreaDies.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                super.componentResized(e);
-
-            }
-        });
     }
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
