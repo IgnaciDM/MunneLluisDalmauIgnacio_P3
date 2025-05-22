@@ -15,8 +15,6 @@ public class Components_Central extends JDialog {
     Reactor reactor;
     SistemaRefrigeracio refrigeracio;
     private JPanel contentPane;
-    private JSpinner spinnerBarres;
-    private JSlider sliderBarres;
     private JButton buttonactivarReactor;
     private JButton buttondesactivarReactor;
     private JButton buttonBomba1;
@@ -24,9 +22,9 @@ public class Components_Central extends JDialog {
     private JButton buttonBomba3;
     private JButton buttonBomba4;
     private JList listMissatge;
-    private JSpinner spinner1;
-
-
+    private JButton AplicarInsercioBarres;
+    private JSpinner spinnerBarres;
+    private JSlider sliderBarres;
 
 
     public Components_Central(CentralUB centralUB) {
@@ -37,7 +35,6 @@ public class Components_Central extends JDialog {
         setContentPane(contentPane);
         setSize(600, 500);
         setModal(true);
-        omplirLlista();
 
         spinnerBarres = new JSpinner(); // Aquesta línia ha d'existir abans de fer servir el component
         spinnerBarres.setModel(new SpinnerNumberModel(0, 0, 10, 1));
@@ -58,12 +55,14 @@ public class Components_Central extends JDialog {
                 }
             }
         });
+
         buttondesactivarReactor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 centralUB.getAdaptador().desactivaReactor();
             }
         });
+
         buttonBomba1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -163,26 +162,6 @@ public class Components_Central extends JDialog {
             }
         });
 
-        ///////////////////////////////////////////////////////////////////////////////////////
-// Inicialització dels components
-        spinnerBarres = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
-        sliderBarres = new JSlider(0, 100, 0);
-
-
-// Sincronitzar valors
-        sliderBarres.setValue((int) (insercioBarres * 100));
-        spinnerBarres.setValue(sliderBarres.getValue()); // opcional, per sincronitzar
-
-// Listener per sincronitzar amb slider
-        spinner1.addChangeListener(e -> {
-            int valor = (int) spinnerBarres.getValue();
-            sliderBarres.setValue(valor);
-            try {
-                centralUB.getAdaptador().setInsercioBarres(valor / 100.0f);
-            } catch (CentralUBException ex) {
-                JOptionPane.showMessageDialog(null, "Error actualitzant inserció de barres: " + ex.getMessage());
-            }
-        });
     }
 
     private void afegirMissatge(String missatge) {
@@ -191,17 +170,5 @@ public class Components_Central extends JDialog {
         model.addElement(missatge);
 
     }
-
-    void omplirLlista(){
-        DefaultListModel model = new DefaultListModel();
-        model.clear();
-        for(BombaRefrigerant item: centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes()){
-            if (item.getForaDeServei() == true) {
-                model.addElement(item);
-            }
-        }
-        listMissatge.setModel(model);
-    }
-
 }
 
