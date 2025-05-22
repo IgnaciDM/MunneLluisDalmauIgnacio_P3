@@ -6,6 +6,8 @@ import prog2.model.SistemaRefrigeracio;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.awt.Color;
+
 
 public class Components_Central extends JDialog {
     CentralUB centralUB;
@@ -22,11 +24,8 @@ public class Components_Central extends JDialog {
     private JButton buttonBomba3;
     private JButton buttonBomba4;
     private JList listforaservei;
-    private JButton desactivarBomba1Button;
-    private JButton desactivarBomba2Button;
-    private JButton desactivarBomba3Button;
-    private JButton desactivarBomba4Button;
     private JSpinner spinner1;
+
 
 
     public Components_Central(CentralUB centralUB) {
@@ -41,6 +40,10 @@ public class Components_Central extends JDialog {
 
         spinnerBarres = new JSpinner(); // Aquesta línia ha d'existir abans de fer servir el component
         spinnerBarres.setModel(new SpinnerNumberModel(0, 0, 10, 1));
+        buttonBomba1.setBackground(Color.RED);
+        buttonBomba2.setBackground(Color.RED);
+        buttonBomba3.setBackground(Color.RED);
+        buttonBomba4.setBackground(Color.RED);
 
 
         buttonactivarReactor.addActionListener(new ActionListener() {
@@ -64,81 +67,85 @@ public class Components_Central extends JDialog {
         buttonBomba1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(0).getForaDeServei() == false) {
+                BombaRefrigerant bomba4 = centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(3);
+                if (!bomba4.getForaDeServei()) {
                     try {
-                        centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(0).activa();
+                        if (!bomba4.getActivat()) {
+                            bomba4.activa();
+                            buttonBomba1.setBackground(Color.GREEN);
+                        } else {
+                            bomba4.desactiva();
+                            buttonBomba1.setBackground(Color.RED);
+                        }
                     } catch (CentralUBException ex) {
-                        throw new RuntimeException(ex);
+                        JOptionPane.showMessageDialog(null, "Error activant la bomba: " + ex.getMessage());
                     }
                 } else {
-
+                    JOptionPane.showMessageDialog(null, "La bomba està fora de servei.");
                 }
-            }
-        });
-        desactivarBomba1Button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(0).desactiva();
             }
         });
         buttonBomba2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(1).getForaDeServei() == false) {
+                BombaRefrigerant bomba2 = centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(3);
+                if (!bomba2.getForaDeServei()) {
                     try {
-                        centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(1).activa();
+                        if (!bomba2.getActivat()) {
+                            bomba2.activa();
+                            buttonBomba4.setBackground(Color.GREEN);
+                        } else {
+                            bomba2.desactiva();
+                            buttonBomba4.setBackground(Color.RED);
+                        }
                     } catch (CentralUBException ex) {
-                        throw new RuntimeException(ex);
+                        JOptionPane.showMessageDialog(null, "Error activant la bomba: " + ex.getMessage());
                     }
                 } else {
-
+                    JOptionPane.showMessageDialog(null, "La bomba està fora de servei.");
                 }
-            }
-        });
-        desactivarBomba2Button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(1).desactiva();
             }
         });
         buttonBomba3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(2).getForaDeServei() == false) {
+                BombaRefrigerant bomba3 = centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(3);
+                if (!bomba3.getForaDeServei()) {
                     try {
-                        centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(2).activa();
+                        if (!bomba3.getActivat()) {
+                            bomba3.activa();
+                            buttonBomba4.setBackground(Color.GREEN);
+                        } else {
+                            bomba3.desactiva();
+                            buttonBomba4.setBackground(Color.RED);
+                        }
                     } catch (CentralUBException ex) {
-                        throw new RuntimeException(ex);
+                        JOptionPane.showMessageDialog(null, "Error activant la bomba: " + ex.getMessage());
                     }
                 } else {
-
+                    JOptionPane.showMessageDialog(null, "La bomba està fora de servei.");
                 }
-            }
-        });
-        desactivarBomba3Button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(2).desactiva();
             }
         });
         buttonBomba4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(3).getForaDeServei() == false) {
+                BombaRefrigerant bomba4 = centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(3);
+                if (!bomba4.getForaDeServei()) {
                     try {
-                        centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(3).activa();
+                        if (!bomba4.getActivat()) {
+                            bomba4.activa();
+                            buttonBomba4.setBackground(Color.GREEN);
+                        } else {
+                            bomba4.desactiva();
+                            buttonBomba4.setBackground(Color.RED);
+                        }
                     } catch (CentralUBException ex) {
-                        throw new RuntimeException(ex);
+                        JOptionPane.showMessageDialog(null, "Error activant la bomba: " + ex.getMessage());
                     }
                 } else {
-
+                    JOptionPane.showMessageDialog(null, "La bomba està fora de servei.");
                 }
-            }
-        });
-        desactivarBomba4Button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(3).desactiva();
             }
         });
 
