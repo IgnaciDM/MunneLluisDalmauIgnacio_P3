@@ -15,7 +15,7 @@ public class AppCentralUB extends JFrame {
     private JButton finalitzarDiaButton;
     private JButton guardarICarregarDadesButton;
     private JTextArea textAreaDies;
-
+//commit
     public AppCentralUB() {
         setTitle("CentralUB");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
