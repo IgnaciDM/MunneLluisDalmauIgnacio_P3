@@ -201,7 +201,7 @@ public class Components_Central extends JDialog {
                         } else {
                             centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(i).desactiva();
                         }
-                    }
+                    } //
                 } catch (CentralUBException ex) {
                     JOptionPane.showMessageDialog(null, "Error actualitzant la Central: " + ex.getMessage());
                 }
