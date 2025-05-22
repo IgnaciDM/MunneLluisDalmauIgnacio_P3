@@ -52,7 +52,7 @@ public class BombaRefrigerant implements InBombaRefrigerant, Serializable {
      */
     public void activa() throws CentralUBException {
         if (this.getForaDeServei())
-            throw new CentralUBException("La bomba refrigerant " + getId() + " es troba fora de servei, per tant no es pot activar");
+            throw new CentralUBException("La bomba refrigerant " + (getId()+1) + " es troba fora de servei, per tant no es pot activar");
         else {
             this.activa = true;
         }
