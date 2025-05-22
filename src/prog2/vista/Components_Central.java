@@ -25,7 +25,7 @@ public class Components_Central extends JDialog {
     private JButton aplicarModificacionsButton;
     private JButton cancelarModificacionsButton;
 
-
+// hola
 
     public Components_Central(CentralUB centralUB) {
         this. centralUB = centralUB;
