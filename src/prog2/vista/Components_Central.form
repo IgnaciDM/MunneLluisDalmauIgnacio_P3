@@ -77,7 +77,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="b4fb" class="javax.swing.JList" binding="listforaservei">
+              <component id="b4fb" class="javax.swing.JList" binding="listMissatge">
                 <constraints/>
                 <properties>
                   <model/>

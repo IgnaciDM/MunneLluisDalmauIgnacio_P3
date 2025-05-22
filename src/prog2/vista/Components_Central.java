@@ -23,7 +23,7 @@ public class Components_Central extends JDialog {
     private JButton buttonBomba2;
     private JButton buttonBomba3;
     private JButton buttonBomba4;
-    private JList listforaservei;
+    private JList listMissatge;
     private JSpinner spinner1;
 
 
@@ -67,14 +67,15 @@ public class Components_Central extends JDialog {
         buttonBomba1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                BombaRefrigerant bomba4 = centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(3);
-                if (!bomba4.getForaDeServei()) {
+                BombaRefrigerant bomba1 = centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(0);
+                if (!bomba1.getForaDeServei()) {
                     try {
-                        if (!bomba4.getActivat()) {
-                            bomba4.activa();
+                        if (!bomba1.getActivat()) {
+                            bomba1.activa();
                             buttonBomba1.setBackground(Color.GREEN);
+
                         } else {
-                            bomba4.desactiva();
+                            bomba1.desactiva();
                             buttonBomba1.setBackground(Color.RED);
                         }
                     } catch (CentralUBException ex) {
@@ -88,15 +89,15 @@ public class Components_Central extends JDialog {
         buttonBomba2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                BombaRefrigerant bomba2 = centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(3);
+                BombaRefrigerant bomba2 = centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(1);
                 if (!bomba2.getForaDeServei()) {
                     try {
                         if (!bomba2.getActivat()) {
                             bomba2.activa();
-                            buttonBomba4.setBackground(Color.GREEN);
+                            buttonBomba2.setBackground(Color.GREEN);
                         } else {
                             bomba2.desactiva();
-                            buttonBomba4.setBackground(Color.RED);
+                            buttonBomba2.setBackground(Color.RED);
                         }
                     } catch (CentralUBException ex) {
                         JOptionPane.showMessageDialog(null, "Error activant la bomba: " + ex.getMessage());
@@ -109,15 +110,15 @@ public class Components_Central extends JDialog {
         buttonBomba3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                BombaRefrigerant bomba3 = centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(3);
+                BombaRefrigerant bomba3 = centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(2);
                 if (!bomba3.getForaDeServei()) {
                     try {
                         if (!bomba3.getActivat()) {
                             bomba3.activa();
-                            buttonBomba4.setBackground(Color.GREEN);
+                            buttonBomba3.setBackground(Color.GREEN);
                         } else {
                             bomba3.desactiva();
-                            buttonBomba4.setBackground(Color.RED);
+                            buttonBomba3.setBackground(Color.RED);
                         }
                     } catch (CentralUBException ex) {
                         JOptionPane.showMessageDialog(null, "Error activant la bomba: " + ex.getMessage());
@@ -136,6 +137,7 @@ public class Components_Central extends JDialog {
                         if (!bomba4.getActivat()) {
                             bomba4.activa();
                             buttonBomba4.setBackground(Color.GREEN);
+
                         } else {
                             bomba4.desactiva();
                             buttonBomba4.setBackground(Color.RED);
@@ -179,7 +181,7 @@ public class Components_Central extends JDialog {
                 model.addElement(item);
             }
         }
-        listforaservei.setModel(model);
+        listMissatge.setModel(model);
     }
 
 }
