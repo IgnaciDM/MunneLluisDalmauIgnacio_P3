@@ -40,7 +40,7 @@
           </component>
           <component id="26db0" class="javax.swing.JButton" binding="buttonBomba2">
             <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Activar Bomba2"/>
@@ -48,7 +48,7 @@
           </component>
           <component id="f0245" class="javax.swing.JButton" binding="buttonBomba4">
             <constraints>
-              <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="5" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Activar Bomba4"/>
@@ -56,7 +56,7 @@
           </component>
           <component id="a985a" class="javax.swing.JButton" binding="buttonBomba1">
             <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Activar Bomba1"/>
@@ -64,42 +64,10 @@
           </component>
           <component id="88467" class="javax.swing.JButton" binding="buttonBomba3">
             <constraints>
-              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Activar Bomba3"/>
-            </properties>
-          </component>
-          <component id="16e73" class="javax.swing.JButton" binding="desactivarBomba1Button" default-binding="true">
-            <constraints>
-              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Desactivar Bomba1"/>
-            </properties>
-          </component>
-          <component id="a7b5d" class="javax.swing.JButton" binding="desactivarBomba2Button" default-binding="true">
-            <constraints>
-              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Desactivar Bomba2"/>
-            </properties>
-          </component>
-          <component id="975fa" class="javax.swing.JButton" binding="desactivarBomba3Button" default-binding="true">
-            <constraints>
-              <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Desactivar Bomba3"/>
-            </properties>
-          </component>
-          <component id="a7b1c" class="javax.swing.JButton" binding="desactivarBomba4Button" default-binding="true">
-            <constraints>
-              <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Desactivar Bomba4"/>
             </properties>
           </component>
           <scrollpane id="335a9">
