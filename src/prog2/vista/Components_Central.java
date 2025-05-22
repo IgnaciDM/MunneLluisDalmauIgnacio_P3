@@ -50,7 +50,7 @@ public class Components_Central extends JDialog {
 
         slider1.addChangeListener(e -> {
             insercioBarres = slider1.getValue();
-            afegirMissatge("Insercio Barres:"+insercioBarres);
+            afegirMissatge("Insercio Barres: "+insercioBarres);
         });
 
         buttonactivarReactor.addActionListener(new ActionListener() {
@@ -59,16 +59,21 @@ public class Components_Central extends JDialog {
                 if (reactor.gettemperatura() <= 1000) {
                     try {
                         reactor.activa();
+                        afegirMissatge("Reactor activat");
                     } catch (CentralUBException ex) {
                         throw new RuntimeException(ex);
                     }
+                } else {
+                    afegirMissatge("Reactor no es pot activar perque la seva temperatura supera els 1000 graus");
                 }
             }
         });
+
         buttondesactivarReactor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 reactor.desactiva();
+                afegirMissatge("Reactor desactivat");
             }
         });
         buttonBomba1.addActionListener(new ActionListener() {
