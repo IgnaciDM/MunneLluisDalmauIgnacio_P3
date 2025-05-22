@@ -44,6 +44,7 @@ public class AppCentralUB extends JFrame {
         finalitzarDiaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                centralUB.finalitzaDia();
                 FinalitzarDia finalitzarDia = new FinalitzarDia(centralUB);
                 finalitzarDia.setVisible(true);
                 textAreaDies.setText(

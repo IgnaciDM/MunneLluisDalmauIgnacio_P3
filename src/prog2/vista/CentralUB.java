@@ -369,7 +369,7 @@ public class CentralUB {
         info = adaptador.finalitzaDia(demandaPotencia);
         System.out.println(info);
         System.out.println("Dia finalitzat\n");
-        this.Dia = Dia + 1;
+        Dia++;
 
         // Generar i mostrar nova demanda de potencia
         demandaPotencia = generaDemandaPotencia();

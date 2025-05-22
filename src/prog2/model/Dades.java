@@ -21,6 +21,7 @@ public class Dades implements InDades, Serializable {
     /////////////////////////////////////////////////////////////////////////////////////
     private final VariableUniforme variableUniforme;
     private final Bitacola bitacola;
+    private Bitacola BitacolaDia;
     private float GrauBarres;
     private final Reactor reactor;
     private final SistemaRefrigeracio sistemaRefrigeracio;
@@ -234,6 +235,11 @@ public class Dades implements InDades, Serializable {
         bitacolaDia.afegeixPagina(paginaEconomica);
         bitacolaDia.afegeixPagina(paginaEstat);
         bitacolaDia.afegeixPagina(paginaIncidencies);
+        BitacolaDia = bitacolaDia;
         return bitacolaDia;
+    }
+
+    public Bitacola getBitacolaDia() {
+        return BitacolaDia;
     }
 }

@@ -240,4 +240,8 @@ public class Adaptador {
         }
         System.out.println("Dades carregades satisfactoriament de " + camiOrigen + " a la CentralUB");
     }
+
+    public Bitacola getBitacolaDia() {
+        return dades.getBitacolaDia();
+    }
 }
