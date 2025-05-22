@@ -24,6 +24,8 @@ public class Components_Central extends JDialog {
     private JList listMissatge;
     private JButton aplicarModificacionsButton;
     private JButton cancelarModificacionsButton;
+    private JSlider slider1;
+
 
 // hola
 
@@ -40,6 +42,16 @@ public class Components_Central extends JDialog {
         buttonBomba2.setBackground(Color.RED);
         buttonBomba3.setBackground(Color.RED);
         buttonBomba4.setBackground(Color.RED);
+
+
+        slider1.setMinimum(0);  // O el mínimo que quieras
+        slider1.setMaximum(100);  // O el máximo que quieras
+        slider1.setValue((int) insercioBarres);  // Valor inicial
+
+        slider1.addChangeListener(e -> {
+            insercioBarres = slider1.getValue();
+            afegirMissatge("Insercio Barres:"+insercioBarres);
+        });
 
         buttonactivarReactor.addActionListener(new ActionListener() {
             @Override
