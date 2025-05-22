@@ -345,7 +345,7 @@ public class CentralUB {
      *
      * @return El valor generat per la demanda de potència.
      */
-    private float generaDemandaPotencia(){
+    public float generaDemandaPotencia(){
         float valor = Math.round(variableNormal.seguentValor());
         if (valor > DEMANDA_MAX)
             return DEMANDA_MAX;
@@ -360,7 +360,7 @@ public class CentralUB {
      * Finalitza el dia actual, mostrant informació sobre l'estat de la central i generant una nova demanda
      * de potència per al següent dia.
      */
-    private void finalitzaDia() {
+    public void finalitzaDia() {
         // Finalitzar dia i imprimir informacio de la central
         String info = new String();
         info = adaptador.finalitzaDia(demandaPotencia);
@@ -374,6 +374,10 @@ public class CentralUB {
 
     public Adaptador getAdaptador() {
         return adaptador;
+    }
+
+    public float getDemandaPotencia() {
+        return demandaPotencia;
     }
 }
 

@@ -26,15 +26,13 @@ public class FinalitzarDia extends JDialog {
     }
     public void FinalitzarDiaFi(){
         // Obtenir estat actual i demanda
-        String estat = centralUB.getAdaptador().mostraEstat().toString();
         float DemandaActual = centralUB.getAdaptador().getDemandaPotencia();
 
         // Finalitzar el dia i obtenir la bitàcola
         String bitacola = centralUB.getAdaptador().finalitzaDia(DemandaActual);
-        float novaDemanda = centralUB.getAdaptador().getDemandaPotencia();
+        float novaDemanda = centralUB.generaDemandaPotencia();
 
         textArea1.setText(
-                "📘 Estat actualitzat de la central:\n" + estat +
                         "\n\n📝 Bitàcola del dia:\n" + bitacola +
                         "\n\n⚡ Nova demanda de potència generada per demà: " + novaDemanda + " MW"
         );
