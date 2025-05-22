@@ -1,26 +1,33 @@
-// Paquet on es troba aquesta classe
 package prog2.vista;
 
-// Importació de classes del model
 import prog2.model.BombaRefrigerant;
 import prog2.model.Reactor;
 import prog2.model.SistemaRefrigeracio;
 
-// Importació de llibreries gràfiques i gestió d'esdeveniments
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.Color;
 
-// Classe que representa una finestra modal per gestionar components de la central
+/**
+ * Classe que representa una finestra modal per gestionar els components de la central nuclear.
+ * Permet modificar l'estat del reactor, el grau d'inserció de barres, i les bombes de refrigeració.
+ * Les modificacions es fan sobre còpies locals fins que es decideix aplicar-les al model real.
+ */
 public class Components_Central extends JDialog {
 
-    // Atributs necessaris per gestionar la lògica
-    CentralUB centralUB; // Referència al model principal
-    float insercioBarres; // Grau d'inserció de barres del reactor (entre 0 i 100)
-    Reactor reactor; // Còpia local del reactor
-    SistemaRefrigeracio refrigeracio; // Còpia local del sistema de refrigeració
+    /** Referència al model principal */
+    CentralUB centralUB;
 
-    // Components de la interfície gràfica
+    /** Grau d'inserció de les barres del reactor */
+    float insercioBarres;
+
+    /** Còpia local del reactor */
+    Reactor reactor;
+
+    /** Còpia local del sistema de refrigeració */
+    SistemaRefrigeracio refrigeracio;
+
+    // Components gràfics de la interfície
     private JPanel contentPane;
     private JButton buttonactivarReactor;
     private JButton buttondesactivarReactor;
@@ -33,27 +40,29 @@ public class Components_Central extends JDialog {
     private JButton cancelarModificacionsButton;
     private JSlider slider1;
 
-    // Constructor
+    /**
+     * Constructor de la finestra de gestió de components.
+     * Inicialitza la interfície i carrega l'estat actual de reactor i refrigeració.
+     *
+     * @param centralUB referència a la instància principal del model {@code CentralUB}
+     */
     public Components_Central(CentralUB centralUB) {
         this.centralUB = centralUB;
-
-        // Es creen còpies dels components per modificar-los sense alterar l'original directament
         this.insercioBarres = centralUB.getAdaptador().getInsercioBarres();
         this.reactor = new Reactor(centralUB.getAdaptador().mostraReactor());
         this.refrigeracio = new SistemaRefrigeracio(centralUB.getAdaptador().mostraSistemaRefrigeracio());
 
-        // Configuració bàsica de la finestra
         setContentPane(contentPane);
         setSize(600, 500);
-        setModal(true); // Fa que sigui una finestra modal (bloqueja la resta fins que es tanqui)
+        setModal(true); // Finestra modal
 
-        // Inicialització de l’estat dels botons de les bombes
+        // Inicialització d'estats de les bombes
         actualitzaEstatBomba(buttonBomba1, refrigeracio.getllistabombes().get(0), 1);
         actualitzaEstatBomba(buttonBomba2, refrigeracio.getllistabombes().get(1), 2);
         actualitzaEstatBomba(buttonBomba3, refrigeracio.getllistabombes().get(2), 3);
         actualitzaEstatBomba(buttonBomba4, refrigeracio.getllistabombes().get(3), 4);
 
-        // Configura el "slider" (barra d'inserció de barres)
+        // Configura el slider de control d'inserció de barres
         slider1.setMinimum(0);
         slider1.setMaximum(100);
         slider1.setValue((int) insercioBarres);
@@ -62,7 +71,7 @@ public class Components_Central extends JDialog {
             afegirMissatge("Insercio Barres: " + insercioBarres);
         });
 
-        // Gestió del botó per activar el reactor
+        // Acció per activar el reactor
         buttonactivarReactor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -79,7 +88,7 @@ public class Components_Central extends JDialog {
             }
         });
 
-        // Botó per desactivar el reactor
+        // Acció per desactivar el reactor
         buttondesactivarReactor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -88,103 +97,17 @@ public class Components_Central extends JDialog {
             }
         });
 
-        // Botons per activar/desactivar cadascuna de les bombes, amb comprovació de l'estat
-        buttonBomba1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                BombaRefrigerant bomba1 = refrigeracio.getllistabombes().get(0);
-                if (!bomba1.getForaDeServei()) {
-                    try {
-                        if (!bomba1.getActivat()) {
-                            bomba1.activa();
-                        } else {
-                            bomba1.desactiva();
-                        }
-                    } catch (CentralUBException ex) {
-                        JOptionPane.showMessageDialog(null, "Error activant la bomba: " + ex.getMessage());
-                    }
-                    actualitzaEstatBomba(buttonBomba1, bomba1, 1);
-                } else {
-                    JOptionPane.showMessageDialog(null, "La bomba està fora de servei.");
-                }
-            }
-        });
+        // Accions per cada bomba de refrigeració
+        buttonBomba1.addActionListener(e -> gestionaBomba(buttonBomba1, 0));
+        buttonBomba2.addActionListener(e -> gestionaBomba(buttonBomba2, 1));
+        buttonBomba3.addActionListener(e -> gestionaBomba(buttonBomba3, 2));
+        buttonBomba4.addActionListener(e -> gestionaBomba(buttonBomba4, 3));
 
-        // Repeteix el mateix esquema per la bomba 2
-        buttonBomba2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                BombaRefrigerant bomba2 = refrigeracio.getllistabombes().get(1);
-                if (!bomba2.getForaDeServei()) {
-                    try {
-                        if (!bomba2.getActivat()) {
-                            bomba2.activa();
-                        } else {
-                            bomba2.desactiva();
-                        }
-                    } catch (CentralUBException ex) {
-                        JOptionPane.showMessageDialog(null, "Error activant la bomba: " + ex.getMessage());
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "La bomba està fora de servei.");
-                    afegirMissatge("Bomba 2 fora de servei.");
-                }
-                actualitzaEstatBomba(buttonBomba2, bomba2, 2);
-            }
-        });
-
-        // Bomba 3
-        buttonBomba3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                BombaRefrigerant bomba3 = refrigeracio.getllistabombes().get(2);
-                if (!bomba3.getForaDeServei()) {
-                    try {
-                        if (!bomba3.getActivat()) {
-                            bomba3.activa();
-                        } else {
-                            bomba3.desactiva();
-                        }
-                    } catch (CentralUBException ex) {
-                        JOptionPane.showMessageDialog(null, "Error activant la bomba: " + ex.getMessage());
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "La bomba està fora de servei.");
-                    afegirMissatge("Bomba 3 fora de servei.");
-                }
-                actualitzaEstatBomba(buttonBomba3, bomba3, 3);
-            }
-        });
-
-        // Bomba 4
-        buttonBomba4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                BombaRefrigerant bomba4 = refrigeracio.getllistabombes().get(3);
-                if (!bomba4.getForaDeServei()) {
-                    try {
-                        if (!bomba4.getActivat()) {
-                            bomba4.activa();
-                        } else {
-                            bomba4.desactiva();
-                        }
-                    } catch (CentralUBException ex) {
-                        JOptionPane.showMessageDialog(null, "Error activant la bomba: " + ex.getMessage());
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "La bomba està fora de servei.");
-                    afegirMissatge("Bomba 4 fora de servei.");
-                }
-                actualitzaEstatBomba(buttonBomba4, bomba4, 4);
-            }
-        });
-
-        // Botó per aplicar les modificacions fetes a la còpia local i actualitzar el model real
+        // Aplica les modificacions fetes a les còpies al model real
         aplicarModificacionsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    // Actualitza els valors al model real
                     centralUB.getAdaptador().setInsercioBarres(insercioBarres);
                     centralUB.getAdaptador().mostraReactor().settemperatura(reactor.gettemperatura());
                     if (reactor.getActivat()) {
@@ -193,7 +116,6 @@ public class Components_Central extends JDialog {
                         centralUB.getAdaptador().mostraReactor().desactiva();
                     }
 
-                    // Actualitza les bombes al model real
                     for (int i = 0; i < refrigeracio.getllistabombes().size(); i++) {
                         if (refrigeracio.getllistabombes().get(i).getActivat()) {
                             centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(i).activa();
@@ -207,23 +129,28 @@ public class Components_Central extends JDialog {
             }
         });
 
-        // Botó per cancel·lar i tancar la finestra
-        cancelarModificacionsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-            }
-        });
+        // Cancel·la els canvis i tanca la finestra
+        cancelarModificacionsButton.addActionListener(e -> setVisible(false));
     }
 
-    // Afegeix un missatge a la llista de missatges
+    /**
+     * Afegeix un missatge informatiu a la llista de missatges de la interfície.
+     *
+     * @param missatge el text a mostrar
+     */
     private void afegirMissatge(String missatge) {
         DefaultListModel model = (DefaultListModel) listMissatge.getModel();
         model.clear();
         model.addElement(missatge);
     }
 
-    // Actualitza el color i el text del botó en funció de l’estat de la bomba
+    /**
+     * Actualitza l'estat visual d'un botó de bomba segons l'estat de la bomba associada.
+     *
+     * @param boto     el botó a modificar
+     * @param bomba    la bomba de refrigeració associada
+     * @param numBomba el número de bomba (per a mostrar al text)
+     */
     private void actualitzaEstatBomba(JButton boto, BombaRefrigerant bomba, int numBomba) {
         if (bomba.getForaDeServei()) {
             boto.setBackground(Color.GRAY);
@@ -240,5 +167,30 @@ public class Components_Central extends JDialog {
                 afegirMissatge("Bomba " + numBomba + " desactivada.");
             }
         }
+    }
+
+    /**
+     * Gestiona l'activació/desactivació d'una bomba segons el seu estat actual.
+     *
+     * @param boto el botó associat a la bomba
+     * @param idx  l'índex de la bomba a la llista del sistema de refrigeració
+     */
+    private void gestionaBomba(JButton boto, int idx) {
+        BombaRefrigerant bomba = refrigeracio.getllistabombes().get(idx);
+        if (!bomba.getForaDeServei()) {
+            try {
+                if (!bomba.getActivat()) {
+                    bomba.activa();
+                } else {
+                    bomba.desactiva();
+                }
+            } catch (CentralUBException ex) {
+                JOptionPane.showMessageDialog(null, "Error activant la bomba: " + ex.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "La bomba està fora de servei.");
+            afegirMissatge("Bomba " + (idx + 1) + " fora de servei.");
+        }
+        actualitzaEstatBomba(boto, bomba, idx + 1);
     }
 }
