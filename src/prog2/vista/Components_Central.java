@@ -38,11 +38,10 @@ public class Components_Central extends JDialog {
         setSize(600, 500);
         setModal(true);
 
-        buttonBomba1.setBackground(Color.RED);
-        buttonBomba2.setBackground(Color.RED);
-        buttonBomba3.setBackground(Color.RED);
-        buttonBomba4.setBackground(Color.RED);
-
+        actualitzaEstatBomba(buttonBomba1, refrigeracio.getllistabombes().get(0), 1);
+        actualitzaEstatBomba(buttonBomba2, refrigeracio.getllistabombes().get(1), 2);
+        actualitzaEstatBomba(buttonBomba3, refrigeracio.getllistabombes().get(2), 3);
+        actualitzaEstatBomba(buttonBomba4, refrigeracio.getllistabombes().get(3), 4);
 
         slider1.setMinimum(0);  // O el mínimo que quieras
         slider1.setMaximum(100);  // O el máximo que quieras
@@ -84,20 +83,15 @@ public class Components_Central extends JDialog {
                     try {
                         if (!bomba1.getActivat()) {
                             bomba1.activa();
-                            buttonBomba1.setBackground(Color.GREEN);
-                            afegirMissatge("Bomba 1 activada.");
-
                         } else {
                             bomba1.desactiva();
-                            buttonBomba1.setBackground(Color.RED);
-                            afegirMissatge("Bomba 1 desactivada");
                         }
                     } catch (CentralUBException ex) {
                         JOptionPane.showMessageDialog(null, "Error activant la bomba: " + ex.getMessage());
                     }
+                    actualitzaEstatBomba(buttonBomba1, bomba1, 1);
                 } else {
                     JOptionPane.showMessageDialog(null, "La bomba està fora de servei.");
-                    afegirMissatge("Bomba 1 fora de servei.");
                 }
             }
         });
@@ -109,12 +103,8 @@ public class Components_Central extends JDialog {
                     try {
                         if (!bomba2.getActivat()) {
                             bomba2.activa();
-                            buttonBomba2.setBackground(Color.GREEN);
-                            afegirMissatge("Bomba 2 activada.");
                         } else {
                             bomba2.desactiva();
-                            buttonBomba2.setBackground(Color.RED);
-                            afegirMissatge("Bomba 2 desactivada");
                         }
                     } catch (CentralUBException ex) {
                         JOptionPane.showMessageDialog(null, "Error activant la bomba: " + ex.getMessage());
@@ -123,6 +113,7 @@ public class Components_Central extends JDialog {
                     JOptionPane.showMessageDialog(null, "La bomba està fora de servei.");
                     afegirMissatge("Bomba 2 fora de servei.");
                 }
+                actualitzaEstatBomba(buttonBomba2, bomba2, 2);
             }
         });
         buttonBomba3.addActionListener(new ActionListener() {
@@ -133,12 +124,8 @@ public class Components_Central extends JDialog {
                     try {
                         if (!bomba3.getActivat()) {
                             bomba3.activa();
-                            buttonBomba3.setBackground(Color.GREEN);
-                            afegirMissatge("Bomba 3 activada.");
                         } else {
                             bomba3.desactiva();
-                            buttonBomba3.setBackground(Color.RED);
-                            afegirMissatge("Bomba 3 desactivada");
                         }
                     } catch (CentralUBException ex) {
                         JOptionPane.showMessageDialog(null, "Error activant la bomba: " + ex.getMessage());
@@ -147,6 +134,7 @@ public class Components_Central extends JDialog {
                     JOptionPane.showMessageDialog(null, "La bomba està fora de servei.");
                     afegirMissatge("Bomba 3 fora de servei.");
                 }
+                actualitzaEstatBomba(buttonBomba3, bomba3, 3);
             }
         });
         buttonBomba4.addActionListener(new ActionListener() {
@@ -157,13 +145,9 @@ public class Components_Central extends JDialog {
                     try {
                         if (!bomba4.getActivat()) {
                             bomba4.activa();
-                            buttonBomba4.setBackground(Color.GREEN);
-                            afegirMissatge("Bomba 4 activada.");
 
                         } else {
                             bomba4.desactiva();
-                            buttonBomba4.setBackground(Color.RED);
-                            afegirMissatge("Bomba 4 desactivada");
                         }
                     } catch (CentralUBException ex) {
                         JOptionPane.showMessageDialog(null, "Error activant la bomba: " + ex.getMessage());
@@ -172,6 +156,7 @@ public class Components_Central extends JDialog {
                     JOptionPane.showMessageDialog(null, "La bomba està fora de servei.");
                     afegirMissatge("Bomba 4 fora de servei.");
                 }
+                actualitzaEstatBomba(buttonBomba4, bomba4, 4);
             }
         });
 
@@ -194,7 +179,7 @@ public class Components_Central extends JDialog {
                         } else {
                             centralUB.getAdaptador().mostraSistemaRefrigeracio().getllistabombes().get(i).desactiva();
                         }
-                    } //
+                    }
                 } catch (CentralUBException ex) {
                     JOptionPane.showMessageDialog(null, "Error actualitzant la Central: " + ex.getMessage());
                 }
@@ -214,6 +199,22 @@ public class Components_Central extends JDialog {
         model.addElement(missatge);
 
     }
-
+    private void actualitzaEstatBomba(JButton boto, BombaRefrigerant bomba, int numBomba) {
+        if (bomba.getForaDeServei()) {
+            boto.setBackground(Color.GRAY);
+            boto.setText("Bomba " + numBomba + ": Fora de servei");
+            afegirMissatge("Bomba " + numBomba + " fora de servei.");
+        } else{
+            if (bomba.getActivat()){
+                boto.setBackground(Color.GREEN);
+                boto.setText("Bomba " + numBomba + ": Activada");
+                afegirMissatge("Bomba " + numBomba + " activada.");
+            } else {
+            boto.setBackground(Color.RED);
+            boto.setText("Bomba " + numBomba + ": Desactivada");
+            afegirMissatge("Bomba " + numBomba + " desactivada.");
+            }
+        }
+}
 }
 
