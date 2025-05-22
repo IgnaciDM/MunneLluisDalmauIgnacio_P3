@@ -42,6 +42,8 @@ public class CentralUB {
     /** Demanda de potència del dia actual **/
     private float demandaPotencia;
 
+    public int Dia;
+
     private Adaptador adaptador;
 
     /*ENUMS Y STRINGS A MOSTRAR EN MENU*/
@@ -129,6 +131,7 @@ public class CentralUB {
     public CentralUB() {
         variableNormal = new VariableNormal(VAR_NORM_MEAN, VAR_NORM_STD, VAR_NORM_SEED);
         demandaPotencia = generaDemandaPotencia();
+        Dia = 1;
         // Inicialitzem l'objecte adaptador
 
         // Afegir codi adicional si fos necessari:
@@ -366,6 +369,7 @@ public class CentralUB {
         info = adaptador.finalitzaDia(demandaPotencia);
         System.out.println(info);
         System.out.println("Dia finalitzat\n");
+        this.Dia = Dia + 1;
 
         // Generar i mostrar nova demanda de potencia
         demandaPotencia = generaDemandaPotencia();
@@ -378,6 +382,10 @@ public class CentralUB {
 
     public float getDemandaPotencia() {
         return demandaPotencia;
+    }
+
+    public int getDia() {
+        return Dia;
     }
 }
 

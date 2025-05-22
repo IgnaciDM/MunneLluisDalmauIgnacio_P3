@@ -29,6 +29,9 @@ public class Adaptador {
         this.dades = new Dades();
     }
 
+    public Dades getDades() {
+        return dades;
+    }
     /**
      * Retorna la demanda de potència actual.
      *
@@ -164,6 +167,10 @@ public class Adaptador {
      */
     public void desactivaReactor() {
         dades.desactivaReactor();
+    }
+
+    public float getGuanysAcumulats() {
+        return dades.getGuanysAcumulats();
     }
 
     /**
