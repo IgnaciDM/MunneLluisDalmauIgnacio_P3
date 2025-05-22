@@ -29,6 +29,9 @@ public class Adaptador {
         this.dades = new Dades();
     }
 
+    public Dades getDades() {
+        return dades;
+    }
     /**
      * Retorna la demanda de potència actual.
      *
@@ -166,6 +169,10 @@ public class Adaptador {
         dades.desactivaReactor();
     }
 
+    public float getGuanysAcumulats() {
+        return dades.getGuanysAcumulats();
+    }
+
     /**
      * Finalitza el dia i registra la informació de la bitàcola.
      *
@@ -232,5 +239,9 @@ public class Adaptador {
             throw new CentralUBException("Error carregant les dades: " + e.getMessage());
         }
         System.out.println("Dades carregades satisfactoriament de " + camiOrigen + " a la CentralUB");
+    }
+
+    public Bitacola getBitacolaDia() {
+        return dades.getBitacolaDia();
     }
 }
