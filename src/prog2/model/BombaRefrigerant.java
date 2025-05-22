@@ -33,6 +33,11 @@ public class BombaRefrigerant implements InBombaRefrigerant, Serializable {
         this.VaUni = VaUni;
     }
 
+    public BombaRefrigerant(BombaRefrigerant original) {
+        this.id = original.id;
+        this.VaUni = original.VaUni;
+    }
+
     /**
      * Retorna l'identificador de la bomba.
      * @return l'id de la bomba

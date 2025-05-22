@@ -7,8 +7,22 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class SistemaRefrigeracio implements InComponent,Serializable {
-    ArrayList<BombaRefrigerant> llistabombes = new ArrayList<>();
+    ArrayList<BombaRefrigerant> llistabombes;
     boolean activa;
+
+    public SistemaRefrigeracio() {
+        this.llistabombes = new ArrayList<>();
+        this.activa = false;
+    }
+
+    public SistemaRefrigeracio(SistemaRefrigeracio original) {
+        ArrayList<BombaRefrigerant> l = new ArrayList<>();
+        for (BombaRefrigerant b : original.llistabombes) {
+            l.add(new BombaRefrigerant(b));
+        }
+        this.llistabombes = l;
+        this.activa = original.activa;
+    }
 
     public ArrayList<BombaRefrigerant> getllistabombes(){
        return llistabombes;

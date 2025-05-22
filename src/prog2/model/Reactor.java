@@ -30,6 +30,17 @@ public class Reactor implements InComponent, Serializable {
      *
      * @return Temperatura en graus Celsius.
      */
+
+    public Reactor() {
+        this.temperatura = 25;
+        this.activa = false;
+    }
+
+    public Reactor(Reactor original) {
+        this.temperatura = original.temperatura;
+        this.activa = original.activa;
+    }
+
     public float gettemperatura() {
         return temperatura;
     }
