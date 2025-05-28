@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 public class Manteniment extends JDialog {
     private JPanel contentPane;
     private JPanel panel;
+    
 
     CentralUB centralUB;
 
