@@ -113,7 +113,9 @@ Dades implements InDades, Serializable {
         }
     }
 
-    public SistemaRefrigeracio mostraSistemaRefrigeracio() {
+    public SistemaRefrigeracio mostraSistemaRefrigeracio()
+
+    {
         return sistemaRefrigeracio;
     }
     //-------------------------------------------------------------------------
