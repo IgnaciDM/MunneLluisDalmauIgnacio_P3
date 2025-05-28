@@ -19,6 +19,7 @@ public class Manteniment extends JDialog {
         setModal(true);
         Nbomba.setEnabled(false); // al principio deshabilitado
         contentPane.add(Nbomba);  // ya está visible pero no editable
+        setVisible(true);
 
 
         opcions.addActionListener(new ActionListener() {
