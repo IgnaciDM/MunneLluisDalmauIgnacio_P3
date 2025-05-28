@@ -30,7 +30,7 @@ public class EstatTecnic {
     }
     void RepararReactor(){
         if (disponibleReparacio()) {
-            for (float i=insercioBarres; i>0 ;i++) {
+            for (float i=insercioBarres; i>0 ;i--) {
                 try {
                     dades.setInsercioBarres(i);
                 } catch (CentralUBException e) {
