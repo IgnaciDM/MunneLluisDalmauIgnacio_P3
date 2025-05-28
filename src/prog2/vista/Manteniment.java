@@ -6,9 +6,7 @@ import java.awt.event.ActionListener;
 
 public class Manteniment extends JDialog {
     private JPanel contentPane;
-    private JComboBox<String> opcions;
-    private JButton okButton;
-    private JTextField Nbomba;
+    private JPanel panel;
 
     CentralUB centralUB;
 
@@ -16,60 +14,11 @@ public class Manteniment extends JDialog {
         this.centralUB = centralUB;
 
         setContentPane(contentPane);
-        setModal(true);
-        Nbomba.setEnabled(false); // al principio deshabilitado
-        contentPane.add(Nbomba);  // ya está visible pero no editable
+        setSize(600, 500);
+        setModal(true); // Finestra modal
+        setContentPane(contentPane);
         setVisible(true);
 
-
-        opcions.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String seleccion = (String) opcions.getSelectedItem();
-
-                if ("Bomba".equals(seleccion)) {
-                    Nbomba.setEnabled(true); // ahora se puede escribir
-                } else {
-                    Nbomba.setEnabled(false); // no editable
-                }
-            }
-        });
-
-        okButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String opcio = (String) opcions.getSelectedItem();
-                String informacio;
-
-                try {
-                    switch (opcio) {
-                        case "Reactor":
-
-                            break;
-                        case "Bomba":
-                            break;
-                        default:
-                            informacio = "Opció no reconeguda";
-                    }
-
-                } catch (Exception ex) {
-
-                }
-            }
-        });
-
-        Nbomba.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String texto = Nbomba.getText();
-                try {
-                    int numero = Integer.parseInt(texto);
-                    JOptionPane.showMessageDialog(null, "Número válido: " + numero);
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Número no válido");
-                }
-            }
-        });
     }
 
     private void gestionarOpcioBomba() {
