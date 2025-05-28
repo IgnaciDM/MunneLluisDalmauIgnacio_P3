@@ -8,6 +8,7 @@ public class Manteniment extends JDialog {
     private JPanel contentPane;
     private JPanel panel;
     private JComboBox<String> opcions;
+    private JTextField Nbomba;
 
 
     CentralUB centralUB;
@@ -17,21 +18,41 @@ public class Manteniment extends JDialog {
 
         setContentPane(contentPane);
         setSize(600, 500);
-        setModal(true); // Finestra modal
+        setLocationRelativeTo(null);
+        setModal(true); // ventana modal
 
-        setContentPane(contentPane);
-        setSize(600, 500);
-        setModal(true); // Finestra modal
-        setContentPane(contentPane);
-        setVisible(true);
+        Nbomba.setEnabled(false);
 
-        opcions.addItem("Reactor");
-        opcions.addItem("Bombes");
 
         opcions.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String seleccion = (String) opcions.getSelectedItem();
 
+                if ("Bombes".equals(seleccion)) {
+                    Nbomba.setEnabled(true); // activa l'edició
+                } else {
+                    Nbomba.setEnabled(false); // desactiva si no és "Bomba"
+                }
+            }
+        });
+
+        Nbomba.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String texto = Nbomba.getText();
+                    int numeroBomba = Integer.parseInt(texto);
+                    // Acción con el número de bomba:
+                    System.out.println("Número de bomba introducido: " + numeroBomba);
+                    JOptionPane.showMessageDialog(null, "Número de bomba: " + numeroBomba);
+
+                    // Aquí puedes llamar al método que necesites:
+                    // centralUB.mantenimentPreventiuBomba(numeroBomba);
+
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Introdueix un número vàlid");
+                }
             }
         });
     }
