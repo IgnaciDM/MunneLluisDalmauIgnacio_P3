@@ -19,7 +19,7 @@ public class EstatTecnic {
     void RepararReactor(){
         for (float i=insercioBarres; i>0 ;i++) {
             try {
-                dades.setInsercioBarres(100);
+                dades.setInsercioBarres(i);
             } catch (CentralUBException e) {
                 throw new RuntimeException(e);
             }
