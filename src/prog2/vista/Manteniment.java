@@ -17,6 +17,8 @@ public class Manteniment extends JDialog {
         contentPane.add(Nbomba);  // ya está visible pero no editable
         setVisible(true);
 
+        setSize(600, 500);
+        setLocationRelativeTo(null); // Centra la finestra a la pantalla
 
         opcions.addActionListener(new ActionListener() {
             @Override
