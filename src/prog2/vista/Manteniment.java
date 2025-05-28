@@ -6,11 +6,15 @@ import java.awt.event.ActionListener;
 
 public class Manteniment extends JDialog {
     private JPanel contentPane;
-    private JComboBox opcions;
+    private JComboBox<String> opcions;
     private JButton okButton;
     private JTextField Nbomba;
 
+    CentralUB centralUB;
+
     public Manteniment(CentralUB centralUB) {
+        this.centralUB = centralUB;
+
         setContentPane(contentPane);
         setModal(true);
         Nbomba.setEnabled(false); // al principio deshabilitado
@@ -52,6 +56,7 @@ public class Manteniment extends JDialog {
                 }
             }
         });
+
         Nbomba.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -94,11 +94,11 @@ public class AppCentralUB extends JFrame {
                 guardarCarregarDades.setVisible(true);
             }
         });
+
         MantenimentButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
-                Manteniment componentsCentral = new Manteniment(centralUB);
-                componentsCentral.setVisible(true);
+                Manteniment manteniment = new Manteniment(centralUB);
+                manteniment.setVisible(true);
             }
         });
     }
