@@ -45,7 +45,7 @@ public class EstatTecnic {
         if (disponibleReparacio()) {
             for (BombaRefrigerant bomba: sistemaRefrigeracio.getllistabombes()) {
                 if (bomba.getId()==num){
-                    bombaRefrigerant.setForaDeServei(false);
+                    bomba.setForaDeServei(false);
                 }
             }
         }else{
