@@ -31,6 +31,7 @@ public class AppCentralUB extends JFrame {
 
     /** Àrea de text per mostrar el dia actual, demanda de potència i guanys acumulats */
     private JTextArea textAreaDies;
+    private JButton MantenimentButton;
 
     /**
      * Constructor de la finestra principal.
@@ -91,6 +92,13 @@ public class AppCentralUB extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 GuardarCarregarDades guardarCarregarDades = new GuardarCarregarDades(centralUB);
                 guardarCarregarDades.setVisible(true);
+            }
+        });
+        MantenimentButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Manteniment componentsCentral = new Manteniment(centralUB);
+                componentsCentral.setVisible(true);
             }
         });
     }
