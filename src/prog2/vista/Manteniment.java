@@ -45,8 +45,9 @@ public class Manteniment extends JDialog {
                     int numeroBomba = Integer.parseInt(texto);
                     // Acción con el número de bomba:
                     System.out.println("Número de bomba introducido: " + numeroBomba);
-                    JOptionPane.showMessageDialog(null, "Número de bomba: " + numeroBomba);
 
+                    centralUB.getAdaptador().getDades().restararBomba(Integer.valueOf(Nbomba.getText()));
+                    JOptionPane.showMessageDialog(null, "Element reparat");
                     // Aquí puedes llamar al método que necesites:
                     // centralUB.mantenimentPreventiuBomba(numeroBomba);
 
