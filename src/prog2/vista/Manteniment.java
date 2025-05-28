@@ -18,11 +18,6 @@ public class Manteniment extends JDialog {
         setContentPane(contentPane);
         setSize(600, 500);
         setModal(true); // Finestra modal
-
-        setContentPane(contentPane);
-        setSize(600, 500);
-        setModal(true); // Finestra modal
-        setContentPane(contentPane);
         setVisible(true);
 
         opcions.addItem("Reactor");
