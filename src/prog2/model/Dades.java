@@ -37,6 +37,7 @@ Dades implements InDades, Serializable {
 
     public Dades()  {
         // Inicialitza Atributs
+
         this.variableUniforme = new VariableUniforme(VAR_UNIF_SEED);
         this.GrauBarres = 100;
         this.reactor = new Reactor();
@@ -245,4 +246,5 @@ Dades implements InDades, Serializable {
     public Bitacola getBitacolaDia() {
         return BitacolaDia;
     }
+
 }
