@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 public class Manteniment extends JDialog {
     private JPanel contentPane;
     private JPanel panel;
+    private JComboBox<String> opcions;
+
 
     CentralUB centralUB;
 
@@ -16,9 +18,22 @@ public class Manteniment extends JDialog {
         setContentPane(contentPane);
         setSize(600, 500);
         setModal(true); // Finestra modal
+
+        setContentPane(contentPane);
+        setSize(600, 500);
+        setModal(true); // Finestra modal
         setContentPane(contentPane);
         setVisible(true);
 
+        opcions.addItem("Reactor");
+        opcions.addItem("Bombes");
+
+        opcions.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
     private void gestionarOpcioBomba() {
