@@ -30,6 +30,7 @@ Dades implements InDades, Serializable {
     private final Turbina turbina;
     private int dia;
     private float guanysAcumulats;
+    private EstatTecnic estatTecnic;
 
     ///////////////////////////////////////////////////////////////////////////////////
 
@@ -63,6 +64,8 @@ Dades implements InDades, Serializable {
         this.sistemaRefrigeracio.afegirBomba(b3);
 
         this.sistemaRefrigeracio.desactiva();
+        this.estatTecnic= new EstatTecnic(reactor, sistemaRefrigeracio, GrauBarres);
+
     }
 
     //--------------------------------------------------------------------------
@@ -243,6 +246,9 @@ Dades implements InDades, Serializable {
         return bitacolaDia;
     }
 
+    public EstatTecnic getEstatTecnic() {
+        return this.estatTecnic;
+    }
     public Bitacola getBitacolaDia() {
         return BitacolaDia;
     }
