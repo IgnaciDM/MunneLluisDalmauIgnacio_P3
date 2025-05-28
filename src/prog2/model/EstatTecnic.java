@@ -10,12 +10,10 @@ public class EstatTecnic {
     private Dades dades;
     int reparacions;
 
-    public EstatTecnic(Reactor reactor,BombaRefrigerant bombaRefrigerant,SistemaRefrigeracio sistemaRefrigeracio) {
+    public EstatTecnic(Reactor reactor,SistemaRefrigeracio sistemaRefrigeracio, float insercioBarres) {
         this.reactor = reactor;
-        this.bombaRefrigerant= bombaRefrigerant;
         this.sistemaRefrigeracio = sistemaRefrigeracio;
-        this.insercioBarres = dades.getInsercioBarres();
-        this.dades = dades;
+        this.insercioBarres = insercioBarres;
     }
 
     int getReparacions(){
@@ -43,7 +41,7 @@ public class EstatTecnic {
         }
     }
 
-    void RepararBombes(int num){
+    public void RepararBombes(int num){
         if (disponibleReparacio()) {
             for (BombaRefrigerant bomba: sistemaRefrigeracio.getllistabombes()) {
                 if (bomba.getId()==num){
