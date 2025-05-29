@@ -16,6 +16,7 @@ public class IniciadorCentralUB  {
      * prepare the text menu.
      * @param args the command line arguments
      */
+
     public static void main(String[] args) {
         // Creem un objecte de la vista
         CentralUB centralUB=new CentralUB();

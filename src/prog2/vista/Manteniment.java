@@ -1,6 +1,7 @@
 package prog2.vista;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,6 +10,7 @@ public class Manteniment extends JDialog {
     private JPanel panel;
     private JComboBox<String> opcions;
     private JTextField Nbomba;
+    private JButton repararReactorButton;
 
 
     CentralUB centralUB;
@@ -22,7 +24,7 @@ public class Manteniment extends JDialog {
         setModal(true); // ventana modal
 
         Nbomba.setEnabled(false);
-
+        repararReactorButton.setEnabled(false);
 
         opcions.addActionListener(new ActionListener() {
             @Override
@@ -31,9 +33,20 @@ public class Manteniment extends JDialog {
 
                 if ("Bombes".equals(seleccion)) {
                     Nbomba.setEnabled(true); // activa l'edició
+                    repararReactorButton.setEnabled(false);
                 } else {
                     Nbomba.setEnabled(false); // desactiva si no és "Bomba"
+                    repararReactorButton.setEnabled(true);
                 }
+            }
+        });
+
+        repararReactorButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                centralUB.getAdaptador().getDades().getEstatTecnic().RepararReactor();
+                setBackground(Color.green);
+
             }
         });
 

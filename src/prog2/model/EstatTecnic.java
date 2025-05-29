@@ -6,14 +6,12 @@ public class EstatTecnic {
     private Reactor reactor;
     private BombaRefrigerant bombaRefrigerant;
     private SistemaRefrigeracio sistemaRefrigeracio;
-    float insercioBarres;
-    private Dades dades;
     int reparacions;
 
     public EstatTecnic(Reactor reactor,SistemaRefrigeracio sistemaRefrigeracio, float insercioBarres) {
         this.reactor = reactor;
         this.sistemaRefrigeracio = sistemaRefrigeracio;
-        this.insercioBarres = insercioBarres;
+
     }
 
     int getReparacions(){
@@ -26,18 +24,13 @@ public class EstatTecnic {
     boolean disponibleReparacio(){
         return getReparacions()!=2;
     }
-    void RepararReactor(){
-        if (disponibleReparacio()) {
-            for (float i=insercioBarres; i>0 ;i--) {
-                try {
-                    dades.setInsercioBarres(i);
-                } catch (CentralUBException e) {
-                    throw new RuntimeException(e);
-                }
+    public void RepararReactor(){
+        for (BombaRefrigerant bomba: sistemaRefrigeracio.getllistabombes()) {
+            try{
+                bomba.activa();
+            }catch (CentralUBException e){
+                e.printStackTrace();
             }
-            reparacions++;
-        } else {
-            System.out.println("S'han fet totes les reparacions posibles de dia");
         }
     }
 
